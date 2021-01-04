@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/tabBar/index/index",
+    "pages/tabBar/my/my",
+    "pages/tabBar/community/community",
+    "pages/tabBar/rank/rank",
+    "pages/news-detail/news-detail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "E-测",
+    "navigationBarBackgroundColor": "#101010",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#fff",
+    "backgroundColor": "#101010",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/index/index",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabBar/rank/rank",
+        "iconPath": "static/ranking-list.png",
+        "selectedIconPath": "static/ranking-list-active.png",
+        "text": "榜单"
+      },
+      {
+        "pagePath": "pages/tabBar/community/community",
+        "iconPath": "static/community.png",
+        "selectedIconPath": "static/community-active.png",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/tabBar/my/my",
+        "iconPath": "static/my.png",
+        "selectedIconPath": "static/my-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,87 @@
+{
+	"easycom": {
+			"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabBar/index/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		}
+	    ,{
+            "path" : "pages/tabBar/my/my",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的",
+                "navigationBarTextStyle":"white"
+            }
+            
+        }
+        ,{
+            "path" : "pages/tabBar/community/community",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "社区",
+                "navigationBarTextStyle":"white"
+            }
+            
+        }
+        ,{
+            "path" : "pages/tabBar/rank/rank",
+            "style" :                                                                                    
+            {
+               "navigationBarTitleText": "榜单",
+               "navigationBarTextStyle":"white"
+            }
+            
+        }
+        ,{
+            "path" : "pages/news-detail/news-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "E-测",
+		"navigationBarBackgroundColor": "#101010",
+		"backgroundColor": "#fff"
+	},
+	"tabBar":{
+		"color":"#515151",
+		"selectedColor":"#fff",
+		"backgroundColor":"#101010",
+		"borderStyle":"black",
+		"list":[
+			{
+				"pagePath":"pages/tabBar/index/index",
+				"iconPath":"static/home.png",
+				"selectedIconPath":"static/home-active.png",
+				"text":"首页"
+			},
+			{
+				"pagePath":"pages/tabBar/rank/rank",
+				"iconPath":"static/ranking-list.png",
+				"selectedIconPath":"static/ranking-list-active.png",
+				"text":"榜单"
+			},
+			{
+				"pagePath":"pages/tabBar/community/community",
+				"iconPath":"static/community.png",
+				"selectedIconPath":"static/community-active.png",
+				"text":"社区"
+			},
+			{
+				"pagePath":"pages/tabBar/my/my",
+				"iconPath":"static/my.png",
+				"selectedIconPath":"static/my-active.png",
+				"text":"我的"
+			}
+		]
+	}
+}
