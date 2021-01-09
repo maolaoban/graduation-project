@@ -1,1 +1,1 @@
-<view>社区</view>
+<view class="community-container"><view class="community-top"><view class="top-post"><view class="post-icon">置顶</view><text class="post-title">#官方# 社区须知！发帖必看！！！</text></view><view class="top-post"><view class="post-icon">置顶</view><text class="post-title">#官方# 社区须知！！！</text></view><view class="top-post"><view class="post-icon">置顶</view><text class="post-title">科技美学招聘，后期剪辑，等你来哦</text></view></view></view>
