@@ -16,6 +16,6 @@
 	@import "uview-ui/index.scss";
 	/*每个页面公共css */
 	page{
-		background-color: #101010;
+		background-color: #151515;
 	}
 </style>

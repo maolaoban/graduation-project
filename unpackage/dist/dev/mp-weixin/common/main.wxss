@@ -37,8 +37,7 @@ image {
 }
 view,
 text {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .u-font-xs {
   font-size: 22rpx;
@@ -3151,8 +3150,7 @@ page {
   left: 0;
   top: 0;
   pointer-events: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
   width: 199.8%;
@@ -3318,6 +3316,6 @@ u-dropdown {
 
 /*每个页面公共css */
 page {
-  background-color: #101010;
+  background-color: #151515;
 }
 

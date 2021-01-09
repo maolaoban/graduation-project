@@ -4,19 +4,21 @@
     "pages/tabBar/my/my",
     "pages/tabBar/community/community",
     "pages/tabBar/rank/rank",
-    "pages/news-detail/news-detail"
+    "pages/news-detail/news-detail",
+    "pages/search-page/search-page",
+    "pages/my-message/my-message"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "E-测",
-    "navigationBarBackgroundColor": "#101010",
-    "backgroundColor": "#fff"
+    "navigationBarBackgroundColor": "#151515",
+    "backgroundColor": "#151515"
   },
   "tabBar": {
     "color": "#515151",
     "selectedColor": "#fff",
-    "backgroundColor": "#101010",
+    "backgroundColor": "#151515",
     "borderStyle": "black",
     "list": [
       {
@@ -45,6 +47,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

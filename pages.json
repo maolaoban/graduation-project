@@ -45,17 +45,35 @@
             }
             
         }
+        ,{
+            "path" : "pages/search-page/search-page",
+            "style" :                                                                                    
+            {
+                "navigationStyle":"custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-message/my-message",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的消息",
+				"navigationBarTextStyle":"white",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "E-测",
-		"navigationBarBackgroundColor": "#101010",
-		"backgroundColor": "#fff"
+		"navigationBarBackgroundColor": "#151515",
+		"backgroundColor": "#151515"
 	},
 	"tabBar":{
 		"color":"#515151",
 		"selectedColor":"#fff",
-		"backgroundColor":"#101010",
+		"backgroundColor":"#151515",
 		"borderStyle":"black",
 		"list":[
 			{
