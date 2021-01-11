@@ -29,11 +29,8 @@
 			}
 		},
 		onLoad() {
-			uniCloud.callFunction({
-				name:'get_hot_search'
-			}).then(res => {
-				console.log(res);
-				const {data} = res.result;
+			this.$api.get_hot_search().then(res => {
+				const {data} = res;
 				this.hotList = data;
 				this.isLoading = false;
 			})

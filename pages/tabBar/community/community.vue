@@ -40,7 +40,7 @@
 		padding-right: 10rpx;
 		display: flex;
 		align-items: center;
-		border-bottom: 0.5rpx solid rgba($color: $uni-text-color-inverse, $alpha: 0.5);
+		border-bottom: 0.5rpx solid rgba($color: $uni-text-color-inverse, $alpha: 0.2);
 		.post-icon{
 			width: 50rpx;
 			height:30rpx;

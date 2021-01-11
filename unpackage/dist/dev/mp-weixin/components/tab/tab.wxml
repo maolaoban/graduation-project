@@ -1,0 +1,1 @@
+<view class="tab"><scroll-view class="tab-list" scroll-x="true"><view class="tab-list_box"><block wx:for="{{tabList}}" wx:for-item="item" wx:for-index="index"><view data-event-opts="{{[['tap',[['selectTab',[index]]]]]}}" class="{{['tab-name',(activeIndex===index)?'active':'']}}" bindtap="__e">{{''+item+''}}</view></block></view></scroll-view></view>

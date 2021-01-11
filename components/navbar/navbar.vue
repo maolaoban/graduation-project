@@ -14,13 +14,17 @@
 			</view>
 			<view class="navabr-search_input" v-else>
 				<u-icon name="search" color="#aaaaaa" size="30"></u-icon>
-				<input class="search-input" type="text" value="" placeholder="新版iPad Pro曝光..." placeholder-class="input-placeholder"/>
+				<input class="search-input" type="text" value="" 
+				placeholder="新版iPad Pro曝光..." 
+				placeholder-class="input-placeholder"
+				confirm-type="search"
+				/>
 			</view>
 			<view class="navbar-message" v-if="!isSearch" @click="toMyMessage">
 				<u-icon name="email" color="#fff" size="40"></u-icon>
 			</view>
 		</view>
-		<view :style="{height: statusBarHeight + navBarHeight + 'px'}"></view>
+		<view :style="{height: navBarHeight + 'px'}"></view>
 	</view>
 </template>
 

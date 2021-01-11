@@ -3316,6 +3316,9 @@ u-dropdown {
 
 /*每个页面公共css */
 page {
-  background-color: #151515;
+  background: #151515;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 

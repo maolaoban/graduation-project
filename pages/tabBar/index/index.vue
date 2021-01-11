@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
 		<navbar></navbar>
+		<tab></tab>
 		<!-- 轮播图 -->
 		<view class="swiper" v-if="!isLoading">
 			<u-swiper :list="carouseList" mode="rect" :effect3d="true" :circular="true"
@@ -70,16 +71,13 @@
 		},
 		methods: {
 			getCarousel(){
-				uniCloud.callFunction({
-					name:"get_carousel"
-				}).then(res => {
-					console.log(res.result);
-					const {data} = res.result;
+				this.$api.get_carousel().then(res => {
+					console.log(res.data);
+					const {data} = res;
 					data.forEach((item)=>{
 						this.carouseList.push(item.cover_img)
 					})
 					this.isLoading = false;
-					console.log(this.carouseList)
 				})
 			},
 			goDetail(index){

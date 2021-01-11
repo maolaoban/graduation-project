@@ -38,7 +38,7 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  border-bottom: 0.5rpx solid rgba(255, 255, 255, 0.5);
+  border-bottom: 0.5rpx solid rgba(255, 255, 255, 0.2);
 }
 .community-top .top-post .post-icon {
   width: 50rpx;
