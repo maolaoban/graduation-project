@@ -1,6 +1,6 @@
 <template>
 	<view class="my-info">
-		<view class="top-box">
+		<view class="top-box" @click="changeImg">
 			<view class="top-img">
 				<image src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1262914578,3997025524&fm=26&gp=0.jpg" mode="aspectFill"></image>
 			</view>
@@ -49,7 +49,17 @@
 			}
 		},
 		methods: {
-			
+			changeImg(){
+				uni.showActionSheet({
+				    itemList: ['更换封面'],
+				    success: function (res) {
+				        console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+				    },
+				    fail: function (res) {
+				        console.log(res.errMsg);
+				    }
+				});
+			}
 		}
 	}
 </script>

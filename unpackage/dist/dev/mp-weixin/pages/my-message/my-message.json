@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的消息",
-  "navigationBarTextStyle": "white",
+  "navigationBarTextStyle": "black",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-icon": "/uview-ui/components/u-icon/u-icon"

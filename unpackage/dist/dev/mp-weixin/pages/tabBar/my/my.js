@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -180,7 +180,19 @@ var _default =
 
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    changeImg: function changeImg() {
+      uni.showActionSheet({
+        itemList: ['更换封面'],
+        success: function success(res) {
+          console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+        },
+        fail: function fail(res) {
+          console.log(res.errMsg);
+        } });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

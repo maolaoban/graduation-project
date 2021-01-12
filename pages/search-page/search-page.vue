@@ -5,7 +5,7 @@
 			<text class="hot-title">热门</text>
 			<view class="hot-content" v-if="!isLoading">
 				<view class="hot-content_info" v-for="(item,index) in hotList">
-					<text :style="{color:index<3 ? '#e74c3c':'#fff'}">{{index+1+'. '}}</text>
+					<text :style="{color:index<3 ? '#e74c3c':'#151515'}">{{index+1+'. '}}</text>
 					{{item.title}}
 				</view>
 			</view>
@@ -47,13 +47,14 @@
 	padding: 40rpx;
 	.hot-title{
 		font-size: 32rpx;
-		color:#fff;
+		font-weight: bold;
+		color:#151515;
 	}
 	.hot-content{
 		margin-top: 30rpx;
 		.hot-content_info{
 			height: 80rpx;
-			color: #fff;
+			color: #151515;
 			font-size: 28rpx;
 			overflow: hidden;
 			white-space: nowrap;
@@ -67,35 +68,35 @@
 			margin-top: 40rpx;
 			width: 50%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 		.hot-loading_2{
 			height: 30rpx;
 			margin-top: 40rpx;
 			width: 80%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 		.hot-loading_3{
 			height: 30rpx;
 			margin-top: 40rpx;
 			width: 90%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 		.hot-loading_4{
 			height: 30rpx;
 			margin-top: 40rpx;
 			width: 70%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 		.hot-loading_5{
 			height: 30rpx;
 			margin-top: 40rpx;
 			width: 80%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 	}
 }

@@ -31,6 +31,8 @@
   display: -webkit-flex;
   display: flex;
   overflow: hidden;
+  background-color: #fff;
+  z-index: 999;
 }
 .tab .tab-list {
   width: 100%;
@@ -66,12 +68,28 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  font-size: 32rpx;
+  font-size: 28rpx;
   padding: 0 30rpx;
   white-space: nowrap;
-  color: #515151;
+  color: #7e7e7e;
 }
 .tab .tab-list .tab-list_box .tab-name.active {
-  color: #fff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #13227a;
+  position: relative;
+}
+.tab .tab-list .tab-list_box .tab-name.active:after {
+  content: '';
+  width: 40rpx;
+  height: 8rpx;
+  background-color: #13227a;
+  position: absolute;
+  bottom: -10rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 

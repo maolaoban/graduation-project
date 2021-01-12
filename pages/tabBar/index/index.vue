@@ -2,8 +2,11 @@
 	<view class="content">
 		<navbar></navbar>
 		<tab></tab>
+		<view class="home-list">
+			<list></list>
+		</view>
 		<!-- 轮播图 -->
-		<view class="swiper" v-if="!isLoading">
+		<!-- <view class="swiper" v-if="!isLoading">
 			<u-swiper :list="carouseList" mode="rect" :effect3d="true" :circular="true"
 				:height="300"
 				:interval="3000"
@@ -36,24 +39,17 @@
 					<view class="toutiao-icon">
 						<image src="../../../static/hot-news.png" mode="aspectFill"></image>
 					</view>
-					<text>今日头条</text>
+					<text>今日热点</text>
 				</view>
 				<view class="toutiao-body">
-					<view class="body-line">
-						<u-icon name="pushpin-fill" color="#f6ef37" size="20"></u-icon>
+					<view class="body-line" v-for="item in 3">
+						<view class="body-icon"></view>
 						<text>[爆料]iPhone 13 LTPO OLED屏幕，三星独供</text>
-					</view>
-					<view class="body-line">
-						<u-icon name="pushpin-fill" color="#f6ef37" size="20"></u-icon>
-						<text>[爆料]OPPO Find X3跑分、参数曝光</text>
-					</view>
-					<view class="body-line">
-						<u-icon name="pushpin-fill" color="#f6ef37" size="20"></u-icon>
-						<text>[爆料]AMD锐龙5000系Cezanne APU内核图曝光：三级缓存升级</text>
 					</view>
 				</view>
 			</view>
 		</view>
+		<video-card></video-card> -->
 	</view>
 </template>
 
@@ -90,6 +86,20 @@
 </script>
 
 <style lang="scss">
+	page{
+		height: 100%;
+		display: flex;
+	}
+	.content{
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		overflow: hidden;
+	}
+	.home-list{
+		flex: 1;
+		box-sizing: border-box;
+	}
 	.swiper{
 		width: 100%;
 	}
@@ -102,7 +112,7 @@
 			width: 90%;
 			height: 100%;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #f4f5f6;
 		}
 	}
 	.content-middle{
@@ -152,7 +162,7 @@
 			height: 100%;
 			border-radius: 15rpx;
 			padding: 15rpx;
-			background-color: rgba($color: #303133, $alpha: 0.5);
+			// background-color: #d4d4d4;
 			.toutiao-header{
 				width: 100%;
 				height: 60rpx;
@@ -169,8 +179,9 @@
 					}
 				}
 				text{
-					font-size: 30rpx;
-					color:$uni-text-color-inverse;
+					font-size: 32rpx;
+					font-weight: bold;
+					color:$uni-text-color;
 				}
 			}
 			.toutiao-body{
@@ -178,9 +189,15 @@
 					height: 70rpx;
 					display: flex;
 					align-items: center;
+					.body-icon{
+						width: 15rpx;
+						height: 15rpx;
+						background-color: #f85049;
+						flex-shrink: 0;
+					}
 					text{
 						margin-left: 10rpx;
-						color: $uni-text-color-inverse;
+						color: $uni-text-color;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;

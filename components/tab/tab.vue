@@ -16,7 +16,7 @@
 	export default {
 		data() {
 			return {
-				tabList:['推荐','视频','手机','电脑','图赏','汽车','智能家居','专题'],
+				tabList:['推荐','视频','手机','电脑','数码','汽车','智能家居','专题'],
 				activeIndex:0
 			};
 		},
@@ -34,6 +34,8 @@
 	height:80rpx;
 	display: flex;
 	overflow: hidden;
+	background-color: #fff;
+	z-index: 999;
 	.tab-list{
 		width: 100%;
 		height: 100%;
@@ -49,12 +51,26 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size:32rpx;
+				font-size:28rpx;
 				padding: 0 30rpx;
 				white-space: nowrap;
-				color:#515151;
+				color:#7e7e7e;
 				&.active{
-					color:$uni-text-color-inverse
+					transition: 0.2s;
+					font-size: 32rpx;
+					font-weight: bold;
+					color:#13227a;
+					position: relative;
+					&:after{
+						content: '';
+						width: 40rpx;
+						height: 8rpx;
+						background-color:#13227a;
+						position: absolute;
+						bottom: -10rpx;
+						left:50%;
+						transform: translateX(-50%);
+					}
 				}
 			}
 		}

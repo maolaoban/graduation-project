@@ -1,0 +1,1 @@
+<swiper class="home-swiper"><block wx:for="{{8}}" wx:for-item="item" wx:for-index="index" wx:key="index"><swiper-item class="swiper-item"><scroll-view class="list-scroll" scroll-y="true"><slot></slot></scroll-view></swiper-item></block></swiper>

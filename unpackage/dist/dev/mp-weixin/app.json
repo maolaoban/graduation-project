@@ -6,20 +6,21 @@
     "pages/tabBar/rank/rank",
     "pages/news-detail/news-detail",
     "pages/search-page/search-page",
-    "pages/my-message/my-message"
+    "pages/my-message/my-message",
+    "pages/tabBar/community/community-info"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "E-测",
-    "navigationBarBackgroundColor": "#151515",
-    "backgroundColor": "#151515"
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
-    "color": "#515151",
-    "selectedColor": "#fff",
-    "backgroundColor": "#151515",
-    "borderStyle": "black",
+    "color": "#01b9fd",
+    "selectedColor": "#13227a",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/tabBar/index/index",
@@ -29,8 +30,8 @@
       },
       {
         "pagePath": "pages/tabBar/rank/rank",
-        "iconPath": "static/ranking-list.png",
-        "selectedIconPath": "static/ranking-list-active.png",
+        "iconPath": "static/rank.png",
+        "selectedIconPath": "static/rank-active.png",
         "text": "榜单"
       },
       {
@@ -48,5 +49,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap24.json"
+  "sitemapLocation": "sitemap14.json"
 }

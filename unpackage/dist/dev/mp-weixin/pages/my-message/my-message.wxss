@@ -59,7 +59,7 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 20rpx;
-  background-color: #303133;
+  background-color: #01b9fd;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -73,12 +73,12 @@
 .message-fun .message-fun_box .message-text {
   margin-top: 15rpx;
   font-size: 24rpx;
-  color: #fff;
+  color: #333;
 }
 .parting-line {
-  height: 15rpx;
+  height: 10rpx;
   width: 100%;
-  background-color: #0d0d0d;
+  background-color: #ececec;
 }
 .message-content {
   width: 100%;
@@ -86,7 +86,7 @@
 }
 .message-content .message-content_header {
   font-size: 28rpx;
-  color: #fff;
+  color: #333;
 }
 .message-content .message-content_body {
   margin-top: 20rpx;
@@ -132,11 +132,11 @@
 }
 .message-content .message-content_body .message-content_li .content-info .content-info_header .content-info_date {
   font-size: 24rpx;
-  color: #fff;
+  color: #333;
 }
 .message-content .message-content_body .message-content_li .content-info_body {
   width: 90%;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(51, 51, 51, 0.6);
   font-size: 26rpx;
   margin-top: 10rpx;
   white-space: nowrap;

@@ -84,7 +84,7 @@
 			width: 100rpx;
 			height:100rpx;
 			border-radius: 20rpx;
-			background-color: #303133;
+			background-color: #01b9fd;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -92,21 +92,21 @@
 		.message-text{
 			margin-top: 15rpx;
 			font-size: 24rpx;
-			color:$uni-text-color-inverse;
+			color:$uni-text-color;
 		}
 	}
 }
 .parting-line{
-	height: 15rpx;
+	height: 10rpx;
 	width: 100%;
-	background-color: #0d0d0d;
+	background-color: #ececec;
 }
 .message-content{
 	width: 100%;
 	padding: 30rpx;
 	.message-content_header{
 		font-size: 28rpx;
-		color: $uni-text-color-inverse;
+		color: $uni-text-color;
 	}
 	.message-content_body{
 		margin-top: 20rpx;
@@ -139,13 +139,13 @@
 					}
 					.content-info_date{
 						font-size: 24rpx;
-						color:$uni-text-color-inverse;
+						color:$uni-text-color;
 					}
 				}
 			}
 			.content-info_body{
 				width: 90%;
-				color: rgba($color: $uni-text-color-inverse, $alpha: 0.6);
+				color: rgba($color: $uni-text-color, $alpha: 0.6);
 				font-size: 26rpx;
 				margin-top: 10rpx;
 				white-space: nowrap;

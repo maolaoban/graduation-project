@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/navbar/navbar":1,"components/tab/tab":1,"uview-ui/components/u-icon/u-icon":1,"uview-ui/components/u-swiper/u-swiper":1};
+/******/ 		var cssChunks = {"components/list/list":1,"components/navbar/navbar":1,"components/tab/tab":1,"uview-ui/components/u-icon/u-icon":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/navbar/navbar":"components/navbar/navbar","components/tab/tab":"components/tab/tab","uview-ui/components/u-icon/u-icon":"uview-ui/components/u-icon/u-icon","uview-ui/components/u-swiper/u-swiper":"uview-ui/components/u-swiper/u-swiper"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/list/list":"components/list/list","components/navbar/navbar":"components/navbar/navbar","components/tab/tab":"components/tab/tab","uview-ui/components/u-icon/u-icon":"uview-ui/components/u-icon/u-icon"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
