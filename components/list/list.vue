@@ -1,10 +1,13 @@
 <template>
-	<swiper class="home-swiper" >
-		<swiper-item class="swiper-item" v-for="(item,index) in 8" :key="index">
+	<swiper class="home-swiper" @change="change" :current="0">
+		<swiper-item>
+			<recommend></recommend>
+		</swiper-item>
+		<swiper-item class="swiper-item" v-for="(item,index) in 7" :key="index">
 			<scroll-view scroll-y="true" class="list-scroll">
-				<!-- <view class="item-li" v-for="(item,index) in 100">
+				<view class="item-li" v-for="(item,index) in 100">
 					{{index}}hello
-				</view> -->
+				</view>
 				<slot></slot>
 			</scroll-view>
 		</swiper-item>
@@ -17,6 +20,12 @@
 			return {
 				
 			};
+		},
+		methods:{
+			change(event){
+				const {current} = event.detail;
+				this.$emit('changePage',current);
+			}
 		}
 	}
 </script>

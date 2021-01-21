@@ -14,11 +14,22 @@
 
 <script>
 	export default {
+		props:{
+			indexNum:{
+				type:Number,
+				default:0
+			}
+		},
 		data() {
 			return {
 				tabList:['推荐','视频','手机','电脑','数码','汽车','智能家居','专题'],
 				activeIndex:0
 			};
+		},
+		watch:{
+			indexNum(newVal){
+				this.activeIndex = newVal;
+			}
 		},
 		methods:{
 			selectTab(index){
