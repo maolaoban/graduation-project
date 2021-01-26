@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/list/list":1,"components/navbar/navbar":1,"components/tab/tab":1,"uview-ui/components/u-icon/u-icon":1};
+/******/ 		var cssChunks = {"components/list/list":1,"components/navbar/navbar":1,"components/tab/tab":1,"uview-ui/components/u-icon/u-icon":1,"uview-ui/components/u-parse/u-parse":1,"components/comment-box/comment-box":1,"components/common-card/common-card":1,"components/recommend/recommend":1,"components/video-page/video-page":1,"uview-ui/components/u-parse/libs/trees":1,"uview-ui/components/u-gap/u-gap":1,"uview-ui/components/u-swiper/u-swiper":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/list/list":"components/list/list","components/navbar/navbar":"components/navbar/navbar","components/tab/tab":"components/tab/tab","uview-ui/components/u-icon/u-icon":"uview-ui/components/u-icon/u-icon"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/list/list":"components/list/list","components/navbar/navbar":"components/navbar/navbar","components/tab/tab":"components/tab/tab","uview-ui/components/u-icon/u-icon":"uview-ui/components/u-icon/u-icon","uview-ui/components/u-parse/u-parse":"uview-ui/components/u-parse/u-parse","components/comment-box/comment-box":"components/comment-box/comment-box","components/common-card/common-card":"components/common-card/common-card","components/recommend/recommend":"components/recommend/recommend","components/video-page/video-page":"components/video-page/video-page","uview-ui/components/u-parse/libs/trees":"uview-ui/components/u-parse/libs/trees","uview-ui/components/u-gap/u-gap":"uview-ui/components/u-gap/u-gap","uview-ui/components/u-swiper/u-swiper":"uview-ui/components/u-swiper/u-swiper"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

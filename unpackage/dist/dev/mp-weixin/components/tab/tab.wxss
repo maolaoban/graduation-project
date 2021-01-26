@@ -68,15 +68,13 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  font-size: 28rpx;
+  font-size: 30rpx;
   padding: 0 30rpx;
   white-space: nowrap;
   color: #7e7e7e;
 }
 .tab .tab-list .tab-list_box .tab-name.active {
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: bold;
   color: #13227a;
   position: relative;

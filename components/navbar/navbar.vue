@@ -123,6 +123,7 @@
 					font-size: 26rpx;
 					padding: 0 20rpx;
 					width: 85%;
+					color:#333;
 				}
 			}
 		}

@@ -13,7 +13,8 @@
             "path" : "pages/tabBar/my/my",
             "style" :                                                                                    
             {
-                "navigationStyle":"custom"
+                "navigationStyle":"custom",
+				"navigationBarTextStyle":"white"
             }
             
         }
@@ -39,8 +40,9 @@
             "path" : "pages/news-detail/news-detail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTextStyle":"black",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
             }
             
         }
@@ -58,15 +60,6 @@
             {
                 "navigationBarTitleText": "我的消息",
 				"navigationBarTextStyle":"black",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/tabBar/community/community-info",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

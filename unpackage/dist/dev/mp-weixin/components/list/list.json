@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "recommend": "/components/recommend/recommend",
+    "video-page": "/components/video-page/video-page",
+    "common-card": "/components/common-card/common-card"
+  },
   "component": true
 }

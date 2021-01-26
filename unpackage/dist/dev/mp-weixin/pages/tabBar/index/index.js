@@ -96,13 +96,13 @@ var components
 try {
   components = {
     navbar: function() {
-      return __webpack_require__.e(/*! import() | components/navbar/navbar */ "components/navbar/navbar").then(__webpack_require__.bind(null, /*! @/components/navbar/navbar.vue */ 108))
+      return __webpack_require__.e(/*! import() | components/navbar/navbar */ "components/navbar/navbar").then(__webpack_require__.bind(null, /*! @/components/navbar/navbar.vue */ 102))
     },
     tab: function() {
-      return __webpack_require__.e(/*! import() | components/tab/tab */ "components/tab/tab").then(__webpack_require__.bind(null, /*! @/components/tab/tab.vue */ 115))
+      return __webpack_require__.e(/*! import() | components/tab/tab */ "components/tab/tab").then(__webpack_require__.bind(null, /*! @/components/tab/tab.vue */ 109))
     },
     list: function() {
-      return __webpack_require__.e(/*! import() | components/list/list */ "components/list/list").then(__webpack_require__.bind(null, /*! @/components/list/list.vue */ 122))
+      return __webpack_require__.e(/*! import() | components/list/list */ "components/list/list").then(__webpack_require__.bind(null, /*! @/components/list/list.vue */ 116))
     }
   }
 } catch (e) {
@@ -159,49 +159,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -218,31 +176,20 @@ var _default =
 {
   data: function data() {
     return {
-      carouseList: [],
-      color: '$uni-bg-color',
-      isLoading: true };
+      activeIndex: 0,
+      tabIndex: 0 };
 
   },
   onLoad: function onLoad() {
-    this.getCarousel();
+
   },
   methods: {
-    getCarousel: function getCarousel() {var _this = this;
-      this.$api.get_carousel().then(function (res) {
-        console.log(res.data);var
-        data = res.data;
-        data.forEach(function (item) {
-          _this.carouseList.push(item.cover_img);
-        });
-        _this.isLoading = false;
-      });
+    changeTab: function changeTab(index) {
+      this.tabIndex = index;
     },
-    goDetail: function goDetail(index) {
-      uni.navigateTo({
-        url: '../../news-detail/news-detail' });
-
+    changePage: function changePage(current) {
+      this.activeIndex = current;
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

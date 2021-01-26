@@ -13,3 +13,17 @@ export const get_hot_search = (data) => {
 		data
 	})
 }
+//详情
+export const get_content = (data) => {
+	return $http({
+		url:'get_content',
+		data
+	})
+}
+//用户详情
+export const get_userInfo = (data) => {
+	return $http({
+		url:'get_userInfo',
+		data
+	})
+}

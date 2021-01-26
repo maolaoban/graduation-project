@@ -1,9 +1,9 @@
 <template>
 	<view class="content">
 		<navbar></navbar>
-		<tab :indexNum="activeIndex"></tab>
+		<tab :indexNum="activeIndex" @tab="changeTab"></tab>
 		<view class="home-list">
-			<list @changePage="changePage">
+			<list :tabIndex="tabIndex" @changePage="changePage">
 			</list>
 		</view>
 		<!-- 轮播图 -->
@@ -15,13 +15,17 @@
 	export default {
 		data() {
 			return {
-				activeIndex:0
+				activeIndex:0,
+				tabIndex:0
 			}
 		},
 		onLoad() {
 			
 		},
 		methods: {
+			changeTab(index){
+				this.tabIndex = index;
+			},
 			changePage(current){
 				this.activeIndex = current;
 			}

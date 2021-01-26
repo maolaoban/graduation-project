@@ -109,7 +109,10 @@
 		color: $uni-text-color;
 	}
 	.message-content_body{
-		margin-top: 20rpx;
+		height: 150rpx;
+		display: flex;
+		align-items: center;
+		border-bottom: 2rpx solid #ececec;
 		.message-content_li{
 			height:120rpx;
 			width: 100%;

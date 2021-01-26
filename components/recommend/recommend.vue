@@ -44,6 +44,13 @@
 				</view>
 			</view>
 		</view>
+		<view class="hot-recommend">
+			<view class="hot-recommend_text">
+				<image src="../../static/title.png" mode=""></image>
+				热门推荐
+			</view>
+			<common-card v-for="item in 5"></common-card>
+		</view>
 	</view>
 </template>
 
@@ -80,6 +87,9 @@
 </script>
 
 <style lang="scss">
+	.content{
+		margin-top: 10rpx;
+	}
 	.swiper{
 		width: 100%;
 	}
@@ -142,7 +152,7 @@
 			height: 100%;
 			border-radius: 15rpx;
 			padding: 15rpx;
-			// background-color: #d4d4d4;
+			// box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
 			.toutiao-header{
 				width: 100%;
 				height: 60rpx;
@@ -184,6 +194,17 @@
 					}
 				}
 			}
+		}
+	}
+	.hot-recommend_text{
+		display: flex;
+		align-items: center;
+		font-size: 36rpx;
+		font-weight: bold;
+		color:#13227a;
+		image{
+			width: 80rpx;
+			height: 80rpx;
 		}
 	}
 </style>

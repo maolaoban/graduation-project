@@ -1,13 +1,18 @@
 <template>
-	<swiper class="home-swiper" @change="change" :current="0">
-		<swiper-item>
-			<recommend></recommend>
-		</swiper-item>
-		<swiper-item class="swiper-item" v-for="(item,index) in 7" :key="index">
+	<swiper class="home-swiper" @change="change" :current="tabIndex">
+		<swiper-item class="swiper-item">
 			<scroll-view scroll-y="true" class="list-scroll">
-				<view class="item-li" v-for="(item,index) in 100">
-					{{index}}hello
-				</view>
+				<recommend></recommend>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item class="swiper-item">
+			<scroll-view scroll-y="true" class="list-scroll">
+				<video-page></video-page>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item class="swiper-item" v-for="(item,index) in 6" :key="index">
+			<scroll-view scroll-y="true" class="list-scroll">
+				<common-card v-for="item in 8"></common-card>
 				<slot></slot>
 			</scroll-view>
 		</swiper-item>
@@ -16,10 +21,21 @@
 
 <script>
 	export default {
+		props:{
+			tabIndex:{
+				type:Number,
+				default:0
+			}
+		},
 		data() {
 			return {
 				
 			};
+		},
+		watch:{
+			tabIndex(newVal){
+				this.tabIndex = newVal;
+			}
 		},
 		methods:{
 			change(event){

@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.community-container {
+.community-follow {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -34,7 +34,7 @@
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
           align-items: flex-end;
-  padding: 10rpx 30rpx;
+  padding: 10rpx 20rpx;
 }
 .my-follow {
   width: 80%;
@@ -62,20 +62,65 @@
           align-items: center;
 }
 .my-follow .follow-box_list .follow-box .box-li {
-  width: 90rpx;
-  height: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
-  border: 1px solid red;
   margin-right: 20rpx;
+}
+.my-follow .follow-box_list .follow-box .box-li image {
+  width: 100%;
+  height: 100%;
 }
 .all-community {
   width: 90rpx;
   height: 90rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
-  border: 1px solid yellow;
-  margin-left: 20rpx;
+  border: 4rpx dotted #d1d1d1;
+  margin-left: 10rpx;
   margin-bottom: 5rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.community-info_box {
+  width: 100%;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #e8e8e8;
+}
+.community-info_box .top-post {
+  height: 100rpx;
+  margin: 0 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.community-info_box .top-post .post-icon {
+  width: 50rpx;
+  height: 30rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  background-color: #01b9fd;
+  font-size: 20rpx;
+}
+.community-info_box .top-post .post-title {
+  color: #333;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
