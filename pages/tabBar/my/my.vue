@@ -17,7 +17,7 @@
 						</view>
 						{{userInfo.name}}
 					</view>
-					<view class="user-edit">
+					<view class="user-edit" @click="editProfile">
 						编辑资料
 					</view>
 				</view>
@@ -51,15 +51,15 @@
 					<text>我的喜欢</text>
 				</view>
 				<view class="my-collect">
-					<u-icon name="heart-fill" color="pink" size="60"></u-icon>
+					<u-icon name="clock-fill" color="#876db5" size="60"></u-icon>
 					<text>历史记录</text>
 				</view>
 				<view class="my-collect">
-					<u-icon name="heart-fill" color="pink" size="60"></u-icon>
+					<u-icon name="bag-fill" color="#f8784e" size="60"></u-icon>
 					<text>已购</text>
 				</view>
 				<view class="my-collect">
-					<u-icon name="heart-fill" color="pink" size="60"></u-icon>
+					<u-icon name="chat-fill" color="#3e92b5" size="60"></u-icon>
 					<text>我的评论</text>
 				</view>
 			</view>
@@ -141,6 +141,11 @@
 				        console.log(res.errMsg);
 				    }
 				});
+			},
+			editProfile(){
+				uni.navigateTo({
+					url:'../../edit-profile/edit-profile'
+				})
 			}
 		}
 	}

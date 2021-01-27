@@ -35,10 +35,10 @@
 					return;
 				}else{
 					if(oldVal < newVal){
-						this.leftMove += 30;
+						this.leftMove += (newVal - oldVal) * 30;
 					}
 					if(oldVal > newVal){
-						this.leftMove -= 30;
+						this.leftMove -= (oldVal - newVal) * 30;
 					}
 				}
 			}

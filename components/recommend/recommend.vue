@@ -32,7 +32,7 @@
 			<view class="toutiao-container">
 				<view class="toutiao-header">
 					<view class="toutiao-icon">
-						<image src="../../static/hot-news.png" mode="aspectFill"></image>
+						<image src="../../static/images/hot-news.png" mode="aspectFill"></image>
 					</view>
 					<text>今日热点</text>
 				</view>
@@ -46,7 +46,7 @@
 		</view>
 		<view class="hot-recommend">
 			<view class="hot-recommend_text">
-				<image src="../../static/title.png" mode=""></image>
+				<image src="../../static/images/title.png" mode=""></image>
 				热门推荐
 			</view>
 			<common-card v-for="item in 5"></common-card>

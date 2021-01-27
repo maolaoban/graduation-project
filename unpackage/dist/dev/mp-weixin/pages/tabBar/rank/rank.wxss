@@ -54,7 +54,7 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  background-color: rgba(21, 21, 21, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .rank-list .rank-card .rank-title text {
   font-size: 34rpx;

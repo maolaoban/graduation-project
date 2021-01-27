@@ -15,7 +15,7 @@
 			<view class="card-info">
 				<view class="card-info_author">
 					<view class="author_avatar">
-						<image src="../../static/logo.png" mode="as"></image>
+						<image src="../../static/images/logo.png" mode="as"></image>
 					</view>
 					<view class="card-info_name">
 						毛老板/2021-1-23

@@ -1,13 +1,13 @@
 <template>
 	<view class="rank-list">
 		<view class="rank-card" v-for="item in 2">
-			<image src="../../../static/rank-1.png" mode="aspectFill"></image>
+			<image src="../../../static/images/rank-1.png" mode="aspectFill"></image>
 			<view class="rank-title">
 				<text>2020年12月手机性能榜</text>
 			</view>
 		</view>
 		<view class="rank-card" v-for="item in 3">
-			<image src="../../../static/rank-2.png" mode="aspectFill"></image>
+			<image src="../../../static/images/rank-2.png" mode="aspectFill"></image>
 			<view class="rank-title">
 				<text>手机性价比双十一特别版</text>
 			</view>

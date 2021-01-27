@@ -6,7 +6,9 @@
     "pages/tabBar/rank/rank",
     "pages/news-detail/news-detail",
     "pages/search-page/search-page",
-    "pages/my-message/my-message"
+    "pages/my-message/my-message",
+    "pages/chat-page/chat-page",
+    "pages/edit-profile/edit-profile"
   ],
   "subPackages": [],
   "window": {
@@ -23,30 +25,29 @@
     "list": [
       {
         "pagePath": "pages/tabBar/index/index",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-active.png",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home-active.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/tabBar/rank/rank",
-        "iconPath": "static/rank.png",
-        "selectedIconPath": "static/rank-active.png",
+        "iconPath": "static/images/rank.png",
+        "selectedIconPath": "static/images/rank-active.png",
         "text": "榜单"
       },
       {
         "pagePath": "pages/tabBar/community/community",
-        "iconPath": "static/community.png",
-        "selectedIconPath": "static/community-active.png",
+        "iconPath": "static/images/community.png",
+        "selectedIconPath": "static/images/community-active.png",
         "text": "社区"
       },
       {
         "pagePath": "pages/tabBar/my/my",
-        "iconPath": "static/my.png",
-        "selectedIconPath": "static/my-active.png",
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/my-active.png",
         "text": "我的"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap34.json"
+  "usingComponents": {}
 }

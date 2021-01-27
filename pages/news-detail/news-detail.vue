@@ -1,18 +1,10 @@
 <template>
 	<view class="detail-container">
-		<view class="top-bar">
-			<view :style="{height:statusBarHeight+'px',backgroundColor: '#fff'}"></view>
-			<view class="back-btn" :style="{height:topBarHeight + 2 + 'px'}" @click="goBack">
-				<u-icon name="arrow-leftward" color="#7e7e7e" size="40"></u-icon>
-				<text :style="{width:menuButtonLeft-60+'px'}">{{contentInfo.title}}</text>
-			</view>
-		</view>
-		<view :style="{height: topBarHeight + 2  + statusBarHeight + 'px'}"></view>
 		<view class="top-box">
 			<!-- <image src="../../static/cool-background.png" mode="aspectFill"></image> -->
 			<video src="https://static.mobage.cn/html/promotion/game/12000128/autumn/index/op2_yy.mp4" 
 				page-gesture="true"
-				:title="videoTitle"
+				:title="contentInfo.title"
 				object-fit="cover"
 				controls
 			></video>
@@ -20,7 +12,7 @@
 		<view class="author-info">
 			<view class="info-left">
 				<view class="author-avatar">
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="../../static/images/logo.png" mode="aspectFill"></image>
 				</view>
 				<view class="author-name">
 					<text class="name">{{contentInfo.author}}</text>
@@ -32,9 +24,7 @@
 			</view>
 		</view>
 		<view class="detail-content">
-			<view class="content-title">
-				{{contentInfo.title}}
-			</view>
+			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
 				<text>{{contentInfo.create_time}}</text>
 				<text>阅读 {{contentInfo.read_count}}</text>
@@ -44,6 +34,7 @@
 			</view>
 		</view>
 		<comment-box></comment-box>
+		<u-back-top :scroll-top="scrollTop"></u-back-top>
 	</view>
 </template>
 
@@ -51,29 +42,24 @@
 	export default {
 		data() {
 			return {
-				statusBarHeight:0,
-				menuButtonLeft:0,
-				topBarHeight:40,
 				isFollow:false,
 				contentInfo:{},
+				scrollTop:0
 			}
 		},
 		onLoad() {
-			let sysInfo = uni.getSystemInfoSync();
-			this.statusBarHeight = sysInfo.statusBarHeight;
-			
-			//#ifndef H5 || APP-PLUS
-			let menuButtonInfo = uni.getMenuButtonBoundingClientRect();
-			console.log(menuButtonInfo)
-			this.menuButtonLeft = menuButtonInfo.left;
-			this.topBarHeight = menuButtonInfo.height + (menuButtonInfo.top - this.statusBarHeight) * 2;
-			//#endif
-			
 			this.$api.get_content().then(res => {
 				const {data} = res;
 				console.log(data);
 				this.contentInfo = data;
-			})
+				//设置导航栏文字
+				uni.setNavigationBarTitle({
+				    title: data.title
+				});
+			});
+		},
+		onPageScroll(e){
+			this.scrollTop = e.scrollTop;
 		},
 		methods: {
 			goBack(){

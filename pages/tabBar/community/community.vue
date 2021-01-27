@@ -8,7 +8,7 @@
 				<scroll-view scroll-x="true" class="follow-box_list">
 					<view class="follow-box">
 						<view class="box-li" v-for="(item,index) in 8" @click="goFollowDetail(index)">
-							<image src="../../../static/logo.png" mode="aspectFill"></image>
+							<image src="../../../static/images/logo.png" mode="aspectFill"></image>
 						</view>
 					</view>
 				</scroll-view>

@@ -31,10 +31,10 @@
 			<view class="message-content_header">
 				信息列表
 			</view>
-			<view class="message-content_body" v-for="item in 20">
+			<view class="message-content_body" v-for="item in 20" @click="goChat">
 				<view class="message-content_li">
 					<view class="content_img">
-						<image src="../../static/logo.png" mode="aspectFill"></image>
+						<image src="../../static/images/logo.png" mode="aspectFill"></image>
 					</view>
 					<view class="content-info">
 						<view class="content-info_header">
@@ -59,7 +59,11 @@
 			}
 		},
 		methods: {
-			
+			goChat(){
+				uni.navigateTo({
+					url:'../chat-page/chat-page'
+				})
+			}
 		}
 	}
 </script>
