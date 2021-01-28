@@ -1,25 +1,25 @@
 <template>
 	<view class="chat-message">
-		<view class="other-message">
+		<view class="other-message" v-if="message.type === 0">
 			<view class="chat-avatar">
-				<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
+				<image :src="message.avatar" mode="aspectFill"></image>
 			</view>
-			<view class="message-box_text">
-				<text>君不见，黄河之水天上来，奔流到海不复回。君不见，高堂明镜悲白发，朝如青丝暮成雪。</text>
+			<view class="message-box_text" v-if="message.msg">
+				<text v-text="message.msg"></text>
 			</view>
-			<!-- <view class="message-box_image">
-				<image src="../../static/avatar.jpg" mode="aspectFill"></image>
-			</view> -->
+			<view class="message-box_image" @click="previewImage" v-if="message.img">
+				<image src="../../static/images/cool-background.png" mode="aspectFill"></image>
+			</view>
 		</view>
-		<view class="my-message">
-			<!-- <view class="message-box_text">
-				<text>君不见，黄河之水天上来，奔流到海不复回。君不见，高堂明镜悲白发，朝如青丝暮成雪。</text>
-			</view> -->
-			<view class="message-box_image" @click="previewImage">
+		<view class="my-message" v-else>
+			<view class="message-box_text" v-if="message.msg">
+				<text v-text="message.msg"></text>
+			</view>
+			<view class="message-box_image" @click="previewImage" v-if="message.img">
 				<image src="../../static/images/cool-background.png" mode="aspectFill"></image>
 			</view>
 			<view class="chat-avatar">
-				<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
+				<image :src="message.avatar" mode="aspectFill"></image>
 			</view>
 		</view>
 	</view>
@@ -27,6 +27,14 @@
 
 <script>
 	export default {
+		props:{
+			message:{
+				type:Object,
+				default:()=>{
+					return {}
+				}
+			}
+		},
 		data() {
 			return {
 				
@@ -69,12 +77,13 @@
 			}
 		}
 		.message-box_text{
-			width: 500rpx;
+			max-width: 500rpx;
 			background-color: #fff;
 			border-radius: 0 20rpx 20rpx 20rpx;
 			margin-left: 20rpx;
 			overflow: hidden;
 			padding: 20rpx;
+			margin-top: 20rpx;
 			text{
 				white-space: pre-wrap;
 				color:#333;
@@ -114,11 +123,12 @@
 			}
 		}
 		.message-box_text{
-			width: 500rpx;
+			max-width: 500rpx;
 			background-color: #56d1fd;
 			border-radius: 20rpx 0 20rpx 20rpx;
 			margin-right: 20rpx;
 			padding: 20rpx;
+			margin-top: 20rpx;
 			text{
 				white-space: pre-wrap;
 				color:#333 ;

@@ -15,25 +15,32 @@
 			<view class="swiper"></view>
 		</view>
 		<view class="content-middle">
-			<view class="content-middle_store content-middle-common" hover-class="content-middle_change" hover-stay-time="50">
+			<view class="content-middle_classify content-middle-common">
+				<u-icon name="grid-fill" color="#fff" size="40"></u-icon>
+				<text>产品</text>
+			</view>
+			<view class="content-middle_store content-middle-common">
 				<u-icon name="bag-fill" color="#fff" size="40"></u-icon>
 				<text>商城</text>
 			</view>
-			<view class="content-middle_activity content-middle-common" hover-class="content-middle_change" hover-stay-time="50">
+			<view class="content-middle_activity content-middle-common">
 				<u-icon name="gift-fill" color="#fff" size="40"></u-icon>
 				<text>活动</text>
 			</view>
-			<view class="content-middle_sign content-middle-common" hover-class="content-middle_change" hover-stay-time="50">
+			<view class="content-middle_sign content-middle-common" @click="goSignIn">
 				<u-icon name="calendar-fill" color="#fff" size="40"></u-icon>
 				<text>签到</text>
 			</view>
+			
 		</view>
+		<!-- 签到 -->
+		<popup-box :isShow="isShow"></popup-box>
 		<view class="toutiao">
 			<view class="toutiao-container">
 				<view class="toutiao-header">
-					<view class="toutiao-icon">
+					<!-- <view class="toutiao-icon">
 						<image src="../../static/images/hot-news.png" mode="aspectFill"></image>
-					</view>
+					</view> -->
 					<text>今日热点</text>
 				</view>
 				<view class="toutiao-body">
@@ -60,7 +67,8 @@
 			return {
 				carouseList:[],
 				color:'$uni-bg-color',
-				isLoading:true
+				isLoading:true,
+				isShow:false,
 			}
 		},
 		created() {
@@ -81,6 +89,9 @@
 				uni.navigateTo({
 					url:'../../news-detail/news-detail'
 				})
+			},
+			goSignIn(){
+				this.isShow = !this.isShow;
 			}
 		}
 	}
@@ -119,28 +130,32 @@
 			justify-content: center;
 			color: $uni-text-color-inverse;
 			font-size: 28rpx;
-			width: 30%;
-			height: 100rpx;
-			border-radius: 30rpx;
+			width: 22%;
+			height: 80rpx;
+			border-radius: 50rpx;
 			text{
 				margin-left: 6rpx;
 			}
 		}
+		.content-middle_classify{
+			background-color: #f88c56;
+			box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
+			// background-image: linear-gradient(43deg, #7461d0 0%, #5f45c8 46%, #FFCC70 100%);
+		}
 		.content-middle_store{
 			background-color: #4158D0;
-			background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+			box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
+			// background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 		}
 		.content-middle_activity{
 			background-color: #08AEEA;
-			background-image: linear-gradient(62deg, #08AEEA 0%, #2AF598 100%);
+			box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
+			// background-image: linear-gradient(62deg, #08AEEA 0%, #a555f5 100%);
 		}
 		.content-middle_sign{
 			background-color: #FF3CAC;
-			background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
-		}
-		.content-middle_change{
-			width: 28%;
-			height: 95rpx;
+			box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
+			// background-image: linear-gradient(225deg, #ff5ef2 0%, #784BA0 50%, #2B86C5 100%);
 		}
 	}
 	.toutiao{
@@ -152,6 +167,7 @@
 			height: 100%;
 			border-radius: 15rpx;
 			padding: 15rpx;
+			border: 2rpx solid #f3f4f5;
 			// box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
 			.toutiao-header{
 				width: 100%;
@@ -169,9 +185,9 @@
 					}
 				}
 				text{
-					font-size: 32rpx;
+					font-size: 36rpx;
 					font-weight: bold;
-					color:$uni-text-color;
+					color:#13227a;
 				}
 			}
 			.toutiao-body{
@@ -179,10 +195,11 @@
 					height: 70rpx;
 					display: flex;
 					align-items: center;
+					margin-left: 10rpx;
 					.body-icon{
-						width: 15rpx;
-						height: 15rpx;
-						background-color: #f85049;
+						width: 10rpx;
+						height: 10rpx;
+						background-color: #13227a;
 						flex-shrink: 0;
 					}
 					text{

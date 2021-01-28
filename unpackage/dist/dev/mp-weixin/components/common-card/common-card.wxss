@@ -28,7 +28,7 @@
   width: 100%;
 }
 .common-card .news-card {
-  width: 690rpx;
+  width: 100%rpx;
   margin: 0 30rpx;
   padding: 20rpx 0;
 }

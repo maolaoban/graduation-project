@@ -17,20 +17,20 @@
 		props:{
 			indexNum:{
 				type:Number,
-				default:0
+				default:1
 			}
 		},
 		data() {
 			return {
-				tabList:['推荐','视频','手机','电脑','数码','汽车','智能家居','专题'],
-				activeIndex:0,
+				tabList:['关注','推荐','视频','手机','电脑','数码','汽车','智能家居','专题'],
+				activeIndex:1,
 				leftMove:0
 			};
 		},
 		watch:{
 			indexNum(newVal,oldVal){
 				this.activeIndex = newVal;
-				if(newVal < 3){
+				if(newVal < 2){
 					this.leftMove = 0;
 					return;
 				}else{

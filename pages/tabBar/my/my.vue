@@ -113,6 +113,10 @@
 				const {data} = res;
 				this.userInfo = data;
 				this.isShow = true;
+				uni.setStorage({
+					key:'userInfo',
+					data:JSON.stringify(data)
+				})
 			})
 		},
 		methods: {
@@ -161,13 +165,13 @@ page{
 	align-items: center;
 }
 .top-box{
-	width: 100%;
+	width: 750rpx;
 	height: 500rpx;
 	position: relative;
 	.top-img{
 		width: 100%;
 		height: 100%;
-		-webkit-clip-path: ellipse(120% 50% at 50% 45%);
+		-webkit-clip-path: ellipse(90% 60% at 50% 45%);
 		image{
 			width:100%;
 			height: 100%;

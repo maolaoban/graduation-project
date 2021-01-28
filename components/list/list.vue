@@ -2,6 +2,11 @@
 	<swiper class="home-swiper" @change="change" :current="tabIndex">
 		<swiper-item class="swiper-item">
 			<scroll-view scroll-y="true" class="list-scroll">
+				<my-interest></my-interest>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item class="swiper-item">
+			<scroll-view scroll-y="true" class="list-scroll">
 				<recommend></recommend>
 			</scroll-view>
 		</swiper-item>
@@ -24,7 +29,7 @@
 		props:{
 			tabIndex:{
 				type:Number,
-				default:0
+				default:1
 			}
 		},
 		data() {

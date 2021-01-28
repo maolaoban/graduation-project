@@ -1,13 +1,11 @@
 <template>
 	<view class="chat-container">
 		<view class="message-container" @click="closeEmoji">
-			<chat-message></chat-message>
-			<chat-message></chat-message>
-			<chat-message></chat-message>
+			<chat-message v-for="item in messageList" :message="item"></chat-message>
 		</view>
 		<view class="input-bottom">
 			<view class="input-bottom_top">
-				<view class="message-input" @click="keyBoardUp">
+				<view class="message-input">
 					<input type="text" v-model="inputValue"/>
 				</view>
 				<view class="icon" :style="{width:!isSend?'140rpx':'180rpx'}">
@@ -17,7 +15,7 @@
 					<view class="more-function" v-if="!isSend">
 						<i class="iconfont icon-genduo"></i>
 					</view>
-					<view class="send-btn" v-else>发送</view>
+					<view class="send-btn" v-else @click="sendMessage">发送</view>
 				</view>
 			</view>
 			<view class="input-emoji" v-show="isShowEmoji">
@@ -38,7 +36,22 @@
 				isSend:false,
 				emojiData:[],
 				inputValue:'',
-				isShowEmoji:false
+				isShowEmoji:false,
+				messageList:[
+					// type: 0对方消息 1自己消息
+					{
+						type:0,
+						msg:'君不见，黄河之水天上来，奔流到海不复回😍',
+						avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg',
+						img:''
+					},
+					{
+						type:1,
+						msg:'君不见，高堂明镜悲白发，朝如青丝暮成雪😍',
+						avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg',
+						img:''
+					}
+				]
 			};
 		},
 		watch:{
@@ -52,7 +65,7 @@
 		},
 		onLoad() {
 			uni.setNavigationBarTitle({
-			    title: '新的标题'
+			    title: '毛小毛'
 			});
 		},
 		onReady(){
@@ -73,11 +86,19 @@
 			selemoji(emoji){
 				this.inputValue += emoji;
 			},
-			keyBoardUp(){
-				// this.isShowEmoji = false;
-			},
 			closeEmoji(){
 				this.isShowEmoji = false;
+			},
+			sendMessage(){
+				let userInfo = JSON.parse(uni.getStorageSync('userInfo'));
+				let text = {
+					type:1,
+					msg:this.inputValue,
+					avatar:userInfo.avatar,
+					img:''
+				};
+				this.messageList.push(text);
+				this.inputValue = '';
 			}
 		}
 	}

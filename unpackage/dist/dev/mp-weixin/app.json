@@ -8,7 +8,9 @@
     "pages/search-page/search-page",
     "pages/my-message/my-message",
     "pages/chat-page/chat-page",
-    "pages/edit-profile/edit-profile"
+    "pages/edit-profile/edit-profile",
+    "pages/tabBar/community/more-community/more-community",
+    "pages/signIn-page/signIn-page"
   ],
   "subPackages": [],
   "window": {
@@ -39,7 +41,7 @@
         "pagePath": "pages/tabBar/community/community",
         "iconPath": "static/images/community.png",
         "selectedIconPath": "static/images/community-active.png",
-        "text": "社区"
+        "text": "圈子"
       },
       {
         "pagePath": "pages/tabBar/my/my",

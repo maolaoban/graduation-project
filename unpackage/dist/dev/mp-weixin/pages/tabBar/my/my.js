@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 133))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 141))
     }
   }
 } catch (e) {
@@ -268,6 +268,10 @@ var _default =
       data = res.data;
       _this2.userInfo = data;
       _this2.isShow = true;
+      uni.setStorage({
+        key: 'userInfo',
+        data: JSON.stringify(data) });
+
     });
   },
   methods: {

@@ -22,7 +22,7 @@
             "path" : "pages/tabBar/community/community",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "社区",
+                "navigationBarTitleText": "圈子",
                 "navigationBarTextStyle":"black"
             }
             
@@ -82,6 +82,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/tabBar/community/more-community/more-community",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "话题列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/signIn-page/signIn-page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "签到",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -111,7 +129,7 @@
 				"pagePath":"pages/tabBar/community/community",
 				"iconPath":"static/images/community.png",
 				"selectedIconPath":"static/images/community-active.png",
-				"text":"社区"
+				"text":"圈子"
 			},
 			{
 				"pagePath":"pages/tabBar/my/my",

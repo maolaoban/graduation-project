@@ -1,7 +1,5 @@
 {
-  "navigationBarTitleText": "社区",
+  "navigationBarTitleText": "圈子",
   "navigationBarTextStyle": "black",
-  "usingComponents": {
-    "u-icon": "/uview-ui/components/u-icon/u-icon"
-  }
+  "usingComponents": {}
 }

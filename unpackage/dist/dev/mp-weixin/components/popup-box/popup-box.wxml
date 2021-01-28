@@ -1,0 +1,1 @@
+<view><u-popup bind:input="__e" vue-id="96f6c1a8-1" mode="center" border-radius="20" value="{{show}}" data-event-opts="{{[['^input',[['__set_model',['','show','$event',[]]]]]]}}" bind:__l="__l" vue-slots="{{['default']}}"><view>出淤泥而不染，濯清涟而不妖</view></u-popup></view>

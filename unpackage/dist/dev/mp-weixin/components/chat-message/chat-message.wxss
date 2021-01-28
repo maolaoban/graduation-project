@@ -44,12 +44,13 @@
   height: 100%;
 }
 .chat-message .other-message .message-box_text {
-  width: 500rpx;
+  max-width: 500rpx;
   background-color: #fff;
   border-radius: 0 20rpx 20rpx 20rpx;
   margin-left: 20rpx;
   overflow: hidden;
   padding: 20rpx;
+  margin-top: 20rpx;
 }
 .chat-message .other-message .message-box_text text {
   white-space: pre-wrap;
@@ -94,11 +95,12 @@
   height: 100%;
 }
 .chat-message .my-message .message-box_text {
-  width: 500rpx;
+  max-width: 500rpx;
   background-color: #56d1fd;
   border-radius: 20rpx 0 20rpx 20rpx;
   margin-right: 20rpx;
   padding: 20rpx;
+  margin-top: 20rpx;
 }
 .chat-message .my-message .message-box_text text {
   white-space: pre-wrap;

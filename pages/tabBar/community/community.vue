@@ -3,18 +3,16 @@
 		<view class="community-follow">
 			<view class="my-follow">
 				<view class="my-follow_title">
-					订阅板块
+					<text>大家都在聊</text>
+					<text class="more" @click="goMore">更多</text>
 				</view>
 				<scroll-view scroll-x="true" class="follow-box_list">
 					<view class="follow-box">
 						<view class="box-li" v-for="(item,index) in 8" @click="goFollowDetail(index)">
-							<image src="../../../static/images/logo.png" mode="aspectFill"></image>
+							<text>#小白提问#</text>
 						</view>
 					</view>
 				</scroll-view>
-			</view>
-			<view class="all-community">
-				<u-icon name="plus" size="60" color="#d1d1d1"></u-icon>
 			</view>
 		</view>
 		<view class="community-info_box">
@@ -44,6 +42,11 @@
 		methods: {
 			goFollowDetail(i){
 				console.log(i);
+			},
+			goMore(){
+				uni.navigateTo({
+					url:'./more-community/more-community'
+				})
 			}
 		}
 	}
@@ -54,47 +57,49 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	padding: 10rpx 20rpx;
+	padding: 10rpx 0;
 }
 .my-follow{
-	width: 80%;
+	width: 100%;
 	flex: 1;
 	.my-follow_title{
 		font-size: 32rpx;
+		padding: 0 20rpx;
 		font-weight: bold;
+		display: flex;
+		justify-content: space-between;
+		.more{
+			font-size: 28rpx;
+			font-weight: 400;
+		}
 	}
 	.follow-box_list{
-		width: 100%;
-		height: 100rpx;
+		width: 730rpx;
+		height: 150rpx;
 		margin-top: 20rpx;
+		padding-left: 20rpx;
 		.follow-box{
 			width: 100%;
 			height: 100%;
 			display: flex;
 			align-items: center;
 			.box-li{
-				width: 100rpx;
-				height: 100rpx;
+				width: 300rpx;
+				height: 150rpx;
 				flex-shrink: 0;
 				margin-right: 20rpx;
-				image{
-					width: 100%;
-					height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.sheying520.com%2Fdata%2Fupload%2Fimage%2F201701%2F0187d523991b81311536e17d64ec6a32.jpg&refer=http%3A%2F%2Fwww.sheying520.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614404070&t=dda8815cf7bb641be02004d733d3582a');
+				background-size: 100% 100%;
+				border-radius: 10rpx;
+				text{
+					color:#fff;
 				}
 			}
 		}
 	}
-}
-.all-community{
-	width: 90rpx;
-	height: 90rpx;
-	flex-shrink: 0;
-	border:4rpx dotted #d1d1d1;
-	margin-left: 10rpx;
-	margin-bottom: 5rpx;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 .community-info_box{
 	width: 100%;

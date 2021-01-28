@@ -96,7 +96,7 @@ var components
 try {
   components = {
     chatMessage: function() {
-      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 157))
+      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 172))
     }
   }
 } catch (e) {
@@ -184,8 +184,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
 var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/emoji.js */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -216,9 +214,24 @@ var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/e
 //
 //
 //
-//
-//
-var _default = { data: function data() {return { isSend: false, emojiData: [], inputValue: '', isShowEmoji: false };}, watch: { inputValue: function inputValue(newVal) {if (newVal.length > 0) {this.isSend = true;} else {this.isSend = false;}} }, onLoad: function onLoad() {uni.setNavigationBarTitle({ title: '新的标题' });}, onReady: function onReady() {var page = Math.ceil(_emoji.default.length / 45);for (var i = 0; i < page; i++) {this.emojiData[i] = [];for (var k = 0; k < 45; k++) {_emoji.default[i * 45 + k] ? this.emojiData[i].push(_emoji.default[i * 45 + k]) : '';}
+var _default = { data: function data() {return { isSend: false, emojiData: [], inputValue: '', isShowEmoji: false, messageList: [// type: 0对方消息 1自己消息
+      { type: 0, msg: '君不见，黄河之水天上来，奔流到海不复回😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }, { type: 1, msg: '君不见，高堂明镜悲白发，朝如青丝暮成雪😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }] };}, watch: { inputValue: function inputValue(newVal) {if (newVal.length > 0) {this.isSend = true;} else {this.isSend = false;}
+    } },
+
+  onLoad: function onLoad() {
+    uni.setNavigationBarTitle({
+      title: '毛小毛' });
+
+  },
+  onReady: function onReady() {
+    var page = Math.ceil(_emoji.default.length / 45);
+    for (var i = 0; i < page; i++) {
+      this.emojiData[i] = [];
+      for (var k = 0; k < 45; k++) {
+        _emoji.default[i * 45 + k] ? this.emojiData[i].push(
+        _emoji.default[i * 45 + k]) :
+        '';
+      }
     }
   },
   methods: {
@@ -228,11 +241,19 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
     selemoji: function selemoji(emoji) {
       this.inputValue += emoji;
     },
-    keyBoardUp: function keyBoardUp() {
-      // this.isShowEmoji = false;
-    },
     closeEmoji: function closeEmoji() {
       this.isShowEmoji = false;
+    },
+    sendMessage: function sendMessage() {
+      var userInfo = JSON.parse(uni.getStorageSync('userInfo'));
+      var text = {
+        type: 1,
+        msg: this.inputValue,
+        avatar: userInfo.avatar,
+        img: '' };
+
+      this.messageList.push(text);
+      this.inputValue = '';
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

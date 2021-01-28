@@ -15,8 +15,8 @@
 	export default {
 		data() {
 			return {
-				activeIndex:0,
-				tabIndex:0
+				activeIndex:1,
+				tabIndex:1
 			}
 		},
 		onLoad() {

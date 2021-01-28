@@ -62,7 +62,7 @@
 .common-card{
 	width: 100%;
 	.news-card{
-		width: 690rpx;
+		width: 100%rpx;
 		margin: 0 30rpx;
 		padding: 20rpx 0;
 		.card-title{

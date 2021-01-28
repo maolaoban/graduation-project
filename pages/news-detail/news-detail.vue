@@ -177,6 +177,7 @@
 	}
 	.u-content{
 		margin-top: 20rpx;
+		font-size: 32rpx;
 	}
 }
 </style>

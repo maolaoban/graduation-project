@@ -34,22 +34,34 @@
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
           align-items: flex-end;
-  padding: 10rpx 20rpx;
+  padding: 10rpx 0;
 }
 .my-follow {
-  width: 80%;
+  width: 100%;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
 }
 .my-follow .my-follow_title {
   font-size: 32rpx;
+  padding: 0 20rpx;
   font-weight: bold;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.my-follow .my-follow_title .more {
+  font-size: 28rpx;
+  font-weight: 400;
 }
 .my-follow .follow-box_list {
-  width: 100%;
-  height: 100rpx;
+  width: 730rpx;
+  height: 150rpx;
   margin-top: 20rpx;
+  padding-left: 20rpx;
 }
 .my-follow .follow-box_list .follow-box {
   width: 100%;
@@ -62,24 +74,11 @@
           align-items: center;
 }
 .my-follow .follow-box_list .follow-box .box-li {
-  width: 100rpx;
-  height: 100rpx;
+  width: 300rpx;
+  height: 150rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
   margin-right: 20rpx;
-}
-.my-follow .follow-box_list .follow-box .box-li image {
-  width: 100%;
-  height: 100%;
-}
-.all-community {
-  width: 90rpx;
-  height: 90rpx;
-  -webkit-flex-shrink: 0;
-          flex-shrink: 0;
-  border: 4rpx dotted #d1d1d1;
-  margin-left: 10rpx;
-  margin-bottom: 5rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -89,6 +88,12 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
+  background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.sheying520.com%2Fdata%2Fupload%2Fimage%2F201701%2F0187d523991b81311536e17d64ec6a32.jpg&refer=http%3A%2F%2Fwww.sheying520.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614404070&t=dda8815cf7bb641be02004d733d3582a");
+  background-size: 100% 100%;
+  border-radius: 10rpx;
+}
+.my-follow .follow-box_list .follow-box .box-li text {
+  color: #fff;
 }
 .community-info_box {
   width: 100%;
