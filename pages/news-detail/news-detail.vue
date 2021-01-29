@@ -30,7 +30,7 @@
 				<text>阅读 {{contentInfo.read_count}}</text>
 			</view>
 			<view class="u-content">
-				<u-parse :html="contentInfo.content"></u-parse>
+				<u-parse :html="contentInfo.content" :tag-style="style"></u-parse>
 			</view>
 		</view>
 		<comment-box></comment-box>
@@ -44,7 +44,12 @@
 			return {
 				isFollow:false,
 				contentInfo:{},
-				scrollTop:0
+				scrollTop:0,
+				style:{
+					p: 'font-size:32rpx',
+					span: 'font-size: 30rpx',
+					img:'margin:10px 0'
+				}
 			}
 		},
 		onLoad() {
@@ -174,10 +179,6 @@
 		text{
 			margin-left: 20rpx;
 		}
-	}
-	.u-content{
-		margin-top: 20rpx;
-		font-size: 32rpx;
 	}
 }
 </style>

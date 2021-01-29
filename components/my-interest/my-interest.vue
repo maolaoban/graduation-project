@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="interest-container">
 		我的关注
 	</view>
 </template>

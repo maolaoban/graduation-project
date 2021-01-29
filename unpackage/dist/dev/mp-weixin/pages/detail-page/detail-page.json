@@ -1,7 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "navigationBarTitleText": "垂直排列，略缩图显示大图",
-  "usingComponents": {
-    "detail-page-uni-clientdb-default": "/pages/detail-page/detail-page-uni-clientdb-default"
-  }
-}

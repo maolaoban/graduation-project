@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "detail-page-uni-clientdb-default": "/pages/detail-page/detail-page-uni-clientdb-default"
-  }
-}

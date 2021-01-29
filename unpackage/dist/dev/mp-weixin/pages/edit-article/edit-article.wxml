@@ -1,0 +1,1 @@
+<view class="edit-container"><jin-edit vue-id="54222a40-1" placeholder="{{placeholder}}" data-event-opts="{{[['^editOk',[['finshedEdit']]]]}}" bind:editOk="__e" bind:__l="__l"></jin-edit></view>

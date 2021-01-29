@@ -3,6 +3,7 @@
     "u-swiper": "/uview-ui/components/u-swiper/u-swiper",
     "u-icon": "/uview-ui/components/u-icon/u-icon",
     "popup-box": "/components/popup-box/popup-box",
+    "fab": "/components/fab/fab",
     "common-card": "/components/common-card/common-card"
   },
   "component": true

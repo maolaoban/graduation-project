@@ -148,8 +148,4 @@
 .detail-content .content-time text {
   margin-left: 20rpx;
 }
-.detail-content .u-content {
-  margin-top: 20rpx;
-  font-size: 32rpx;
-}
 

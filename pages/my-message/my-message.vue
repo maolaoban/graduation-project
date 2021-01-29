@@ -31,14 +31,14 @@
 			<view class="message-content_header">
 				信息列表
 			</view>
-			<view class="message-content_body" v-for="item in 20" @click="goChat">
+			<view class="message-content_body" v-for="item in 5" @click="goChat">
 				<view class="message-content_li">
 					<view class="content_img">
-						<image src="../../static/images/logo.png" mode="aspectFill"></image>
+						<image src="../../static/images/avatar.jpg" mode="aspectFit"></image>
 					</view>
 					<view class="content-info">
 						<view class="content-info_header">
-							<text class="content-info_name">哔哩哔哩活动</text>
+							<text class="content-info_name">马云</text>
 							<text class="content-info_date">01-09</text>
 						</view>
 						<view class="content-info_body">

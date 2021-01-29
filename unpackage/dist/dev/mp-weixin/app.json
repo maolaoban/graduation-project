@@ -10,7 +10,10 @@
     "pages/chat-page/chat-page",
     "pages/edit-profile/edit-profile",
     "pages/tabBar/community/more-community/more-community",
-    "pages/signIn-page/signIn-page"
+    "pages/signIn-page/signIn-page",
+    "pages/product-page/product-page",
+    "pages/edit-article/edit-article",
+    "pages/store-page/store-page"
   ],
   "subPackages": [],
   "window": {

@@ -100,6 +100,33 @@
             }
             
         }
+        ,{
+            "path" : "pages/product-page/product-page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/edit-article/edit-article",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑文章",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/store-page/store-page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

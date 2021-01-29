@@ -1,0 +1,1 @@
+<view class="publish data-v-07c7b114"><uni-fab vue-id="1da21b1c-1" horizontal="right" vertical="bottom" direction="vertical" pattern="{{pattern}}" content="{{content}}" data-event-opts="{{[['^trigger',[['trigger']]]]}}" bind:trigger="__e" class="data-v-07c7b114" bind:__l="__l"></uni-fab></view>

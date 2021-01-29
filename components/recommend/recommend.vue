@@ -15,11 +15,11 @@
 			<view class="swiper"></view>
 		</view>
 		<view class="content-middle">
-			<view class="content-middle_classify content-middle-common">
+			<view class="content-middle_classify content-middle-common" @click="goProduct">
 				<u-icon name="grid-fill" color="#fff" size="40"></u-icon>
 				<text>产品</text>
 			</view>
-			<view class="content-middle_store content-middle-common">
+			<view class="content-middle_store content-middle-common" @click="goStore">
 				<u-icon name="bag-fill" color="#fff" size="40"></u-icon>
 				<text>商城</text>
 			</view>
@@ -27,14 +27,17 @@
 				<u-icon name="gift-fill" color="#fff" size="40"></u-icon>
 				<text>活动</text>
 			</view>
-			<view class="content-middle_sign content-middle-common" @click="goSignIn">
+			<view class="content-middle_sign content-middle-common" @click="showSign">
 				<u-icon name="calendar-fill" color="#fff" size="40"></u-icon>
 				<text>签到</text>
 			</view>
 			
 		</view>
 		<!-- 签到 -->
-		<popup-box :isShow="isShow"></popup-box>
+		<popup-box :isShow="isShow" ref="signChild"></popup-box>
+		<!-- 发表 -->
+		<fab></fab>
+		
 		<view class="toutiao">
 			<view class="toutiao-container">
 				<view class="toutiao-header">
@@ -53,7 +56,7 @@
 		</view>
 		<view class="hot-recommend">
 			<view class="hot-recommend_text">
-				<image src="../../static/images/title.png" mode=""></image>
+				<image src="../../static/images/title.png" mode="aspectFit"></image>
 				热门推荐
 			</view>
 			<common-card v-for="item in 5"></common-card>
@@ -90,8 +93,23 @@
 					url:'../../news-detail/news-detail'
 				})
 			},
-			goSignIn(){
-				this.isShow = !this.isShow;
+			goProduct(){
+				uni.navigateTo({
+					url:'/pages/product-page/product-page'
+				})
+			},
+			showSign(){
+				this.$refs.signChild.changeShow(true);
+			},
+			editArticle(){
+				uni.navigateTo({
+					url:'/pages/edit-article/edit-article'
+				})
+			},
+			goStore(){
+				uni.navigateTo({
+					url:'/pages/store-page/store-page'
+				})
 			}
 		}
 	}

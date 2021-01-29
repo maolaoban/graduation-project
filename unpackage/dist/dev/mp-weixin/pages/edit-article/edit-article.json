@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑文章",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "jin-edit": "/components/jin-edit/jin-edit"
+  }
+}

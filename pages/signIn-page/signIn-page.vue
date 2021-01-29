@@ -7,8 +7,8 @@
 				</view>
 				<view class="sign-info">
 					<view class="sign-left">
-						<view>已签到<text style="color: #ffff00;font-size: 32rpx;">{{signDays}}/{{day}}</text>天</view>
-						<u-line-progress class="progress-bar" active-color="#ffff00" inactive-color="#f3f4f5" :percent="percent" :show-percent="false"></u-line-progress>
+						<view>已签到<text style="color: #fff200;font-size: 32rpx;">{{signDays}}/{{day}}</text>天</view>
+						<u-line-progress active-color="#fff200" inactive-color="#f3f4f5" :percent="percent" :show-percent="false"></u-line-progress>
 					</view>
 					<view class="sign-right">
 						<image src="../../static/images/gold-coin.png" mode="aspectFit"></image>
@@ -47,6 +47,16 @@
 						去完成
 					</view>
 				</view>
+			</view>
+		</view>
+		<view class="declare">
+			<view class="declare-title">
+				签到规则
+			</view>
+			<view class="declare-content">
+				1.每日签到完成，即可获得当日金币</br>
+				2.连续签到10天未一个周期，第一天签到金币+1，第二天签到金币+2，以此类推。</br>
+				3.断签需重新签到。
 			</view>
 		</view>
 	</view>
@@ -108,7 +118,7 @@ page{
 			.sign-left{
 				color: $uni-text-color-inverse;
 				font-size: 36rpx;
-				.progress-bar{
+				/deep/.u-progress{
 					height: 6rpx !important;
 					width: 400rpx;
 				}
@@ -170,14 +180,34 @@ page{
 			}
 			.task-action{
 				height: 50rpx;
-				padding: 0 20rpx;
-				background-color: #ffff00;
+				width: 100rpx;
+				text-align: center;
+				background-color: #f7e410;
 				color: $uni-text-color;
 				border-radius: 30rpx;
 				line-height: 50rpx;
-				font-size: 26rpx;
+				font-size: 24rpx;
 			}
 		}
+	}
+}
+.declare{
+	width: 710rpx;
+	padding: 20rpx;
+	background-color: #fff;
+	margin: 0 20rpx;
+	border-radius: 20rpx;
+	transform: translateY(-80rpx);
+	.declare-title{
+		font-size: 32rpx;
+		font-weight: bold;
+		color: $uni-text-color;
+	}
+	.declare-content{
+		font-size: 28rpx;
+		color: $uni-text-color;
+		margin-top: 10rpx;
+		line-height: 40rpx;
 	}
 }
 </style>
