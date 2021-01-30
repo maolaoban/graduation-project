@@ -3,7 +3,7 @@
     "pages/tabBar/index/index",
     "pages/tabBar/my/my",
     "pages/tabBar/community/community",
-    "pages/tabBar/rank/rank",
+    "pages/tabBar/product/product",
     "pages/news-detail/news-detail",
     "pages/search-page/search-page",
     "pages/my-message/my-message",
@@ -11,9 +11,10 @@
     "pages/edit-profile/edit-profile",
     "pages/tabBar/community/more-community/more-community",
     "pages/signIn-page/signIn-page",
-    "pages/product-page/product-page",
+    "pages/rank/rank",
     "pages/edit-article/edit-article",
-    "pages/store-page/store-page"
+    "pages/store-page/store-page",
+    "pages/tabBar/product/product-list/product-list"
   ],
   "subPackages": [],
   "window": {
@@ -35,10 +36,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/tabBar/rank/rank",
+        "pagePath": "pages/tabBar/product/product",
         "iconPath": "static/images/rank.png",
         "selectedIconPath": "static/images/rank-active.png",
-        "text": "榜单"
+        "text": "产品"
       },
       {
         "pagePath": "pages/tabBar/community/community",
@@ -54,5 +55,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap64.json"
 }

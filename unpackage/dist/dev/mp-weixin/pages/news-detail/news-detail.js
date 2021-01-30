@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uParse: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 178))
+      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 196))
     },
     commentBox: function() {
-      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 188))
+      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 206))
     },
     uBackTop: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 195))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 213))
     }
   }
 } catch (e) {
@@ -208,7 +208,6 @@ var _default =
       scrollTop: 0,
       style: {
         p: 'font-size:32rpx',
-        span: 'font-size: 30rpx',
         img: 'margin:10px 0' } };
 
 

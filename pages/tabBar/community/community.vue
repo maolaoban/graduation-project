@@ -4,7 +4,7 @@
 			<view class="my-follow">
 				<view class="my-follow_title">
 					<text>大家都在聊</text>
-					<text class="more" @click="goMore">更多</text>
+					<text class="more" @click="goMore">更多></text>
 				</view>
 				<scroll-view scroll-x="true" class="follow-box_list">
 					<view class="follow-box">

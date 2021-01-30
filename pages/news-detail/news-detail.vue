@@ -47,7 +47,6 @@
 				scrollTop:0,
 				style:{
 					p: 'font-size:32rpx',
-					span: 'font-size: 30rpx',
 					img:'margin:10px 0'
 				}
 			}
@@ -128,6 +127,7 @@
 		.author-avatar{
 			width: 80rpx;
 			height: 80rpx;
+			flex-shrink: 0;
 			border-radius: 50%;
 			overflow: hidden;
 			image{

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "产品列表",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-dropdown": "/uview-ui/components/u-dropdown/u-dropdown",
+    "u-dropdown-item": "/uview-ui/components/u-dropdown-item/u-dropdown-item",
+    "u-rate": "/uview-ui/components/u-rate/u-rate"
+  }
+}

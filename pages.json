@@ -28,10 +28,10 @@
             
         }
         ,{
-            "path" : "pages/tabBar/rank/rank",
+            "path" : "pages/tabBar/product/product",
             "style" :                                                                                    
             {
-               "navigationBarTitleText": "榜单",
+               "navigationBarTitleText": "产品分类",
                "navigationBarTextStyle":"black"
             }
             
@@ -40,8 +40,11 @@
             "path" : "pages/news-detail/news-detail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+					//#ifdef H5
+					,"navigationStyle":"custom"
+					//#endif
             }
             
         }
@@ -101,10 +104,10 @@
             
         }
         ,{
-            "path" : "pages/product-page/product-page",
+            "path" : "pages/rank/rank",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "榜单",
                 "enablePullDownRefresh": false
             }
             
@@ -123,6 +126,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/tabBar/product/product-list/product-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "产品列表",
                 "enablePullDownRefresh": false
             }
             
@@ -147,10 +159,10 @@
 				"text":"首页"
 			},
 			{
-				"pagePath":"pages/tabBar/rank/rank",
+				"pagePath":"pages/tabBar/product/product",
 				"iconPath":"static/images/rank.png",
 				"selectedIconPath":"static/images/rank-active.png",
-				"text":"榜单"
+				"text":"产品"
 			},
 			{
 				"pagePath":"pages/tabBar/community/community",

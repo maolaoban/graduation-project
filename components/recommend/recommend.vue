@@ -17,7 +17,7 @@
 		<view class="content-middle">
 			<view class="content-middle_classify content-middle-common" @click="goProduct">
 				<u-icon name="grid-fill" color="#fff" size="40"></u-icon>
-				<text>产品</text>
+				<text>榜单</text>
 			</view>
 			<view class="content-middle_store content-middle-common" @click="goStore">
 				<u-icon name="bag-fill" color="#fff" size="40"></u-icon>
@@ -95,7 +95,7 @@
 			},
 			goProduct(){
 				uni.navigateTo({
-					url:'/pages/product-page/product-page'
+					url:'/pages/rank/rank'
 				})
 			},
 			showSign(){

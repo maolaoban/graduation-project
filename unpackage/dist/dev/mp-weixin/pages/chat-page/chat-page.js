@@ -96,7 +96,7 @@ var components
 try {
   components = {
     chatMessage: function() {
-      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 202))
+      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 220))
     }
   }
 } catch (e) {

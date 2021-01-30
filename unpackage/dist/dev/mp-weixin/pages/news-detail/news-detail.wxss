@@ -88,6 +88,8 @@
 .author-info .info-left .author-avatar {
   width: 80rpx;
   height: 80rpx;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
 }

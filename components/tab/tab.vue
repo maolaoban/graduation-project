@@ -88,7 +88,7 @@
 					font-weight: bold;
 					color:#13227a;
 					position: relative;
-					&:after{
+					&::after{
 						content: '';
 						width: 40rpx;
 						height: 8rpx;

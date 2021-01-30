@@ -79,7 +79,7 @@
   color: #13227a;
   position: relative;
 }
-.tab .tab-list .tab-list_box .tab-name.active:after {
+.tab .tab-list .tab-list_box .tab-name.active::after {
   content: '';
   width: 40rpx;
   height: 8rpx;
