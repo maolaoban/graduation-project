@@ -26,17 +26,18 @@
 /* 文章场景相关 */
 page {
   background-color: #f4f5f6;
+  overflow: hidden;
 }
-.product-container {
+.product-body {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
 }
 .classify-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
   height: 100%;
   width: 200rpx;
   box-sizing: border-box;
@@ -80,10 +81,6 @@ page {
   top: 25rpx;
 }
 .classify-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
   width: 550rpx;
   height: 100%;
   box-sizing: border-box;

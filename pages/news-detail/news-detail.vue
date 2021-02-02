@@ -33,8 +33,12 @@
 				<u-parse :html="contentInfo.content" :tag-style="style"></u-parse>
 			</view>
 		</view>
+		<!-- 评论 -->
 		<comment-box></comment-box>
+		<!-- 返回顶部按钮 -->
 		<u-back-top :scroll-top="scrollTop"></u-back-top>
+		<!-- 评论框 -->
+		<comment-input></comment-input>
 	</view>
 </template>
 
@@ -46,7 +50,7 @@
 				contentInfo:{},
 				scrollTop:0,
 				style:{
-					p: 'font-size:32rpx',
+					p: 'font-size:32rpx;line-height:50rpx',
 					img:'margin:10px 0'
 				}
 			}
@@ -115,12 +119,14 @@
 	}
 }
 .author-info{
-	width: 100%;
-	height: 120rpx;
+	width: 700rpx;
+	margin: 40rpx 20rpx 10rpx;
+	border-radius: 10rpx;
+	box-shadow:0px 10rpx 20rpx 0px #dcdcdc;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 30rpx;
+	padding: 20rpx;
 	.info-left{
 		display: flex;
 		align-items: center;

@@ -92,6 +92,20 @@
 				</view>
 			</view>
 		</view>
+		<view class="other-option">
+			<view class="option-list" @click="goPersonalCenter">
+				<u-icon name="plus-people-fill" color="#2f63b5" size="60"></u-icon>
+				<text>个人中心</text>
+			</view>
+			<view class="option-list">
+				<u-icon name="lock-opened-fill" color="#52b55e" size="60"></u-icon>
+				<text>账号安全</text>
+			</view>
+			<view class="option-list" @click="goFeedBack">
+				<u-icon name="server-fill" color="#ff557f" size="60"></u-icon>
+				<text>意见反馈</text>
+			</view>
+		</view>
 		<view class="out-login">
 			退出登录
 		</view>
@@ -149,6 +163,16 @@
 			editProfile(){
 				uni.navigateTo({
 					url:'../../edit-profile/edit-profile'
+				})
+			},
+			goPersonalCenter(){
+				uni.navigateTo({
+					url:'children/grade-page'
+				})
+			},
+			goFeedBack(){
+				uni.navigateTo({
+					url:'children/feed-page'
 				})
 			}
 		}
@@ -401,13 +425,36 @@ page{
 		}
 	}
 }
+.other-option{
+	width: 650rpx;
+	height: 180rpx;
+	border-radius: 25rpx;
+	background-color: #fff;
+	margin-top: 30rpx;
+	padding: 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	.option-list{
+		width: 120rpx;
+		height: 120rpx;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text{
+			margin-top: 10rpx;
+			font-size: 26rpx;
+		}
+	}
+}
 .out-login{
 	width: 650rpx;
 	height: 100rpx;
 	margin: 50rpx 0 20rpx 0;
 	border-radius: 20rpx;
 	transform: translateY(-5%);
-	color:#E74C3C;
+	color:#c5c5c5;
 	font-size: 32rpx;
 	font-weight: 600;
 	display: flex;

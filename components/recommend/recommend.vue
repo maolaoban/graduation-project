@@ -23,7 +23,7 @@
 				<u-icon name="bag-fill" color="#fff" size="40"></u-icon>
 				<text>商城</text>
 			</view>
-			<view class="content-middle_activity content-middle-common">
+			<view class="content-middle_activity content-middle-common" @click="goActivity">
 				<u-icon name="gift-fill" color="#fff" size="40"></u-icon>
 				<text>活动</text>
 			</view>
@@ -96,6 +96,11 @@
 			goProduct(){
 				uni.navigateTo({
 					url:'/pages/rank/rank'
+				})
+			},
+			goActivity(){
+				uni.navigateTo({
+					url:'/pages/activities-page/activities-page'
 				})
 			},
 			showSign(){

@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 189))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 211))
     }
   }
 } catch (e) {
@@ -253,6 +253,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -304,6 +318,16 @@ var _default =
     editProfile: function editProfile() {
       uni.navigateTo({
         url: '../../edit-profile/edit-profile' });
+
+    },
+    goPersonalCenter: function goPersonalCenter() {
+      uni.navigateTo({
+        url: 'children/grade-page' });
+
+    },
+    goFeedBack: function goFeedBack() {
+      uni.navigateTo({
+        url: 'children/feed-page' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

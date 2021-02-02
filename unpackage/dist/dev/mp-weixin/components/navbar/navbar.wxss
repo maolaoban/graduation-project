@@ -24,11 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.navabr {
+  background-color: #fff;
+}
 .navabr .navbar-fixed {
   height: 100rpx;
   width: 100%;
   padding: 0 20rpx;
-  position: absolute;
+  position: fixed;
   z-index: 999;
   display: -webkit-box;
   display: -webkit-flex;

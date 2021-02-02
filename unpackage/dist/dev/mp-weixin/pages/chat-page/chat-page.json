@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationBarBackgroundColor": "#f4f4f4",
   "usingComponents": {
-    "chat-message": "/components/chat-message/chat-message"
+    "chat-message": "/components/chat-message/chat-message",
+    "u-icon": "/uview-ui/components/u-icon/u-icon"
   }
 }

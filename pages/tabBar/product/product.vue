@@ -1,51 +1,54 @@
 <template>
 	<view class="product-container">
-		<view class="classify-left">
-			<view class="classify-top" :style="{'box-shadow':hasShadow?'0px 8rpx 20rpx 0px #CCCCCC':'none'}">
-				分类
+		<navbar @getNavBarHeight="getNavBarHeight"></navbar>
+		<view class="product-body" :style="{top:bodyTop+'px'}">
+			<view class="classify-left">
+				<view class="classify-top" :style="{'box-shadow':hasShadow?'0px 8rpx 20rpx 0px #CCCCCC':'none'}">
+					分类
+				</view>
+				<scroll-view class="left-box" scroll-y="true" @scroll="scrollFun">
+					<view class="scroll-item" v-for="(item,index) in classifyList" @click="selectClassify(index)"
+						:class="{'active': selectIndex === index}"
+					>{{item}}</view>
+				</scroll-view>
 			</view>
-			<scroll-view class="left-box" scroll-y="true" @scroll="scrollFun">
-				<view class="scroll-item" v-for="(item,index) in classifyList" @click="selectClassify(index)"
-					:class="{'active': selectIndex === index}"
-				>{{item}}</view>
-			</scroll-view>
-		</view>
-		<view class="classify-right">
-			<scroll-view class="scroll-right" scroll-y="true">
-				<view class="right-item">
-					<view class="item-title">
-						手机品牌
-					</view>
-					<view class="item-list">
-						<view class="item-list_box" v-for="item in 6" @click="openList">
-							<view class="cover">
-								<image src="https://img.pconline.com.cn/images/product/1350/1350247/fb_sn7.jpg" mode="aspectFit"></image>
+			<view class="classify-right">
+				<scroll-view class="scroll-right" scroll-y="true">
+					<view class="right-item">
+						<view class="item-title">
+							手机品牌
+						</view>
+						<view class="item-list">
+							<view class="item-list_box" v-for="item in 6" @click="openList">
+								<view class="cover">
+									<image src="https://img.pconline.com.cn/images/product/1350/1350247/fb_sn7.jpg" mode="aspectFit"></image>
+								</view>
+								<text>华为</text>
 							</view>
-							<text>华为</text>
 						</view>
 					</view>
-				</view>
-				<view class="right-item">
-					<view class="item-title">
-						手机类别
-					</view>
-					<view class="item-list">
-						<view class="item-list_box" v-for="item in 6" @click="openList">
-							
+					<view class="right-item">
+						<view class="item-title">
+							手机类别
+						</view>
+						<view class="item-list">
+							<view class="item-list_box" v-for="item in 6" @click="openList">
+								
+							</view>
 						</view>
 					</view>
-				</view>
-				<view class="right-item">
-					<view class="item-title">
-						手机配件
-					</view>
-					<view class="item-list">
-						<view class="item-list_box" v-for="item in 6" @click="openList">
-							
+					<view class="right-item">
+						<view class="item-title">
+							手机配件
+						</view>
+						<view class="item-list">
+							<view class="item-list_box" v-for="item in 6" @click="openList">
+								
+							</view>
 						</view>
 					</view>
-				</view>
-			</scroll-view>
+				</scroll-view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -56,8 +59,12 @@
 			return {
 				hasShadow:false,
 				classifyList:['手机','电脑','相机','平板电脑','外设','智能穿戴','智能家居','DIY','网络设备'],
-				selectIndex:0
+				selectIndex:0,
+				bodyTop:50
 			};
+		},
+		onReady() {
+			
 		},
 		methods:{
 			scrollFun(event){
@@ -75,23 +82,29 @@
 				uni.navigateTo({
 					url:'./product-list/product-list'
 				})
+			},
+			getNavBarHeight(h,n){
+				this.bodyTop = h + n;
+				console.log(h);
 			}
+			
 		}
 	}
 </script>
 
 <style lang="scss">
-	page{
-		background-color: #f4f5f6;
-	}
-.product-container{
+page{
+	background-color: #f4f5f6;
+	overflow: hidden;
+}
+.product-body{
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
 	display: flex;
 }
 .classify-left{
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
 	height: 100%;
 	width: 200rpx;
 	box-sizing: border-box;
@@ -135,10 +148,6 @@
 	}
 }
 .classify-right{
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
 	width: 550rpx;
 	height: 100%;
 	box-sizing: border-box;

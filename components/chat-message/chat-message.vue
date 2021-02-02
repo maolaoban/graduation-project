@@ -124,14 +124,14 @@
 		}
 		.message-box_text{
 			max-width: 500rpx;
-			background-color: #56d1fd;
+			background-color: #01b9fd;
 			border-radius: 20rpx 0 20rpx 20rpx;
 			margin-right: 20rpx;
 			padding: 20rpx;
 			margin-top: 20rpx;
 			text{
 				white-space: pre-wrap;
-				color:#333 ;
+				color:#fff;
 				font-size: 32rpx;
 				line-height: 45rpx;
 			}

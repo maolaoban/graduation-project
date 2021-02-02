@@ -4,6 +4,7 @@
   "usingComponents": {
     "u-parse": "/uview-ui/components/u-parse/u-parse",
     "comment-box": "/components/comment-box/comment-box",
-    "u-back-top": "/uview-ui/components/u-back-top/u-back-top"
+    "u-back-top": "/uview-ui/components/u-back-top/u-back-top",
+    "comment-input": "/components/comment-input/comment-input"
   }
 }

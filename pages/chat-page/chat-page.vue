@@ -1,12 +1,20 @@
 <template>
 	<view class="chat-container">
-		<view class="message-container" @click="closeEmoji">
-			<chat-message v-for="item in messageList" :message="item"></chat-message>
-		</view>
+		<scroll-view class="message-container" id="scrollView" scroll-y="true" :scroll-top="scrollTop" @click="closeEmoji">
+			<view id="msgView">
+				<chat-message v-for="item in messageList" :message="item"></chat-message>
+			</view>
+		</scroll-view>
 		<view class="input-bottom">
 			<view class="input-bottom_top">
 				<view class="message-input">
-					<input type="text" v-model="inputValue"/>
+					<input type="text" 
+						v-model="inputValue" 
+						cursor-spacing="10"
+						confirm-type="send"
+						confirm-hold="true"
+						@confirm="sendMessage"
+					/>
 				</view>
 				<view class="icon" :style="{width:!isSend?'140rpx':'180rpx'}">
 					<view class="icon-list" @click="openEmoji">
@@ -19,11 +27,14 @@
 				</view>
 			</view>
 			<view class="input-emoji" v-show="isShowEmoji">
-				<swiper :duration="500" class="emoji-swiper">
+				<swiper :duration="500" class="emoji-swiper" indicator-dots="true">
 					<swiper-item v-for="item in emojiData" class="swiper-item">
 						<view class="emoji-item" v-for="emoji in item" @click="selemoji(emoji)">{{emoji}}</view>
 					</swiper-item>
 				</swiper>
+				<view class="del" @click="delText">
+					<u-icon name="backspace" size="50"></u-icon>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -51,7 +62,8 @@
 						avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg',
 						img:''
 					}
-				]
+				],
+				scrollTop:0
 			};
 		},
 		watch:{
@@ -67,17 +79,18 @@
 			uni.setNavigationBarTitle({
 			    title: '毛小毛'
 			});
-		},
-		onReady(){
-			var page = Math.ceil(emoji.length/45);
+			var page = Math.ceil(emoji.length/30);
 			    for (let i = 0; i < page; i++) {
 			    this.emojiData[i] = [];
-			    for (let k = 0; k < 45; k++) {
-			        emoji[i*45+k]?this.emojiData[i].push(
-			        emoji[i*45+k]
+			    for (let k = 0; k < 30; k++) {
+			        emoji[i*30+k]?this.emojiData[i].push(
+			        emoji[i*30+k]
 			        ):''
 			    }
 			}
+		},
+		updated() {
+			this.scrollToBottom();
 		},
 		methods:{
 			openEmoji(){
@@ -99,6 +112,21 @@
 				};
 				this.messageList.push(text);
 				this.inputValue = '';
+			},
+			// 滚动到底部
+			scrollToBottom(){
+				let _this = this;
+				let query = uni.createSelectorQuery();
+				query.select('#scrollView').boundingClientRect();
+				query.select('#msgView').boundingClientRect();
+				query.exec(function(res){
+					if(res[1].height > res[0].height){
+						_this.scrollTop = res[1].height;
+					}
+				})
+			},
+			delText(){
+				this.inputValue = this.inputValue.substr(0,this.inputValue.length - 1);
 			}
 		}
 	}
@@ -110,7 +138,9 @@ page{
 }
 .chat-container{
 	.message-container{
+		height: 100vh;
 		padding: 20rpx 20rpx 100rpx 20rpx;
+		box-sizing: border-box;
 	}
 	.input-bottom{
 		width: 100%;
@@ -162,6 +192,8 @@ page{
 	.input-emoji{
 		width: 100%;
 		height: 500rpx;
+		background-color: #f4f5f6;
+		position: relative;
 		.emoji-swiper{
 			width: 100%;
 			height: 100%;
@@ -169,8 +201,8 @@ page{
 				display: flex;
 				flex-wrap: wrap;
 				.emoji-item{
-					width: 80rpx;
-					height: 80rpx;
+					width: 90rpx;
+					height: 90rpx;
 					font-size: 40rpx;
 					display: flex;
 					align-items: center;
@@ -178,6 +210,18 @@ page{
 					flex-shrink: 0;
 				}
 			}
+		}
+		.del{
+			width: 100rpx;
+			height: 60rpx;
+			background-color: #fff;
+			border-radius:10rpx;
+			position: absolute;
+			bottom:60rpx;
+			right:60rpx;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 	}
 }

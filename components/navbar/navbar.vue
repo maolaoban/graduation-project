@@ -1,6 +1,8 @@
 <template>
 	<view class="navabr">
+		<!-- 导航栏占位 -->
 		<view :style="{height:statusBarHeight+2+'px',backgroundColor: '#fff'}"></view>
+		<!-- 主体 -->
 		<view class="navbar-fixed"
 			:class="{'navbar-reverse':isReverse && !isSearch}"
 			:style="{height:navBarHeight+'px',width:windowWidth? windowWidth + 'px':'100%'}"
@@ -24,6 +26,7 @@
 				<u-icon name="email" color="#7e7e7e" size="40"></u-icon>
 			</view>
 		</view>
+		<!-- 主体占位 -->
 		<view :style="{height: navBarHeight + 'px'}"></view>
 	</view>
 </template>
@@ -58,6 +61,8 @@
 			this.windowWidth = menuButtonInfo.left;
 			this.isReverse = true;
 			//#endif
+			console.log(this.navBarHeight);
+			this.$emit('getNavBarHeight',this.navBarHeight,this.statusBarHeight);
 		},
 		methods:{
 			toSearch(){
@@ -66,8 +71,8 @@
 				})
 			},
 			goBack(){
-				uni.switchTab({
-					url:'../../pages/tabBar/index/index'
+				uni.navigateBack({
+					delta:1
 				})
 			},
 			toMyMessage(){
@@ -81,11 +86,12 @@
 
 <style lang="scss">
 	.navabr{
+		background-color: #fff;
 		.navbar-fixed{
 			height: 100rpx;
 			width: 100%;
 			padding: 0 20rpx;
-			position: absolute;
+			position: fixed;
 			z-index: 999;
 			display: flex;
 			justify-content: space-between;

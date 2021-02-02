@@ -1,5 +1,7 @@
 {
-  "navigationBarTitleText": "产品分类",
   "navigationBarTextStyle": "black",
-  "usingComponents": {}
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
 }

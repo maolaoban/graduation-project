@@ -96,7 +96,7 @@ var components
 try {
   components = {
     jinEdit: function() {
-      return Promise.all(/*! import() | components/jin-edit/jin-edit */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/jin-edit/jin-edit")]).then(__webpack_require__.bind(null, /*! @/components/jin-edit/jin-edit.vue */ 234))
+      return Promise.all(/*! import() | components/jin-edit/jin-edit */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/jin-edit/jin-edit")]).then(__webpack_require__.bind(null, /*! @/components/jin-edit/jin-edit.vue */ 263))
     }
   }
 } catch (e) {
