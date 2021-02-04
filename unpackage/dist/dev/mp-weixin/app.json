@@ -17,7 +17,8 @@
     "pages/tabBar/product/product-list/product-list",
     "pages/tabBar/my/children/grade-page",
     "pages/tabBar/my/children/feed-page",
-    "pages/activities-page/activities-page"
+    "pages/activities-page/activities-page",
+    "pages/video-play/video-play"
   ],
   "subPackages": [],
   "window": {
@@ -58,6 +59,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap50.json"
+  "usingComponents": {}
 }

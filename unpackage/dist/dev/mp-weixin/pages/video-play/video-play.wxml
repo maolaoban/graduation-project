@@ -1,0 +1,1 @@
+<view class="video-container"><view class="video-box"><video src="https://static.mobage.cn/html/promotion/game/12000128/autumn/index/op2_yy.mp4" page-gesture="true" object-fit="cover" controls="{{true}}" danmu-list="{{danmuList}}" enable-danmu="{{true}}" danmu-btn="{{true}}"></video></view></view>

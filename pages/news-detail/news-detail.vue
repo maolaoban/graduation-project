@@ -1,13 +1,7 @@
 <template>
 	<view class="detail-container">
 		<view class="top-box">
-			<!-- <image src="../../static/cool-background.png" mode="aspectFill"></image> -->
-			<video src="https://static.mobage.cn/html/promotion/game/12000128/autumn/index/op2_yy.mp4" 
-				page-gesture="true"
-				:title="contentInfo.title"
-				object-fit="cover"
-				controls
-			></video>
+			<image src="//nwzimg.wezhan.cn/contents/sitefiles2035/10175394/images/20623316.png?" mode="aspectFill"></image>
 		</view>
 		<view class="author-info">
 			<view class="info-left">
@@ -109,11 +103,6 @@
 	width: 100%;
 	height: 400rpx;
 	image{
-		width: 100%;
-		height: 100%;
-	}
-	video{
-		z-index: 15;
 		width: 100%;
 		height: 100%;
 	}

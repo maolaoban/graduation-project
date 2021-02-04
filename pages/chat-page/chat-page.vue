@@ -1,11 +1,11 @@
 <template>
 	<view class="chat-container">
-		<scroll-view class="message-container" id="scrollView" scroll-y="true" :scroll-top="scrollTop" @click="closeEmoji">
+		<scroll-view class="message-container" id="scrollView" scroll-y="true" :scroll-top="scrollTop" @click="closeEmoji" :style="{height:scrollHeight}">
 			<view id="msgView">
 				<chat-message v-for="item in messageList" :message="item"></chat-message>
 			</view>
 		</scroll-view>
-		<view class="input-bottom">
+		<view class="input-bottom" :style="{bottom:inputBottom}">
 			<view class="input-bottom_top">
 				<view class="message-input">
 					<input type="text" 
@@ -14,6 +14,9 @@
 						confirm-type="send"
 						confirm-hold="true"
 						@confirm="sendMessage"
+						@focus="focusHandler"
+						@blur="blurHandler"
+						:adjust-position="false"
 					/>
 				</view>
 				<view class="icon" :style="{width:!isSend?'140rpx':'180rpx'}">
@@ -29,7 +32,8 @@
 			<view class="input-emoji" v-show="isShowEmoji">
 				<swiper :duration="500" class="emoji-swiper" indicator-dots="true">
 					<swiper-item v-for="item in emojiData" class="swiper-item">
-						<view class="emoji-item" v-for="emoji in item" @click="selemoji(emoji)">{{emoji}}</view>
+						<view class="emoji-item" v-for="emoji in item" @click="selectmoji(emoji)">{{emoji}}</view>
+						<!-- <image class="emoji-item" :src="item.img" mode="aspectFit" v-for="item in emotionsList" @click="selectmoji(item.code)"></image> -->
 					</swiper-item>
 				</swiper>
 				<view class="del" @click="delText">
@@ -41,6 +45,7 @@
 </template>
 <script>
 	import emoji from "../../static/emoji/emoji.js";
+	import emotions from "../../static/emoji/index.js";
 	export default {
 		data() {
 			return {
@@ -63,7 +68,10 @@
 						img:''
 					}
 				],
-				scrollTop:0
+				scrollTop:0,
+				scrollHeight:'100vh',
+				inputBottom:'0px',
+				emotionsList:[]
 			};
 		},
 		watch:{
@@ -76,6 +84,8 @@
 			}
 		},
 		onLoad() {
+			console.log(emotions.emotions);
+			this.emotionsList = emotions.emotions
 			uni.setNavigationBarTitle({
 			    title: '毛小毛'
 			});
@@ -95,14 +105,22 @@
 		methods:{
 			openEmoji(){
 				this.isShowEmoji = !this.isShowEmoji;
+				if(!this.isShowEmoji){
+					this.scrollHeight = '100vh';
+				}else{
+					this.scrollHeight = '60vh'
+				}
+				this.scrollToBottom();
 			},
-			selemoji(emoji){
+			selectmoji(emoji){
 				this.inputValue += emoji;
 			},
 			closeEmoji(){
 				this.isShowEmoji = false;
+				this.scrollHeight = '100vh';
 			},
 			sendMessage(){
+				if(this.inputValue.length == 0) return;
 				let userInfo = JSON.parse(uni.getStorageSync('userInfo'));
 				let text = {
 					type:1,
@@ -120,13 +138,23 @@
 				query.select('#scrollView').boundingClientRect();
 				query.select('#msgView').boundingClientRect();
 				query.exec(function(res){
-					if(res[1].height > res[0].height){
+					if(res[1].height >= res[0].height){
 						_this.scrollTop = res[1].height;
 					}
 				})
 			},
 			delText(){
 				this.inputValue = this.inputValue.substr(0,this.inputValue.length - 1);
+			},
+			focusHandler(event){
+				this.scrollHeight = '52vh';
+				this.isShowEmoji = false;
+				console.log(event.detail)
+				this.inputBottom = event.detail.height  + 'px';
+			},
+			blurHandler(){
+				this.scrollHeight = '100vh';
+				this.inputBottom = 0;
 			}
 		}
 	}
@@ -138,21 +166,19 @@ page{
 }
 .chat-container{
 	.message-container{
-		height: 100vh;
 		padding: 20rpx 20rpx 100rpx 20rpx;
 		box-sizing: border-box;
 	}
 	.input-bottom{
 		width: 100%;
-		position: fixed;
-		bottom: 0;
+		position: absolute;
 		right: 0;
 		left: 0;
 		background-color: #f4f5f6;
 	}
 	.input-bottom_top{
 		width: 100%;
-		height: 100rpx;
+		height: 8vh;
 		padding: 0 20rpx;
 		background-color: #f4f5f6;
 		border-top: 2rpx solid #dfdfdf;
@@ -163,7 +189,7 @@ page{
 			background-color: #fff;
 			border-radius: 10rpx;
 			width: 550rpx;
-			height: 60rpx;
+			height: 5vh;
 			padding-left: 20rpx;
 			input{
 				height: 100%;
@@ -191,7 +217,7 @@ page{
 	}
 	.input-emoji{
 		width: 100%;
-		height: 500rpx;
+		height: 40vh;
 		background-color: #f4f5f6;
 		position: relative;
 		.emoji-swiper{
@@ -203,7 +229,7 @@ page{
 				.emoji-item{
 					width: 90rpx;
 					height: 90rpx;
-					font-size: 40rpx;
+					font-size: 50rpx;
 					display: flex;
 					align-items: center;
 					justify-content: center;

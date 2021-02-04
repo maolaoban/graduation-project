@@ -198,7 +198,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/emoji.js */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+
+
+
+
+var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/emoji.js */ 109));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/index.js */ 444));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
 //
 //
 //
@@ -240,7 +249,8 @@ var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/e
 //
 //
 var _default = { data: function data() {return { isSend: false, emojiData: [], inputValue: '', isShowEmoji: false, messageList: [// type: 0对方消息 1自己消息
-      { type: 0, msg: '君不见，黄河之水天上来，奔流到海不复回😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }, { type: 1, msg: '君不见，高堂明镜悲白发，朝如青丝暮成雪😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }], scrollTop: 0 };}, watch: { inputValue: function inputValue(newVal) {if (newVal.length > 0) {this.isSend = true;} else {this.isSend = false;}} }, onLoad: function onLoad() {uni.setNavigationBarTitle({ title: '毛小毛' });var page = Math.ceil(_emoji.default.length / 30);for (var i = 0; i < page; i++) {this.emojiData[i] = [];for (var k = 0; k < 30; k++) {
+      { type: 0, msg: '君不见，黄河之水天上来，奔流到海不复回😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }, { type: 1, msg: '君不见，高堂明镜悲白发，朝如青丝暮成雪😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }], scrollTop: 0, scrollHeight: '100vh', inputBottom: '0px', emotionsList: [] };}, watch: { inputValue: function inputValue(newVal) {if (newVal.length > 0) {this.isSend = true;} else {this.isSend = false;}} }, onLoad: function onLoad() {console.log(_index.default.emotions);this.emotionsList = _index.default.emotions;uni.setNavigationBarTitle({ title: '毛小毛' });var page = Math.ceil(_emoji.default.length / 30);for (var i = 0; i < page; i++) {this.emojiData[i] = [];
+      for (var k = 0; k < 30; k++) {
         _emoji.default[i * 30 + k] ? this.emojiData[i].push(
         _emoji.default[i * 30 + k]) :
         '';
@@ -253,14 +263,22 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
   methods: {
     openEmoji: function openEmoji() {
       this.isShowEmoji = !this.isShowEmoji;
+      if (!this.isShowEmoji) {
+        this.scrollHeight = '100vh';
+      } else {
+        this.scrollHeight = '60vh';
+      }
+      this.scrollToBottom();
     },
-    selemoji: function selemoji(emoji) {
+    selectmoji: function selectmoji(emoji) {
       this.inputValue += emoji;
     },
     closeEmoji: function closeEmoji() {
       this.isShowEmoji = false;
+      this.scrollHeight = '100vh';
     },
     sendMessage: function sendMessage() {
+      if (this.inputValue.length == 0) return;
       var userInfo = JSON.parse(uni.getStorageSync('userInfo'));
       var text = {
         type: 1,
@@ -278,13 +296,23 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
       query.select('#scrollView').boundingClientRect();
       query.select('#msgView').boundingClientRect();
       query.exec(function (res) {
-        if (res[1].height > res[0].height) {
+        if (res[1].height >= res[0].height) {
           _this.scrollTop = res[1].height;
         }
       });
     },
     delText: function delText() {
       this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
+    },
+    focusHandler: function focusHandler(event) {
+      this.scrollHeight = '52vh';
+      this.isShowEmoji = false;
+      console.log(event.detail);
+      this.inputBottom = event.detail.height + 'px';
+    },
+    blurHandler: function blurHandler() {
+      this.scrollHeight = '100vh';
+      this.inputBottom = 0;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

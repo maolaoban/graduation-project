@@ -168,6 +168,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/video-play/video-play",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

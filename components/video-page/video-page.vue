@@ -1,6 +1,6 @@
 <template>
 	<view class="video-card">
-		<view class="video-card_top">
+		<view class="video-card_top" @click="playVideo">
 			<view class="video-cover">
 				<image src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1262914578,3997025524&fm=26&gp=0.jpg" mode="aspectFill"></image>
 				<view class="video-info">
@@ -23,7 +23,7 @@
 			</view>
 		</view>
 		<view class="video-card_body">
-			<view class="video-card_box" v-for="item in 8">
+			<view class="video-card_box" v-for="item in 8" @click="playVideo">
 				<view class="video-cover">
 					<image src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1262914578,3997025524&fm=26&gp=0.jpg" mode="aspectFill"></image>
 					<view class="video-info">
@@ -55,6 +55,13 @@
 			return {
 				
 			};
+		},
+		methods:{
+			playVideo(){
+				uni.navigateTo({
+					url:'/pages/video-play/video-play'
+				})
+			}
 		}
 	}
 </script>

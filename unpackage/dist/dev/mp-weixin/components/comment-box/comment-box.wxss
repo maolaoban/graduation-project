@@ -26,8 +26,86 @@
 /* 文章场景相关 */
 .comment-container {
   width: 100%;
-  height: 600rpx;
   margin-top: 20rpx;
-  border: 1px solid red;
+  padding: 20rpx 20rpx 120rpx 20rpx;
+  border-top: 10rpx solid #f4f5f6;
+}
+.comment-container .comment-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.comment-container .comment-body {
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.comment-container .comment-body .comment-body_top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.comment-container .comment-body .comment-body_top .comment-body_avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  overflow: hidden;
+}
+.comment-container .comment-body .comment-body_top .comment-body_avatar image {
+  width: 100%;
+  height: 100%;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  margin-left: 10rpx;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right .comment-body_info {
+  width: 90%;
+  height: 50rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right .comment-body_info .body-info_name {
+  font-size: 28rpx;
+  color: #333;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right .comment-body_info .body-info_like {
+  font-size: 26rpx;
+  color: #bbb;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right .comment-body_info .body-info_like text {
+  margin-left: 4rpx;
+}
+.comment-container .comment-body .comment-body_top .comment-body_right .comment-body_time {
+  font-size: 24rpx;
+  color: #bbb;
+}
+.comment-container .comment-body .comment-body_text {
+  width: 600rpx;
+  margin-left: 90rpx;
+  margin-top: 20rpx;
+  background-color: #f4f5f6;
+  border-radius: 0 20rpx 20rpx 20rpx;
+  padding: 20rpx;
 }
 

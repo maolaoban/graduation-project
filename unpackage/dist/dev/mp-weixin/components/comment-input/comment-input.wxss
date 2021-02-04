@@ -63,7 +63,7 @@
   left: 0;
   right: 0;
   background-color: #fff;
-  border-radius: 40rpx 40rpx 0 0;
+  border-radius: 20rpx 20rpx 0 0;
   z-index: 20;
 }
 .input-box_true .input-text {
@@ -74,12 +74,25 @@
   padding: 20rpx;
   box-sizing: border-box;
 }
-.input-box_true .send-btn {
+.input-box_true .input-box_bottom {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.input-box_true .input-box_bottom .text-num {
+  font-size: 26rpx;
+  color: #bbb;
+}
+.input-box_true .input-box_bottom .send-btn {
   height: 50rpx;
   width: 100rpx;
-  position: absolute;
-  bottom: 20rpx;
-  right: 40rpx;
   border-radius: 25rpx;
   background-color: #01b9fd;
   text-align: center;

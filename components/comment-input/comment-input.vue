@@ -13,14 +13,21 @@
 			</view>
 		</view>
 		<view class="input-box_true" v-show="show">
-			<textarea class="input-text" type="text" value="" placeholder="谈谈你的看法..." 
+			<textarea class="input-text" type="text" v-model="inputValue" placeholder="谈谈你的看法..." 
 				confirm-type="send" 
 				maxlength="120" 
 				fixed="true"
-				cursor-spacing="20"
+				cursor-spacing="150"
+				:focus="isFocus"
+				:show-confirm-bar="false"
 			/>
-			<view class="send-btn">
-				发送
+			<view class="input-box_bottom">
+				<view class="text-num">
+					{{inputValue.length}}/120
+				</view>
+				<view class="send-btn">
+					发送
+				</view>
 			</view>
 		</view>
 		<u-mask :show="show" @click="show = !show" z-index="10"></u-mask>
@@ -33,12 +40,15 @@
 			return {
 				isThumb:false,
 				isCollect:false,
-				show:false
+				show:false,
+				isFocus:false,
+				inputValue:''
 			};
 		},
 		methods:{
 			showInput(){
 				this.show = !this.show;
+				this.isFocus = true;
 			},
 			addThumb(){
 				this.isThumb = !this.isThumb;
@@ -86,7 +96,7 @@
 	left: 0;
 	right: 0;
 	background-color: $uni-bg-color;
-	border-radius: 40rpx 40rpx 0 0;
+	border-radius: 20rpx 20rpx 0 0;
 	z-index: 20;
 	.input-text{
 		height: 150rpx;
@@ -96,17 +106,24 @@
 		padding: 20rpx;
 		box-sizing: border-box;
 	}
-	.send-btn{
-		height: 50rpx;
-		width: 100rpx;
-		position: absolute;
-		bottom: 20rpx;
-		right:40rpx;
-		border-radius: 25rpx;
-		background-color:#01b9fd;
-		text-align: center;
-		line-height: 50rpx;
-		color: $uni-text-color-inverse;
+	.input-box_bottom{
+		height: 80rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.text-num{
+			font-size: 26rpx;
+			color:#bbb;
+		}
+		.send-btn{
+			height: 50rpx;
+			width: 100rpx;
+			border-radius: 25rpx;
+			background-color:#01b9fd;
+			text-align: center;
+			line-height: 50rpx;
+			color: $uni-text-color-inverse;
+		}
 	}
 }
 </style>

@@ -135,7 +135,10 @@
 <style lang="scss">
 page{
 	background-color: #f4f5f6;
-}	
+}
+.options-bar{
+	background-color: #fff;
+}
 .list-box{
 	.list-item{
 		width: 710rpx;

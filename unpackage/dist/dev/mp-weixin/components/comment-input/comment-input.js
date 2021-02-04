@@ -174,18 +174,28 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       isThumb: false,
       isCollect: false,
-      show: false };
+      show: false,
+      isFocus: false,
+      inputValue: '' };
 
   },
   methods: {
     showInput: function showInput() {
       this.show = !this.show;
+      this.isFocus = true;
     },
     addThumb: function addThumb() {
       this.isThumb = !this.isThumb;
