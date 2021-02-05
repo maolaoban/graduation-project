@@ -30,6 +30,11 @@
 				            ],
 			}
 		},
+		onLoad() {
+			uni.setNavigationBarTitle({
+			    title: '航海王-启航'
+			});
+		},
 		methods: {
 			
 		}

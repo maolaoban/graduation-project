@@ -51,26 +51,38 @@
   overflow: hidden;
   padding: 20rpx;
   margin-top: 20rpx;
-}
-.chat-message .other-message .message-box_text text {
-  white-space: pre-wrap;
+  word-wrap: break-word;
+  white-space: normal;
+  word-break: break-all;
   color: #333;
   font-size: 32rpx;
   line-height: 45rpx;
 }
-.chat-message .other-message .message-box_text image {
-  width: 100%;
+.chat-message .other-message .message-box_audio {
+  height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #01b9fd;
+  color: #fff;
+  border-radius: 20rpx 0 20rpx 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
 }
 .chat-message .other-message .message-box_image {
-  width: 400rpx;
-  height: 200rpx;
-  border-radius: 20rpx;
+  width: 300rpx;
   overflow: hidden;
   margin-right: 20rpx;
 }
 .chat-message .other-message .message-box_image image {
   width: 100%;
-  height: 100%;
 }
 .chat-message .my-message {
   width: 100%;
@@ -101,22 +113,40 @@
   margin-right: 20rpx;
   padding: 20rpx;
   margin-top: 20rpx;
-}
-.chat-message .my-message .message-box_text text {
-  white-space: pre-wrap;
+  word-wrap: break-word;
+  white-space: normal;
+  word-break: break-all;
   color: #fff;
   font-size: 32rpx;
   line-height: 45rpx;
 }
+.chat-message .my-message .message-box_audio {
+  height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #01b9fd;
+  color: #fff;
+  border-radius: 20rpx 0 20rpx 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.chat-message .my-message .message-box_audio text {
+  margin-left: 10rpx;
+}
 .chat-message .my-message .message-box_image {
-  width: 400rpx;
-  height: 200rpx;
-  border-radius: 20rpx;
+  width: 300rpx;
   overflow: hidden;
   margin-right: 20rpx;
 }
 .chat-message .my-message .message-box_image image {
   width: 100%;
-  height: 100%;
 }
 

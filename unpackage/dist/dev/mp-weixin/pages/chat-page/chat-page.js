@@ -96,10 +96,10 @@ var components
 try {
   components = {
     chatMessage: function() {
-      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 249))
+      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 257))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 211))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 219))
     }
   }
 } catch (e) {
@@ -202,57 +202,94 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _emoji = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/emoji.js */ 109));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/index.js */ 444));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { isSend: false, emojiData: [], inputValue: '', isShowEmoji: false, messageList: [// type: 0对方消息 1自己消息
-      { type: 0, msg: '君不见，黄河之水天上来，奔流到海不复回😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }, { type: 1, msg: '君不见，高堂明镜悲白发，朝如青丝暮成雪😍', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg', img: '' }], scrollTop: 0, scrollHeight: '100vh', inputBottom: '0px', emotionsList: [] };}, watch: { inputValue: function inputValue(newVal) {if (newVal.length > 0) {this.isSend = true;} else {this.isSend = false;}} }, onLoad: function onLoad() {console.log(_index.default.emotions);this.emotionsList = _index.default.emotions;uni.setNavigationBarTitle({ title: '毛小毛' });var page = Math.ceil(_emoji.default.length / 30);for (var i = 0; i < page; i++) {this.emojiData[i] = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _index = _interopRequireDefault(__webpack_require__(/*! ../../static/emoji/index.js */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o, allowArrayLike) {var it;if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {if (it) o = it;var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+var recorderManager = uni.getRecorderManager();var _default =
+{
+  data: function data() {
+    return {
+      isSend: false,
+      emojiData: [],
+      inputValue: '',
+      sendValue: '',
+      isShowEmoji: false,
+      isShowOptions: false,
+      isShowAudio: false,
+      isShowState: false,
+      messageList: [
+      // type: 0对方消息 1自己消息
+      {
+        type: 0,
+        msg: '君不见，黄河之水天上来，奔流到海不复回😍',
+        avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg',
+        img: '' },
+
+      {
+        type: 1,
+        msg: '君不见，高堂明镜悲白发，朝如青丝暮成雪😍',
+        avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3439061948,1440851450&fm=26&gp=0.jpg',
+        img: '' }],
+
+
+      scrollTop: 0,
+      scrollHeight: '100vh',
+      inputBottom: '0px',
+      emotionsList: [],
+      userInfo: JSON.parse(uni.getStorageSync('userInfo')),
+      sendEmojiList: [] };
+
+  },
+  watch: {
+    inputValue: function inputValue(newVal, oldVal) {
+      if (newVal.length > 0) {
+        this.isSend = true;
+      } else {
+        this.isSend = false;
+      }
+    } },
+
+  onLoad: function onLoad() {
+    // 录音
+    var self = this;
+    recorderManager.onStop(function (res) {
+      console.log('recorder stop' + JSON.stringify(res));
+      self.sendMessage('audio', res);
+    });
+    //标题
+    uni.setNavigationBarTitle({
+      title: '毛小毛' });
+
+    // 表情
+    this.emotionsList = _index.default.emotions;
+    var page = Math.ceil(this.emotionsList.length / 30);
+    for (var i = 0; i < page; i++) {
+      this.emojiData[i] = [];
       for (var k = 0; k < 30; k++) {
-        _emoji.default[i * 30 + k] ? this.emojiData[i].push(
-        _emoji.default[i * 30 + k]) :
+        this.emotionsList[i * 30 + k] ? this.emojiData[i].push(
+        this.emotionsList[i * 30 + k]) :
         '';
       }
     }
@@ -263,31 +300,52 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
   methods: {
     openEmoji: function openEmoji() {
       this.isShowEmoji = !this.isShowEmoji;
+      this.isShowOptions = false;
+      this.scrollToBottom();
       if (!this.isShowEmoji) {
         this.scrollHeight = '100vh';
       } else {
         this.scrollHeight = '60vh';
       }
-      this.scrollToBottom();
     },
     selectmoji: function selectmoji(emoji) {
-      this.inputValue += emoji;
+      this.inputValue += emoji.text;
+      this.sendEmojiList.push(emoji);
     },
     closeEmoji: function closeEmoji() {
       this.isShowEmoji = false;
+      this.isShowOptions = false;
       this.scrollHeight = '100vh';
     },
-    sendMessage: function sendMessage() {
-      if (this.inputValue.length == 0) return;
-      var userInfo = JSON.parse(uni.getStorageSync('userInfo'));
-      var text = {
+    // 发送信息方法
+    sendMessage: function sendMessage(type, info) {
+      var message = {
         type: 1,
-        msg: this.inputValue,
-        avatar: userInfo.avatar,
-        img: '' };
+        msg: '',
+        avatar: this.userInfo.avatar,
+        imgUrl: '',
+        audio: '' };
 
-      this.messageList.push(text);
+      if (type == 'text' && this.inputValue.length != 0) {
+        //将inputValue里的表情文字替换为表情图片
+        // message.msg = this.inputValue.replace(/\[.*?\]/g,`<img src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/99.gif" mode="aspectFit"></img>`);
+        var _iterator = _createForOfIteratorHelper(this.sendEmojiList),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;
+            console.log(item);
+            if (item.code != -1) {
+              console.log(1);
+              this.inputValue = this.inputValue.replace(item.text, "<img src=\"".concat(item.img, "\" mode=\"aspectFit\"></img>"));
+            }
+          }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
+        message.msg = this.inputValue;
+      } else if (type == 'img') {
+        message.imgUrl = info;
+      } else {
+        message.audio = info;
+      }
+      console.log('发送的信息', message);
+      this.messageList.push(message);
       this.inputValue = '';
+      this.sendValue = '';
     },
     // 滚动到底部
     scrollToBottom: function scrollToBottom() {
@@ -296,7 +354,7 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
       query.select('#scrollView').boundingClientRect();
       query.select('#msgView').boundingClientRect();
       query.exec(function (res) {
-        if (res[1].height >= res[0].height) {
+        if (res[1].height >= res[0].height - 100) {
           _this.scrollTop = res[1].height;
         }
       });
@@ -307,12 +365,51 @@ var _default = { data: function data() {return { isSend: false, emojiData: [], i
     focusHandler: function focusHandler(event) {
       this.scrollHeight = '52vh';
       this.isShowEmoji = false;
+      this.isShowOptions = false;
       console.log(event.detail);
       this.inputBottom = event.detail.height + 'px';
     },
     blurHandler: function blurHandler() {
       this.scrollHeight = '100vh';
       this.inputBottom = 0;
+    },
+    moreOptions: function moreOptions() {
+      this.isShowOptions = !this.isShowOptions;
+      if (!this.isShowOptions) {
+        this.scrollHeight = '100vh';
+      } else {
+        this.scrollHeight = '60vh';
+      }
+      this.isShowEmoji = false;
+    },
+    selectPhoto: function selectPhoto() {
+      var _this = this;
+      uni.chooseImage({
+        count: 9, //默认9
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album'], //从相册选择
+        success: function success(res) {
+          for (var i in res.tempFilePaths) {
+            _this.sendMessage('img', res.tempFilePaths[i]);
+          }
+        },
+        fail: function fail() {
+          alert(1);
+        } });
+
+    },
+    showAudio: function showAudio() {
+      this.isShowAudio = !this.isShowAudio;
+    },
+    startRecord: function startRecord() {
+      this.isShowState = true;
+      console.log('开始录音');
+      recorderManager.start();
+    },
+    endRecord: function endRecord() {
+      this.isShowState = false;
+      console.log('录音结束');
+      recorderManager.stop();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
