@@ -7,6 +7,6 @@ exports.main = async (event, context) => {
 	return {
 		code:200,
 		msg:"请求成功",
-		data:content.data[1]
+		data:content.data[0]
 	}
 };

@@ -53,6 +53,7 @@
 .top-box {
   width: 100%;
   height: 400rpx;
+  background-color: #f4f5f6;
 }
 .top-box image {
   width: 100%;
@@ -134,7 +135,7 @@
   font-weight: 700;
 }
 .detail-content .content-time {
-  margin-top: 20rpx;
+  margin: 20rpx;
   font-size: 26rpx;
   color: #bbb;
   display: -webkit-box;
@@ -146,5 +147,27 @@
 }
 .detail-content .content-time text {
   margin-left: 20rpx;
+}
+.content-loading {
+  width: 100%;
+  padding: 20rpx;
+}
+.content-loading .content-title {
+  width: 700rpx;
+  height: 40rpx;
+  background-color: #f4f5f6;
+  margin-top: 40rpx;
+}
+.content-loading .content-info {
+  width: 600rpx;
+  height: 20rpx;
+  background-color: #f4f5f6;
+  margin-top: 40rpx;
+}
+.content-loading .content-info:nth-last-child(1) {
+  width: 400rpx;
+}
+.content-loading .content-info:nth-last-child(5) {
+  width: 400rpx;
 }
 

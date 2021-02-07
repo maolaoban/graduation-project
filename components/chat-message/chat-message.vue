@@ -8,8 +8,8 @@
 				<rich-text :nodes="message.msg"></rich-text>
 			</view>
 			<view class="message-box_audio" v-if="message.audio" @click="playAudio(message.audio)">
-				<i class="iconfont icon-voiceprint"></i>
-				<i class="iconfont icon-voiceprint"></i>
+				<i class="iconfont icon-voiceprint" :class="{'play-audio':ispalyAudio}" v-for="item in Math.ceil(message.audio.duration/5000)>6?6:Math.ceil(message.audio.duration/5000)"></i>
+				<text>{{Math.ceil(message.audio.duration/1000)}}s</text>
 			</view>
 			<view class="message-box_image" @click="previewImage(message.imgUrl)" v-if="message.imgUrl">
 				<image :src="message.imgUrl" mode="widthFix"></image>
@@ -20,7 +20,7 @@
 				<rich-text :nodes="message.msg"></rich-text>
 			</view>
 			<view class="message-box_audio" v-if="message.audio" @click="playAudio(message.audio.tempFilePath)">
-				<i class="iconfont icon-voiceprint" v-for="item in Math.ceil(message.audio.duration/5000)>6?6:Math.ceil(message.audio.duration/5000)"></i>
+				<i class="iconfont icon-voiceprint" :class="{'play-audio':ispalyAudio}" v-for="item in Math.ceil(message.audio.duration/5000)>6?6:Math.ceil(message.audio.duration/5000)"></i>
 				<text>{{Math.ceil(message.audio.duration/1000)}}s</text>
 			</view>
 			<view class="message-box_image" @click="previewImage(message.imgUrl)" v-if="message.imgUrl">
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-	const innerAudioContext = uni.createInnerAudioContext();
 	export default {
 		props:{
 			message:{
@@ -46,7 +45,7 @@
 		},
 		data() {
 			return {
-				
+				ispalyAudio:false
 			};
 		},
 		methods:{
@@ -66,11 +65,24 @@
 				});
 			},
 			playAudio(audioUrl){
+				// 创建并返回内部 audio 上下文 innerAudioContext 对象。
+				const innerAudioContext = uni.createInnerAudioContext();
+				
 				innerAudioContext.src = audioUrl;
+				
 				console.log('音频地址',audioUrl);
+				//播放
+				innerAudioContext.play();
+				//播放触发事件
 				innerAudioContext.onPlay(() => {
 				  console.log('开始播放');
+				  this.ispalyAudio = true;
 				});
+				// 播放自然结束触发事件
+				innerAudioContext.onEnded(()=>{
+					console.log('播放结束');
+					this.ispalyAudio = false;
+				})
 			}
 		}
 	}
@@ -183,5 +195,19 @@
 			}
 		}
 	}
+}
+.play-audio{
+	animation: playAudio 1s ease infinite alternate;
+}
+// 语音播放动画
+@keyframes playAudio
+{
+	from{
+		opacity: 1;
+	}
+	to{
+		opacity: 0.4;
+	}
+	
 }
 </style>

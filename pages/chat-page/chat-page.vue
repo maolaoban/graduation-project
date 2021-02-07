@@ -2,7 +2,7 @@
 	<view class="chat-container">
 		<scroll-view class="message-container" id="scrollView" scroll-y="true" :scroll-top="scrollTop" @click="closeEmoji" :style="{height:scrollHeight}">
 			<view id="msgView">
-				<chat-message v-for="item in messageList" :message="item"></chat-message>
+				<chat-message v-for="(item,index) in messageList" :message="item" :key="index"></chat-message>
 			</view>
 		</scroll-view>
 		<view class="input-bottom" :style="{bottom:inputBottom}">
@@ -117,7 +117,7 @@
 			let self = this;
 			recorderManager.onStop(function (res) {
 			    console.log('recorder stop' + JSON.stringify(res));
-				self.sendMessage('audio',res)
+				self.sendMessage('audio',res);
 			});
 			//标题
 			uni.setNavigationBarTitle({
@@ -129,9 +129,8 @@
 			    for (let i = 0; i < page; i++) {
 			    this.emojiData[i] = [];
 			    for (let k = 0; k < 30; k++) {
-			        this.emotionsList[i*30+k]?this.emojiData[i].push(
-			        this.emotionsList[i*30+k]
-			        ):''
+			        this.emotionsList[i*30+k] ?
+					this.emojiData[i].push(this.emotionsList[i*30+k]):''
 			    }
 			}
 		},

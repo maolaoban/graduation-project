@@ -82,14 +82,26 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var g0 =
-    !(_vm.message.type === 0) && _vm.message.audio
+    _vm.message.type === 0 && _vm.message.audio
       ? Math.ceil(_vm.message.audio.duration / 5000)
       : null
   var g1 =
-    !(_vm.message.type === 0) && _vm.message.audio && !(g0 > 6)
+    _vm.message.type === 0 && _vm.message.audio && !(g0 > 6)
       ? Math.ceil(_vm.message.audio.duration / 5000)
       : null
   var g2 =
+    _vm.message.type === 0 && _vm.message.audio
+      ? Math.ceil(_vm.message.audio.duration / 1000)
+      : null
+  var g3 =
+    !(_vm.message.type === 0) && _vm.message.audio
+      ? Math.ceil(_vm.message.audio.duration / 5000)
+      : null
+  var g4 =
+    !(_vm.message.type === 0) && _vm.message.audio && !(g3 > 6)
+      ? Math.ceil(_vm.message.audio.duration / 5000)
+      : null
+  var g5 =
     !(_vm.message.type === 0) && _vm.message.audio
       ? Math.ceil(_vm.message.audio.duration / 1000)
       : null
@@ -99,7 +111,10 @@ var render = function() {
       $root: {
         g0: g0,
         g1: g1,
-        g2: g2
+        g2: g2,
+        g3: g3,
+        g4: g4,
+        g5: g5
       }
     }
   )
@@ -171,8 +186,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-var innerAudioContext = uni.createInnerAudioContext();var _default2 =
+var _default2 =
 {
   props: {
     message: {
@@ -183,8 +197,8 @@ var innerAudioContext = uni.createInnerAudioContext();var _default2 =
 
 
   data: function data() {
-    return {};
-
+    return {
+      ispalyAudio: false };
 
   },
   methods: {
@@ -203,11 +217,24 @@ var innerAudioContext = uni.createInnerAudioContext();var _default2 =
         //    }
       });
     },
-    playAudio: function playAudio(audioUrl) {
+    playAudio: function playAudio(audioUrl) {var _this = this;
+      // 创建并返回内部 audio 上下文 innerAudioContext 对象。
+      var innerAudioContext = uni.createInnerAudioContext();
+
       innerAudioContext.src = audioUrl;
+
       console.log('音频地址', audioUrl);
+      //播放
+      innerAudioContext.play();
+      //播放触发事件
       innerAudioContext.onPlay(function () {
         console.log('开始播放');
+        _this.ispalyAudio = true;
+      });
+      // 播放自然结束触发事件
+      innerAudioContext.onEnded(function () {
+        console.log('播放结束');
+        _this.ispalyAudio = false;
       });
     } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

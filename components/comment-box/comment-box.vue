@@ -3,30 +3,28 @@
 		<view class="comment-title">
 			热门评论
 		</view>
-		<view class="comment-body" v-for="item in 4">
+		<view class="comment-body" v-for="item in comment">
 			<view class="comment-body_top">
 				<view class="comment-body_avatar">
-					<image src="../../static/images/avatar.jpg" mode="aspectFit"></image>
+					<image :src="item.avatar" mode="aspectFit"></image>
 				</view>
 				<view class="comment-body_right">
 					<view class="comment-body_info">
 						<view class="body-info_name">
-							下雨天没有带伞怎么办
+							{{item.name}}
 						</view>
 						<view class="body-info_like">
 							<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="30" :color="!isThumb?'#333':'#01b9fd'"></u-icon>
-							<text>234</text>
+							<text>{{item.like_count}}</text>
 						</view>
 					</view>
 					<view class="comment-body_time">
-						2021-02-04 13:51
+						{{item.time}}
 					</view>
 				</view>
 			</view>
 			<view class="comment-body_text">
-				晓龙888首发，厉害，小米，发烧,晓龙888首发，厉害，小米，发烧,晓龙888首发，
-				厉害，小米，发烧,晓龙888首发，厉害，小米，发烧,晓龙888首发，厉害，小米，发烧,
-				晓龙888首发，厉害，小米，发烧
+				{{item.content}}
 			</view>
 		</view>
 	</view>
@@ -34,6 +32,14 @@
 
 <script>
 	export default {
+		props:{
+			comment:{
+				type:Array,
+				default:()=>{
+					return []
+				}
+			}
+		},
 		data() {
 			return {
 				isThumb:false

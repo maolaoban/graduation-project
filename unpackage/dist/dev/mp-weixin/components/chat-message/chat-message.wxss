@@ -149,4 +149,24 @@
 .chat-message .my-message .message-box_image image {
   width: 100%;
 }
+.play-audio {
+  -webkit-animation: playAudio 1s ease infinite alternate;
+          animation: playAudio 1s ease infinite alternate;
+}
+@-webkit-keyframes playAudio {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0.4;
+}
+}
+@keyframes playAudio {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0.4;
+}
+}
 

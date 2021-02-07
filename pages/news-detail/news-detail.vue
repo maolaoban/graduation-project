@@ -1,22 +1,40 @@
 <template>
 	<view class="detail-container">
 		<view class="top-box">
-			<image src="//nwzimg.wezhan.cn/contents/sitefiles2035/10175394/images/20623316.png?" mode="aspectFill"></image>
+			<image :src="contentInfo.top_cover" mode="aspectFill"></image>
 		</view>
-		<view class="author-info">
+		<view class="author-info" v-if="!loading">
 			<view class="info-left">
 				<view class="author-avatar">
-					<image src="../../static/images/logo.png" mode="aspectFill"></image>
+					<image :src="contentInfo.author_avatar" mode="aspectFill"></image>
 				</view>
 				<view class="author-name">
-					<text class="name">{{contentInfo.author}}</text>
-					<text class="bio">这家伙很懒，一句话都竟然没留下，真奇怪。</text>
+					<text class="name">{{contentInfo.author_name}}</text>
+					<text class="bio">{{contentInfo.author_bio}}</text>
 				</view>
 			</view>
 			<view class="author-follow" @click="addFollow" :class="{'followed':isFollow}">
 				{{isFollow?'已关注':'关注'}}
 			</view>
 		</view>
+		<!-- 模拟骨架屏 -->
+		<view v-else>
+			<view class="author-info">
+				<view class="info-left">
+					<view class="author-avatar" style="background-color: #f4f5f6;"></view>
+					<view class="author-name">
+						<text class="name" style="background-color: #f4f5f6;width: 100rpx;height:20rpx;"></text>
+						<text class="bio" style="margin-top:10rpx;background-color: #f4f5f6;width: 200rpx;height:20rpx;"></text>
+					</view>
+				</view>
+				<view class="author-follow" style="background-color: #f4f5f6;"></view>
+			</view>
+			<view class="content-loading">
+				<view class="content-title"></view>
+				<view class="content-info" v-for="item in 7"></view>
+			</view>
+		</view>
+		
 		<view class="detail-content">
 			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
@@ -28,7 +46,7 @@
 			</view>
 		</view>
 		<!-- 评论 -->
-		<comment-box></comment-box>
+		<comment-box :comment="commentList"></comment-box>
 		<!-- 返回顶部按钮 -->
 		<u-back-top :scroll-top="scrollTop"></u-back-top>
 		<!-- 评论框 -->
@@ -42,11 +60,13 @@
 			return {
 				isFollow:false,
 				contentInfo:{},
+				commentList:[],
 				scrollTop:0,
 				style:{
 					p: 'font-size:32rpx;line-height:50rpx',
 					img:'margin:10px 0'
-				}
+				},
+				loading:true
 			}
 		},
 		onLoad() {
@@ -54,6 +74,8 @@
 				const {data} = res;
 				console.log(data);
 				this.contentInfo = data;
+				this.commentList = data.comment;
+				this.loading = false;
 				//设置导航栏文字
 				uni.setNavigationBarTitle({
 				    title: data.title
@@ -102,6 +124,7 @@
 .top-box{
 	width: 100%;
 	height: 400rpx;
+	background-color: #f4f5f6;
 	image{
 		width: 100%;
 		height: 100%;
@@ -166,7 +189,7 @@
 		font-weight: 700;
 	}
 	.content-time{
-		margin-top: 20rpx;
+		margin: 20rpx;
 		font-size: 26rpx;
 		color: #bbb;
 		display: flex;
@@ -174,6 +197,28 @@
 		text{
 			margin-left: 20rpx;
 		}
+	}
+}
+.content-loading{
+	width:100%;
+	padding: 20rpx;
+	.content-title{
+		width: 700rpx;
+		height: 40rpx;
+		background-color: #f4f5f6;
+		margin-top: 40rpx;
+	}
+	.content-info{
+		width: 600rpx;
+		height: 20rpx;
+		background-color: #f4f5f6;
+		margin-top: 40rpx;
+	}
+	.content-info:nth-last-child(1){
+		width: 400rpx;
+	}
+	.content-info:nth-last-child(5){
+		width: 400rpx;
 	}
 }
 </style>

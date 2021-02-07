@@ -200,17 +200,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       isFollow: false,
       contentInfo: {},
+      commentList: [],
       scrollTop: 0,
       style: {
         p: 'font-size:32rpx;line-height:50rpx',
-        img: 'margin:10px 0' } };
+        img: 'margin:10px 0' },
 
+      loading: true };
 
   },
   onLoad: function onLoad() {var _this = this;
@@ -218,6 +238,8 @@ var _default =
       data = res.data;
       console.log(data);
       _this.contentInfo = data;
+      _this.commentList = data.comment;
+      _this.loading = false;
       //设置导航栏文字
       uni.setNavigationBarTitle({
         title: data.title });

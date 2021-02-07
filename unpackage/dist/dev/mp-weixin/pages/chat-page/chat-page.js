@@ -287,9 +287,8 @@ var recorderManager = uni.getRecorderManager();var _default =
     for (var i = 0; i < page; i++) {
       this.emojiData[i] = [];
       for (var k = 0; k < 30; k++) {
-        this.emotionsList[i * 30 + k] ? this.emojiData[i].push(
-        this.emotionsList[i * 30 + k]) :
-        '';
+        this.emotionsList[i * 30 + k] ?
+        this.emojiData[i].push(this.emotionsList[i * 30 + k]) : '';
       }
     }
   },
