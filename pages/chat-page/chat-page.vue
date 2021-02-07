@@ -76,7 +76,6 @@
 				isSend:false,
 				emojiData:[],
 				inputValue:'',
-				sendValue:'',
 				isShowEmoji:false,
 				isShowOptions:false,
 				isShowAudio:false,
@@ -140,6 +139,7 @@
 			this.scrollToBottom();
 		},
 		methods:{
+			// 打开表情
 			openEmoji(){
 				this.isShowEmoji = !this.isShowEmoji;
 				this.isShowOptions = false;
@@ -150,10 +150,13 @@
 					this.scrollHeight = '60vh'
 				}
 			},
+			// 选择表情
 			selectmoji(emoji){
 				this.inputValue += emoji.text;
+				//每选择一个表情就把该表情push到sendEmojiList
 				this.sendEmojiList.push(emoji);
 			},
+			// 关闭表情
 			closeEmoji(){
 				this.isShowEmoji = false;
 				this.isShowOptions = false;
@@ -171,10 +174,10 @@
 				if(type == 'text' && this.inputValue.length != 0){
 					//将inputValue里的表情文字替换为表情图片
 					// message.msg = this.inputValue.replace(/\[.*?\]/g,`<img src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/99.gif" mode="aspectFit"></img>`);
+					//遍历sendEmojiList，使用indexOf判断inputVlue里是否还有该表情
 					for(let item of this.sendEmojiList){
-						console.log(item);
-						if(item.code != -1){
-							console.log(1)
+						if(this.inputValue.indexOf(item.text) != -1){
+							// 把表情文字替换为img
 							this.inputValue = this.inputValue.replace(item.text,`<img src="${item.img}" mode="aspectFit"></img>`);
 						}
 					}
@@ -187,7 +190,6 @@
 				console.log('发送的信息',message);
 				this.messageList.push(message);
 				this.inputValue = '';
-				this.sendValue = '';
 			},
 			// 滚动到底部
 			scrollToBottom(){
@@ -201,9 +203,11 @@
 					}
 				})
 			},
+			// 点击表情输入栏里的删除键
 			delText(){
 				this.inputValue = this.inputValue.substr(0,this.inputValue.length - 1);
 			},
+			//输入框获取焦点时触发
 			focusHandler(event){
 				this.scrollHeight = '52vh';
 				this.isShowEmoji = false;
@@ -211,10 +215,12 @@
 				console.log(event.detail)
 				this.inputBottom = event.detail.height  + 'px';
 			},
+			// 输入框失去焦点时触发
 			blurHandler(){
 				this.scrollHeight = '100vh';
 				this.inputBottom = 0;
 			},
+			//点击+更多选项
 			moreOptions(){
 				this.isShowOptions = !this.isShowOptions;
 				if(!this.isShowOptions){
@@ -224,6 +230,7 @@
 				}
 				this.isShowEmoji = false;
 			},
+			//选择图片
 			selectPhoto(){
 				let _this = this;
 				uni.chooseImage({
@@ -243,11 +250,13 @@
 			showAudio(){
 				this.isShowAudio = !this.isShowAudio;
 			},
+			//长按开始录音
 			startRecord() {
 				this.isShowState = true;
 			    console.log('开始录音');
 				recorderManager.start();
 			},
+			//松开结束录音
 			endRecord() {
 				this.isShowState = false;
 			    console.log('录音结束');

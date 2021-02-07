@@ -234,7 +234,6 @@ var recorderManager = uni.getRecorderManager();var _default =
       isSend: false,
       emojiData: [],
       inputValue: '',
-      sendValue: '',
       isShowEmoji: false,
       isShowOptions: false,
       isShowAudio: false,
@@ -298,6 +297,7 @@ var recorderManager = uni.getRecorderManager();var _default =
     this.scrollToBottom();
   },
   methods: {
+    // 打开表情
     openEmoji: function openEmoji() {
       this.isShowEmoji = !this.isShowEmoji;
       this.isShowOptions = false;
@@ -308,10 +308,13 @@ var recorderManager = uni.getRecorderManager();var _default =
         this.scrollHeight = '60vh';
       }
     },
+    // 选择表情
     selectmoji: function selectmoji(emoji) {
       this.inputValue += emoji.text;
+      //每选择一个表情就把该表情push到sendEmojiList
       this.sendEmojiList.push(emoji);
     },
+    // 关闭表情
     closeEmoji: function closeEmoji() {
       this.isShowEmoji = false;
       this.isShowOptions = false;
@@ -329,10 +332,10 @@ var recorderManager = uni.getRecorderManager();var _default =
       if (type == 'text' && this.inputValue.length != 0) {
         //将inputValue里的表情文字替换为表情图片
         // message.msg = this.inputValue.replace(/\[.*?\]/g,`<img src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/99.gif" mode="aspectFit"></img>`);
+        //遍历sendEmojiList，使用indexOf判断inputVlue里是否还有该表情
         var _iterator = _createForOfIteratorHelper(this.sendEmojiList),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;
-            console.log(item);
-            if (item.code != -1) {
-              console.log(1);
+            if (this.inputValue.indexOf(item.text) != -1) {
+              // 把表情文字替换为img
               this.inputValue = this.inputValue.replace(item.text, "<img src=\"".concat(item.img, "\" mode=\"aspectFit\"></img>"));
             }
           }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
@@ -345,7 +348,6 @@ var recorderManager = uni.getRecorderManager();var _default =
       console.log('发送的信息', message);
       this.messageList.push(message);
       this.inputValue = '';
-      this.sendValue = '';
     },
     // 滚动到底部
     scrollToBottom: function scrollToBottom() {
@@ -359,9 +361,11 @@ var recorderManager = uni.getRecorderManager();var _default =
         }
       });
     },
+    // 点击表情输入栏里的删除键
     delText: function delText() {
       this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
     },
+    //输入框获取焦点时触发
     focusHandler: function focusHandler(event) {
       this.scrollHeight = '52vh';
       this.isShowEmoji = false;
@@ -369,10 +373,12 @@ var recorderManager = uni.getRecorderManager();var _default =
       console.log(event.detail);
       this.inputBottom = event.detail.height + 'px';
     },
+    // 输入框失去焦点时触发
     blurHandler: function blurHandler() {
       this.scrollHeight = '100vh';
       this.inputBottom = 0;
     },
+    //点击+更多选项
     moreOptions: function moreOptions() {
       this.isShowOptions = !this.isShowOptions;
       if (!this.isShowOptions) {
@@ -382,6 +388,7 @@ var recorderManager = uni.getRecorderManager();var _default =
       }
       this.isShowEmoji = false;
     },
+    //选择图片
     selectPhoto: function selectPhoto() {
       var _this = this;
       uni.chooseImage({
@@ -401,11 +408,13 @@ var recorderManager = uni.getRecorderManager();var _default =
     showAudio: function showAudio() {
       this.isShowAudio = !this.isShowAudio;
     },
+    //长按开始录音
     startRecord: function startRecord() {
       this.isShowState = true;
       console.log('开始录音');
       recorderManager.start();
     },
+    //松开结束录音
     endRecord: function endRecord() {
       this.isShowState = false;
       console.log('录音结束');
