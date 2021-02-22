@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uParse: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 226))
+      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 240))
     },
     commentBox: function() {
-      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 236))
+      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 250))
     },
     uBackTop: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 243))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 257))
     },
     commentInput: function() {
-      return __webpack_require__.e(/*! import() | components/comment-input/comment-input */ "components/comment-input/comment-input").then(__webpack_require__.bind(null, /*! @/components/comment-input/comment-input.vue */ 250))
+      return __webpack_require__.e(/*! import() | components/comment-input/comment-input */ "components/comment-input/comment-input").then(__webpack_require__.bind(null, /*! @/components/comment-input/comment-input.vue */ 264))
     }
   }
 } catch (e) {
@@ -233,8 +233,10 @@ var _default =
       loading: true };
 
   },
-  onLoad: function onLoad() {var _this = this;
-    this.$api.get_content().then(function (res) {var
+  onLoad: function onLoad(option) {var _this = this;
+    this.$api.get_content({
+      article_id: option.article_id }).
+    then(function (res) {var
       data = res.data;
       console.log(data);
       _this.contentInfo = data;

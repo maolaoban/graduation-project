@@ -36,7 +36,7 @@
 		<!-- 签到 -->
 		<popup-box :isShow="isShow" ref="signChild"></popup-box>
 		<!-- 发表 -->
-		<fab></fab>
+		<!-- <fab></fab> -->
 		
 		<view class="toutiao">
 			<view class="toutiao-container">
@@ -59,7 +59,7 @@
 				<image src="../../static/images/title.png" mode="aspectFit"></image>
 				热门推荐
 			</view>
-			<common-card v-for="item in 5"></common-card>
+			<common-card v-for="item in newsList" :listItem="item" :key="item._id"></common-card>
 		</view>
 	</view>
 </template>
@@ -72,10 +72,12 @@
 				color:'$uni-bg-color',
 				isLoading:true,
 				isShow:false,
+				newsList:[]
 			}
 		},
 		created() {
 			this.getCarousel();
+			this.getNewsList();
 		},
 		methods: {
 			getCarousel(){
@@ -86,6 +88,13 @@
 						this.carouseList.push(item.cover_img)
 					})
 					this.isLoading = false;
+				})
+			},
+			getNewsList(){
+				this.$api.get_newsList().then(res => {
+					console.log(res);
+					const {data} = res;
+					this.newsList = data;
 				})
 			},
 			goDetail(index){

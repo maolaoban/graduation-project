@@ -1,7 +1,7 @@
 <template>
 	<view class="detail-container">
 		<view class="top-box">
-			<image :src="contentInfo.top_cover" mode="aspectFill"></image>
+			<image :src="contentInfo.top_cover" mode="scaleToFill"></image>
 		</view>
 		<view class="author-info" v-if="!loading">
 			<view class="info-left">
@@ -69,8 +69,10 @@
 				loading:true
 			}
 		},
-		onLoad() {
-			this.$api.get_content().then(res => {
+		onLoad(option) {
+			this.$api.get_content({
+				article_id:option.article_id
+			}).then(res => {
 				const {data} = res;
 				console.log(data);
 				this.contentInfo = data;

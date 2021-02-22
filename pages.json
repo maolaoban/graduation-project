@@ -126,7 +126,7 @@
             "path" : "pages/store-page/store-page",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "商城",
                 "enablePullDownRefresh": false
             }
             

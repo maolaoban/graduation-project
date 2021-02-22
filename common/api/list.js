@@ -27,3 +27,24 @@ export const get_userInfo = (data) => {
 		data
 	})
 }
+//新闻列表
+export const get_newsList = (data) => {
+	return $http({
+		url:'get_newsList',
+		data
+	})
+}
+//分类列表
+export const get_classifyList = (data) => {
+	return $http({
+		url:'get_classify',
+		data
+	})
+}
+//分类详情
+export const get_classifyContent = (data) => {
+	return $http({
+		url:'get_classify_content',
+		data
+	})
+}

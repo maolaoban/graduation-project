@@ -113,7 +113,6 @@ page {
 .classify-right .scroll-right .right-item .item-list .item-list_box {
   width: 150rpx;
   height: 150rpx;
-  border: 1px solid red;
   border-radius: 10rpx;
   margin-top: 20rpx;
   display: -webkit-box;

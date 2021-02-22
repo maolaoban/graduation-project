@@ -7,29 +7,29 @@
 					分类
 				</view>
 				<scroll-view class="left-box" scroll-y="true" @scroll="scrollFun">
-					<view class="scroll-item" v-for="(item,index) in classifyList" @click="selectClassify(index)"
+					<view class="scroll-item" v-for="(item,index) in classifyList" :key="item._id" @click="selectClassify(index,item._id)"
 						:class="{'active': selectIndex === index}"
-					>{{item}}</view>
+					>{{item.classify}}</view>
 				</scroll-view>
 			</view>
 			<view class="classify-right">
 				<scroll-view class="scroll-right" scroll-y="true">
 					<view class="right-item">
 						<view class="item-title">
-							手机品牌
+							热门品牌
 						</view>
 						<view class="item-list">
-							<view class="item-list_box" v-for="item in 6" @click="openList">
+							<view class="item-list_box" v-for="item in brandList" @click="openList">
 								<view class="cover">
-									<image src="https://img.pconline.com.cn/images/product/1350/1350247/fb_sn7.jpg" mode="aspectFit"></image>
+									<image :src="item.img_cover" mode="aspectFit"></image>
 								</view>
-								<text>华为</text>
+								<text>{{item.name}}</text>
 							</view>
 						</view>
 					</view>
-					<view class="right-item">
+					<!-- <view class="right-item">
 						<view class="item-title">
-							手机类别
+							热门手机
 						</view>
 						<view class="item-list">
 							<view class="item-list_box" v-for="item in 6" @click="openList">
@@ -46,7 +46,7 @@
 								
 							</view>
 						</view>
-					</view>
+					</view> -->
 				</scroll-view>
 			</view>
 		</view>
@@ -58,15 +58,30 @@
 		data() {
 			return {
 				hasShadow:false,
-				classifyList:['手机','电脑','相机','平板电脑','外设','智能穿戴','智能家居','DIY','网络设备'],
+				classifyList:[],
 				selectIndex:0,
-				bodyTop:50
+				bodyTop:50,
+				brandList:[]
 			};
 		},
-		onReady() {
-			
+		onLoad() {
+			this.$api.get_classifyList().then(res => {
+				const {data} = res;
+				console.log(data);
+				this.classifyList = data.data;
+				this.getClassifyContent(this.classifyList[0]._id);
+			})
 		},
 		methods:{
+			getClassifyContent(id){
+				this.$api.get_classifyContent({
+					classify_id: id
+				}).then(res => {
+					const {data} = res;
+					console.log('brand',data);
+					this.brandList = data.brand;
+				})
+			},
 			scrollFun(event){
 				console.log(parseInt(event.detail.scrollTop));
 				if(parseInt(event.detail.scrollTop) > 5){
@@ -75,8 +90,9 @@
 					this.hasShadow = false;
 				}
 			},
-			selectClassify(i){
+			selectClassify(i,id){
 				this.selectIndex = i;
+				this.getClassifyContent(id);
 			},
 			openList(){
 				uni.navigateTo({
@@ -172,7 +188,6 @@ page{
 				.item-list_box{
 					width: 150rpx;
 					height: 150rpx;
-					border:1px solid red;
 					border-radius: 10rpx;
 					margin-top: 20rpx;
 					display: flex;

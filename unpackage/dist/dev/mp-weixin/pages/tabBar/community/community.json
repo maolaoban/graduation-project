@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "圈子",
   "navigationBarTextStyle": "black",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-gap": "/uview-ui/components/u-gap/u-gap",
+    "common-card": "/components/common-card/common-card"
+  }
 }

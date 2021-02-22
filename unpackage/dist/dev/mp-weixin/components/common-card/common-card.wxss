@@ -27,101 +27,165 @@
 .common-card {
   width: 100%;
 }
-.common-card .news-card {
-  width: 100%rpx;
-  margin: 0 30rpx;
-  padding: 20rpx 0;
+.common-card .community-card {
+  width: 100%;
+  padding: 20rpx 20rpx 0 20rpx;
 }
-.common-card .news-card .card-title {
+.common-card .community-card .author-info {
+  width: 100%;
+  height: 100rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.common-card .community-card .author-info .author-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.common-card .community-card .author-info .author-avatar image {
+  width: 100%;
+  height: 100%;
+}
+.common-card .community-card .author-info .author-info_text {
+  margin-left: 20rpx;
+}
+.common-card .community-card .author-info .author-info_text .author-info_name {
+  font-size: 28rpx;
+  color: #333;
+}
+.common-card .community-card .author-info .author-info_text .author-info_time {
+  font-size: 24rpx;
+  color: #bbb;
+}
+.common-card .community-card .card-text {
+  font-size: 28rpx;
+  color: #333;
+}
+.common-card .community-card .card-cover {
+  width: 100%;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.common-card .community-card .card-cover .card-cover_item:nth-child(3n) {
+  margin-right: 0;
+}
+.common-card .community-card .card-cover .card-cover_item {
+  width: 230rpx;
+  height: 230rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+}
+.common-card .community-card .card-cover .card-cover_item image {
+  width: 100%;
+  height: 100%;
+}
+.common-card .community-card .card-bottom {
+  width: 100%;
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+}
+.common-card .community-card .card-bottom .bottom-count {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.common-card .community-card .card-bottom .bottom-count text {
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+.common-card .news-card {
+  width: 100%;
+  padding: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.common-card .news-card .card-left {
+  width: 500rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.common-card .news-card .card-left .card-title {
   font-size: 32rpx;
   color: #333;
 }
-.common-card .news-card .card-cover_one {
+.common-card .news-card .card-left .card-left_body {
   width: 100%;
-  height: 300rpx;
-  margin-top: 10rpx;
-  border-radius: 10rpx;
-  overflow: hidden;
-}
-.common-card .news-card .card-cover_one image {
-  width: 100%;
-  height: 100%;
-}
-.common-card .news-card .card-cover_more {
-  width: 100%;
-  height: 200rpx;
-  margin-top: 10rpx;
-  border-radius: 10rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  overflow: hidden;
 }
-.common-card .news-card .card-cover_more .more-img {
-  width: 32%;
-  height: 100%;
+.common-card .news-card .card-left .card-left_body .card-tag {
+  color: #08AEEA;
 }
-.common-card .news-card .card-cover_more .more-img image {
-  width: 100%;
-  height: 100%;
-}
-.common-card .news-card .card-info {
-  height: 60rpx;
-  width: 100%;
-  margin-top: 10rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-}
-.common-card .news-card .card-info .card-info_author {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-}
-.common-card .news-card .card-info .card-info_author .author_avatar {
-  height: 50rpx;
-  width: 50rpx;
-  border-radius: 50%;
-  margin-right: 10rpx;
-  overflow: hidden;
-}
-.common-card .news-card .card-info .card-info_author .author_avatar image {
-  width: 100%;
-  height: 100%;
-}
-.common-card .news-card .card-info .card-info_author .card-info_name {
+.common-card .news-card .card-left .card-left_body .card-theme {
+  border: 1rpx solid #08AEEA;
+  border-radius: 6rpx;
+  padding: 0 4rpx;
   font-size: 24rpx;
-  color: #bbb;
+  color: #08AEEA;
 }
-.common-card .news-card .card-info .card-info_record {
+.common-card .news-card .card-left .card-left_body .card-info_record {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
 }
-.common-card .news-card .card-info .card-info_record view {
+.common-card .news-card .card-left .card-left_body .card-info_record .record-view, .common-card .news-card .card-left .card-left_body .card-info_record .record-like {
+  margin-left: 20rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  margin-right: 10rpx;
-  font-size: 24rpx;
+}
+.common-card .news-card .card-left .card-left_body .card-info_record .record-view text, .common-card .news-card .card-left .card-left_body .card-info_record .record-like text {
   color: #bbb;
+  font-size: 24rpx;
+}
+.common-card .news-card .card-right {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.common-card .news-card .card-right .card-cover {
+  width: 100%;
+  height: 100%;
+}
+.common-card .news-card .card-right .card-cover image {
+  width: 100%;
+  height: 100%;
 }
 

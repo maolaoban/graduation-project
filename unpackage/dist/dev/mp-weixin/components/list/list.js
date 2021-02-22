@@ -80,16 +80,16 @@ var components
 try {
   components = {
     myInterest: function() {
-      return __webpack_require__.e(/*! import() | components/my-interest/my-interest */ "components/my-interest/my-interest").then(__webpack_require__.bind(null, /*! @/components/my-interest/my-interest.vue */ 299))
+      return __webpack_require__.e(/*! import() | components/my-interest/my-interest */ "components/my-interest/my-interest").then(__webpack_require__.bind(null, /*! @/components/my-interest/my-interest.vue */ 313))
     },
     recommend: function() {
-      return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! @/components/recommend/recommend.vue */ 304))
+      return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! @/components/recommend/recommend.vue */ 318))
     },
     videoPage: function() {
-      return __webpack_require__.e(/*! import() | components/video-page/video-page */ "components/video-page/video-page").then(__webpack_require__.bind(null, /*! @/components/video-page/video-page.vue */ 311))
+      return __webpack_require__.e(/*! import() | components/video-page/video-page */ "components/video-page/video-page").then(__webpack_require__.bind(null, /*! @/components/video-page/video-page.vue */ 325))
     },
     commonCard: function() {
-      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 318))
+      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 233))
     }
   }
 } catch (e) {

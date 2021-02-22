@@ -213,15 +213,30 @@ var _default =
   data: function data() {
     return {
       hasShadow: false,
-      classifyList: ['手机', '电脑', '相机', '平板电脑', '外设', '智能穿戴', '智能家居', 'DIY', '网络设备'],
+      classifyList: [],
       selectIndex: 0,
-      bodyTop: 50 };
+      bodyTop: 50,
+      brandList: [] };
 
   },
-  onReady: function onReady() {
-
+  onLoad: function onLoad() {var _this = this;
+    this.$api.get_classifyList().then(function (res) {var
+      data = res.data;
+      console.log(data);
+      _this.classifyList = data.data;
+      _this.getClassifyContent(_this.classifyList[0]._id);
+    });
   },
   methods: {
+    getClassifyContent: function getClassifyContent(id) {var _this2 = this;
+      this.$api.get_classifyContent({
+        classify_id: id }).
+      then(function (res) {var
+        data = res.data;
+        console.log('brand', data);
+        _this2.brandList = data.brand;
+      });
+    },
     scrollFun: function scrollFun(event) {
       console.log(parseInt(event.detail.scrollTop));
       if (parseInt(event.detail.scrollTop) > 5) {
@@ -230,8 +245,9 @@ var _default =
         this.hasShadow = false;
       }
     },
-    selectClassify: function selectClassify(i) {
+    selectClassify: function selectClassify(i, id) {
       this.selectIndex = i;
+      this.getClassifyContent(id);
     },
     openList: function openList() {
       uni.navigateTo({

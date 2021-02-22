@@ -1,57 +1,105 @@
 <template>
 	<view class="common-card">
-		<view class="news-card" @click="goDetail">
-			<view class="card-title">
-				[创作者计划] 人人都能做测评
-			</view>
-			<view class="card-cover_one" v-if="coverList.length === 1">
-				<image :src="coverList[0]" mode="aspectFill"></image>
-			</view>
-			<view class="card-cover_more" v-else>
-				<view class="more-img" v-for="item in coverList">
-					<image :src="item" mode="aspectFill"></image>
+		<view class="community-card" v-if="isCommunity">
+			<view class="author-info">
+				<view class="author-avatar">
+					<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
+				</view>
+				<view class="author-info_text">
+					<view class="author-info_name">
+						科技小白
+					</view>
+					<view class="author-info_time">
+						2021-2-22
+					</view>
 				</view>
 			</view>
-			<view class="card-info">
-				<view class="card-info_author">
-					<view class="author_avatar">
-						<image src="../../static/images/logo.png" mode="as"></image>
-					</view>
-					<view class="card-info_name">
-						毛老板/2021-1-23
-					</view>
+			<view class="card-text">
+				#华为Mate X2#华为折叠屏的专利图，应该就是MateX2了。
+			</view>
+			<view class="card-cover">
+				<view class="card-cover_item" v-for="item in 2">
+					<image src="../../static/images/rank-1.png" mode=""></image>
 				</view>
-				<view class="card-info_record">
-					<view class="record-view">
-						<u-icon name="eye" color="#bbbbbb" size="35"></u-icon>
-						1726
-					</view>
-					<view class="record-like">
-						<u-icon name="chat" color="#bbbbbb" size="35"></u-icon>
-						27
-					</view>
+			</view>
+			<view class="card-bottom">
+				<view class="bottom-count">
+					<u-icon name="thumb-up" color="#333" size="40"></u-icon>
+					<text>10</text>
+				</view>
+				<view class="bottom-count">
+					<u-icon name="chat" color="#333" size="40"></u-icon>
+					<text>12</text>
+				</view>
+				<view class="bottom-count">
+					<u-icon name="zhuanfa" color="#333" size="40"></u-icon>
+					<text>分享</text>
 				</view>
 			</view>
 		</view>
-		<u-gap height="10" bg-color="#eeeeee"></u-gap>
+		<view class="news-card" @click="goDetail(listItem._id)" v-else>
+			<view class="card-left">
+				<view class="card-title">
+					{{listItem.title}}
+				</view>
+				<view class="card-left_body">
+					<view class="card-tag" v-if="isTheme">
+						{{listItem.tag}}
+					</view>
+					<view class="card-theme" v-else>
+						专题
+					</view>
+					<view class="card-info_record">
+						<view class="record-view">
+							<u-icon name="eye" color="#bbbbbb" size="35"></u-icon>
+							<text>{{listItem.read_count}}</text>
+						</view>
+						<view class="record-like">
+							<u-icon name="chat" color="#bbbbbb" size="35"></u-icon>
+							<text>{{listItem.comment_total}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="card-right">
+				<view class="card-cover">
+					<image :src="listItem.top_cover" mode="aspectFill"></image>
+				</view>
+			</view>
+		</view>
+		<!-- 分割线 -->
+		<u-gap height="10" bg-color="#f4f5f6"></u-gap>
 	</view>
 </template>
 
 <script>
 	export default {
+		props:{
+			isCommunity:{
+				type:Boolean,
+				default:false
+			},
+			listItem:{
+				type:Object,
+				default:()=>{
+					return {}
+				}
+			}
+		},
 		data() {
 			return {
 				coverList:[
 					'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201806%2F04%2F20180604011017_nclts.png&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613978449&t=35c4821bbbbb98aa0cb9407cd3a5ec34',
-					// 'https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/279759ee3d6d55fbee698d9266224f4a21a4ddd3.jpg',
-					// 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704471196,2520026755&fm=26&gp=0.jpg',
-				]
+					'https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/279759ee3d6d55fbee698d9266224f4a21a4ddd3.jpg',
+					'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1704471196,2520026755&fm=26&gp=0.jpg',
+				],
+				isTheme:true
 			};
 		},
 		methods:{
-			goDetail(index){
+			goDetail(id){
 				uni.navigateTo({
-					url:'../../news-detail/news-detail'
+					url:'../../news-detail/news-detail?article_id='+id
 				})
 			}
 		}
@@ -61,77 +109,128 @@
 <style lang="scss">
 .common-card{
 	width: 100%;
-	.news-card{
-		width: 100%rpx;
-		margin: 0 30rpx;
-		padding: 20rpx 0;
-		.card-title{
-			font-size: 32rpx;
-			color: #333;
-		}
-		.card-cover_one{
+	.community-card{
+		width: 100%;
+		padding: 20rpx 20rpx 0 20rpx;
+		.author-info{
 			width: 100%;
-			height: 300rpx;
-			margin-top: 10rpx;
-			border-radius: 10rpx;
-			overflow: hidden;
-			image{
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.card-cover_more{
-			width: 100%;
-			height: 200rpx;
-			margin-top: 10rpx;
-			border-radius: 10rpx;
+			height: 100rpx;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-			overflow: hidden;
-			.more-img{
-				width: 32%;
-				height: 100%;
+			.author-avatar{
+				width: 80rpx;
+				height: 80rpx;
+				border-radius: 50%;
+				overflow: hidden;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.author-info_text{
+				margin-left: 20rpx;
+				.author-info_name{
+					font-size: 28rpx;
+					color: $uni-text-color;
+				}
+				.author-info_time{
+					font-size: 24rpx;
+					color: #bbb;
+				}
+			}
+		}
+		.card-text{
+			font-size: 28rpx;
+			color: $uni-text-color;
+		}
+		.card-cover{
+			width: 100%;
+			margin-top: 20rpx;
+			display: flex;
+			flex-wrap: wrap;
+			.card-cover_item:nth-child(3n){
+				margin-right: 0;
+			}
+			.card-cover_item{
+				width: 230rpx;
+				height: 230rpx;
+				margin-top: 10rpx;
+				margin-right: 10rpx;
 				image{
 					width: 100%;
 					height: 100%;
 				}
 			}
 		}
-		.card-info{
-			height: 60rpx;
+		.card-bottom{
 			width: 100%;
-			margin-top: 10rpx;
+			height: 80rpx;
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
-			.card-info_author{
+			justify-content: space-around;
+			.bottom-count{
 				display: flex;
 				align-items: center;
-				.author_avatar{
-					height: 50rpx;
-					width: 50rpx;
-					border-radius: 50%;
-					margin-right: 10rpx;
-					overflow: hidden;
-					image{
-						width: 100%;
-						height: 100%;
-					}
-				}
-				.card-info_name{
+				text{
+					margin-left: 6rpx;
 					font-size: 24rpx;
-					color:#bbb;
+					color: $uni-text-color;
 				}
 			}
-			.card-info_record{
+		}
+	}
+	.news-card{
+		width: 100%;
+		padding: 20rpx;
+		display: flex;
+		justify-content: space-between;
+		.card-left{
+			width: 500rpx;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			.card-title{
+				font-size: 32rpx;
+				color: #333;
+			}
+			.card-left_body{
+				width: 100%;
 				display: flex;
-				view{
-					display: flex;
-					align-items: center;
-					margin-right: 10rpx;
+				.card-tag{
+					color:#08AEEA ;
+				}
+				.card-theme{
+					border: 1rpx solid #08AEEA;
+					border-radius: 6rpx;
+					padding: 0 4rpx;
 					font-size: 24rpx;
-					color:#bbb;
+					color: #08AEEA;
+				}
+				.card-info_record{
+					display: flex;
+					.record-view, .record-like{
+						margin-left: 20rpx;
+						display: flex;
+						align-items: center;
+						text{
+							color: #bbb;
+							font-size: 24rpx;
+						}
+					}
+				}
+			}
+		}
+		.card-right{
+			width: 200rpx;
+			height: 150rpx;
+			border-radius: 8rpx;
+			overflow: hidden;
+			.card-cover{
+				width: 100%;
+				height: 100%;
+				image{
+					width: 100%;
+					height: 100%;
 				}
 			}
 		}
