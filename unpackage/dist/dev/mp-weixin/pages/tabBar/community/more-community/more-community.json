@@ -1,6 +1,8 @@
 {
-  "navigationBarTitleText": "话题列表",
+  "navigationBarTitleText": "圈子",
   "enablePullDownRefresh": false,
   "navigationBarBackgroundColor": "#f4f5f6",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-lazy-load": "/uview-ui/components/u-lazy-load/u-lazy-load"
+  }
 }

@@ -39,7 +39,7 @@
 			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
 				<text>{{contentInfo.create_time}}</text>
-				<text>阅读 {{contentInfo.read_count}}</text>
+				<text>{{contentInfo.read_count?'阅读:'+contentInfo.read_count:''}}</text>
 			</view>
 			<view class="u-content">
 				<u-parse :html="contentInfo.content" :tag-style="style"></u-parse>

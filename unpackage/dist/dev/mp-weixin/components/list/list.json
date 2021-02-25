@@ -3,6 +3,7 @@
     "my-interest": "/components/my-interest/my-interest",
     "recommend": "/components/recommend/recommend",
     "video-page": "/components/video-page/video-page",
+    "u-loading": "/uview-ui/components/u-loading/u-loading",
     "common-card": "/components/common-card/common-card"
   },
   "component": true

@@ -24,6 +24,52 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.search-history {
+  width: 100%;
+  padding: 20rpx 40rpx;
+}
+.search-history .history-top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.search-history .history-top .history-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #151515;
+}
+.search-history .history-list {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.search-history .history-list .history-item {
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  padding: 4px 10rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #bebebe;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.search-history .history-list .history-item text {
+  margin-right: 10rpx;
+}
 .hot-box {
   width: 100%;
   padding: 40rpx;

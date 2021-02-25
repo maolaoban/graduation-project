@@ -3318,6 +3318,9 @@ u-dropdown {
 ::-webkit-scrollbar {
   display: none;
 }
+page {
+  font-family: system-ui;
+}
 
 @font-face {font-family: "iconfont";
   src: url('https://at.alicdn.com/t/font_2318244_cctb0ltqnlh.eot?t=1612506022918'); /* IE9 */

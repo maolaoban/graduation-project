@@ -1,6 +1,18 @@
 <template>
 	<view>
 		<navbar :isSearch="true"></navbar>
+		<view class="search-history" v-show="searchHistory.length>0">
+			<view class="history-top">
+				<text class="history-title">搜索历史</text>
+				<u-icon name="trash" color="#7e7e7e" size="30" @click="clearHistory"></u-icon>
+			</view>
+			<view class="history-list">
+				<view class="history-item" v-for="(item,index) in searchHistory">
+					<text>{{item}}</text>
+					<u-icon name="close" color="#7e7e7e" size="20" @click="delHistory(index)"></u-icon>
+				</view>
+			</view>
+		</view>
 		<view class="hot-box">
 			<text class="hot-title">热门</text>
 			<view class="hot-content" v-if="!isLoading">
@@ -21,12 +33,16 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	export default {
 		data() {
 			return {
 				hotList:[],
 				isLoading:true
 			}
+		},
+		computed:{
+			...mapState(["searchHistory"])
 		},
 		onLoad() {
 			this.$api.get_hot_search().then(res => {
@@ -36,12 +52,49 @@
 			})
 		},
 		methods: {
-			
+			delHistory(i){
+				this.$store.dispatch("del_history",i);
+			},
+			clearHistory(){
+				this.$store.dispatch("clear_history");
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
+.search-history{
+	width: 100%;
+	padding: 20rpx 40rpx;
+	.history-top{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.history-title{
+			font-size: 32rpx;
+			font-weight: bold;
+			color:#151515;
+		}
+	}
+	.history-list{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		.history-item{
+			flex-shrink: 0;
+			padding: 4px 10rpx;
+			border-radius: 20rpx;
+			border:1rpx solid #bebebe;
+			margin-right: 20rpx;
+			margin-top: 20rpx;
+			display: flex;
+			align-items: center;
+			text{
+				margin-right: 10rpx;
+			}
+		}
+	}
+}
 .hot-box{
 	width: 100%;
 	padding: 40rpx;

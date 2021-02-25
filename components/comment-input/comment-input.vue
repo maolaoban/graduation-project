@@ -3,13 +3,13 @@
 		<view class="comment-input">
 			<view class="input-box" @click="showInput">谈谈你的看法...</view>
 			<view class="add-right" @click="addThumb">
-				<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="50" :color="!isThumb?'#333':'#01b9fd'"></u-icon>
+				<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="50" :color="!isThumb?'#bbb':'#01b9fd'"></u-icon>
 			</view>
 			<view class="add-right" @click="addCollect">
-				<u-icon :name="!isCollect?'star':'star-fill'" size="50" :color="!isCollect?'#333':'#01b9fd'"></u-icon>
+				<u-icon :name="!isCollect?'star':'star-fill'" size="50" :color="!isCollect?'#bbb':'#01b9fd'"></u-icon>
 			</view>
 			<view class="add-right">
-				<u-icon name="zhuanfa" size="50" color="#333"></u-icon>
+				<u-icon name="zhuanfa" size="50" color="#bbb"></u-icon>
 			</view>
 		</view>
 		<view class="input-box_true" v-show="show">

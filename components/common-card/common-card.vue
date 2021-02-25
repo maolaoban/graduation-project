@@ -1,74 +1,76 @@
 <template>
 	<view class="common-card">
-		<view class="community-card" v-if="isCommunity">
-			<view class="author-info">
-				<view class="author-avatar">
-					<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
-				</view>
-				<view class="author-info_text">
-					<view class="author-info_name">
-						科技小白
+		<template v-for="obj in newsList">
+			<view class="community-card" v-if="isCommunity">
+				<view class="author-info">
+					<view class="author-avatar">
+						<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
 					</view>
-					<view class="author-info_time">
-						2021-2-22
-					</view>
-				</view>
-			</view>
-			<view class="card-text">
-				#华为Mate X2#华为折叠屏的专利图，应该就是MateX2了。
-			</view>
-			<view class="card-cover">
-				<view class="card-cover_item" v-for="item in 2">
-					<image src="../../static/images/rank-1.png" mode=""></image>
-				</view>
-			</view>
-			<view class="card-bottom">
-				<view class="bottom-count">
-					<u-icon name="thumb-up" color="#333" size="40"></u-icon>
-					<text>10</text>
-				</view>
-				<view class="bottom-count">
-					<u-icon name="chat" color="#333" size="40"></u-icon>
-					<text>12</text>
-				</view>
-				<view class="bottom-count">
-					<u-icon name="zhuanfa" color="#333" size="40"></u-icon>
-					<text>分享</text>
-				</view>
-			</view>
-		</view>
-		<view class="news-card" @click="goDetail(listItem._id)" v-else>
-			<view class="card-left">
-				<view class="card-title">
-					{{listItem.title}}
-				</view>
-				<view class="card-left_body">
-					<view class="card-tag" v-if="isTheme">
-						{{listItem.tag}}
-					</view>
-					<view class="card-theme" v-else>
-						专题
-					</view>
-					<view class="card-info_record">
-						<view class="record-view">
-							<u-icon name="eye" color="#bbbbbb" size="35"></u-icon>
-							<text>{{listItem.read_count}}</text>
+					<view class="author-info_text">
+						<view class="author-info_name">
+							科技小白
 						</view>
-						<view class="record-like">
-							<u-icon name="chat" color="#bbbbbb" size="35"></u-icon>
-							<text>{{listItem.comment_total}}</text>
+						<view class="author-info_time">
+							2021-2-22
 						</view>
 					</view>
 				</view>
-			</view>
-			<view class="card-right">
+				<view class="card-text">
+					#华为Mate X2#华为折叠屏的专利图，应该就是MateX2了。
+				</view>
 				<view class="card-cover">
-					<image :src="listItem.top_cover" mode="aspectFill"></image>
+					<view class="card-cover_item" v-for="item in 2">
+						<image src="../../static/images/rank-1.png" mode=""></image>
+					</view>
+				</view>
+				<view class="card-bottom">
+					<view class="bottom-count">
+						<u-icon name="thumb-up" color="#333" size="40"></u-icon>
+						<text>10</text>
+					</view>
+					<view class="bottom-count">
+						<u-icon name="chat" color="#333" size="40"></u-icon>
+						<text>12</text>
+					</view>
+					<view class="bottom-count">
+						<u-icon name="zhuanfa" color="#333" size="40"></u-icon>
+						<text>分享</text>
+					</view>
 				</view>
 			</view>
-		</view>
-		<!-- 分割线 -->
-		<u-gap height="10" bg-color="#f4f5f6"></u-gap>
+			<view class="news-card" @click="goDetail(obj._id)" v-else>
+				<view class="card-left">
+					<view class="card-title">
+						{{obj.title}}
+					</view>
+					<view class="card-left_body">
+						<view class="card-tag" v-if="isTheme">
+							{{obj.tag}}
+						</view>
+						<view class="card-theme" v-else>
+							专题
+						</view>
+						<view class="card-info_record">
+							<view class="record-view">
+								<u-icon name="eye" color="#bbbbbb" size="35"></u-icon>
+								<text>{{obj.read_count}}</text>
+							</view>
+							<view class="record-like">
+								<u-icon name="chat" color="#bbbbbb" size="35"></u-icon>
+								<text>{{obj.comment_total}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="card-right">
+					<view class="card-cover">
+						<image :src="obj.top_cover" mode="aspectFill"></image>
+					</view>
+				</view>
+			</view>
+			<!-- 分割线 -->
+			<u-gap height="10" bg-color="#f4f5f6"></u-gap>
+		</template>
 	</view>
 </template>
 
@@ -79,10 +81,10 @@
 				type:Boolean,
 				default:false
 			},
-			listItem:{
-				type:Object,
+			newsList:{
+				type:Array,
 				default:()=>{
-					return {}
+					return []
 				}
 			}
 		},

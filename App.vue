@@ -22,4 +22,7 @@
 		display: none;
 	}
 	/* #endif */
+	page{
+		font-family: system-ui;
+	}
 </style>

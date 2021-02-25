@@ -7,9 +7,11 @@
 			:class="{'navbar-reverse':isReverse && !isSearch}"
 			:style="{height:navBarHeight+'px',width:windowWidth? windowWidth + 'px':'100%'}"
 		>
+			<!-- #ifndef H5 -->
 			<view class="navbar-back" v-if="isSearch" @click="goBack()">
 				<u-icon name="arrow-leftward" color="#7e7e7e" size="40"></u-icon>
 			</view>
+			<!-- #endif -->
 			<view class="navabr-search" @click="toSearch" v-if="!isSearch">
 				<u-icon name="search" color="#969696" size="30"></u-icon>
 				<text class="navbar-search_text">小米11 首发晓龙888</text>
@@ -20,6 +22,7 @@
 				placeholder="新版iPad Pro曝光..." 
 				placeholder-class="input-placeholder"
 				confirm-type="search"
+				@confirm="searchHandler"
 				/>
 			</view>
 			<view class="navbar-message" v-if="!isSearch" @click="toMyMessage">
@@ -79,6 +82,10 @@
 				uni.navigateTo({
 					url:'/pages/my-message/my-message'
 				})
+			},
+			searchHandler(e){
+				const {value} = e.detail;
+				this.$store.dispatch('add_history',value);
 			}
 		}
 	}
@@ -119,7 +126,7 @@
 			}
 			.navabr-search_input{
 				background-color: #f4f5f6;
-				border-radius: 10rpx;
+				border-radius: 30rpx;
 				width: 100%;
 				height: 60rpx;
 				padding-left: 20rpx;

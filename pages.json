@@ -24,6 +24,9 @@
             {
                 "navigationBarTitleText": "圈子",
                 "navigationBarTextStyle":"black"
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -63,6 +66,9 @@
                 "navigationBarTitleText": "我的消息",
 				"navigationBarTextStyle":"black",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -73,6 +79,9 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
 				"navigationBarBackgroundColor":"#f4f4f4"
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -89,9 +98,12 @@
             "path" : "pages/tabBar/community/more-community/more-community",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "话题列表",
+                "navigationBarTitleText": "圈子",
                 "enablePullDownRefresh": false,
 				"navigationBarBackgroundColor":"#f4f5f6"
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -101,6 +113,9 @@
             {
                 "navigationBarTitleText": "签到",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -110,6 +125,9 @@
             {
                 "navigationBarTitleText": "榜单",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -119,6 +137,9 @@
             {
                 "navigationBarTitleText": "编辑文章",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -128,6 +149,9 @@
             {
                 "navigationBarTitleText": "商城",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -137,6 +161,9 @@
             {
                 "navigationBarTitleText": "产品列表",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -155,6 +182,9 @@
             {
                 "navigationBarTitleText": "意见反馈",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -165,6 +195,9 @@
                 "navigationBarTitleText": "热门活动",
                 "enablePullDownRefresh": false,
 				"navigationBarBackgroundColor":"#f4f5f6"
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
@@ -174,13 +207,16 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
+				//#ifdef H5
+				,"navigationStyle":"custom"
+				//#endif
             }
             
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "E-测",
+		"navigationBarTitleText": "大众测评",
 		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor":"#FFFFFF"
 	},

@@ -3,7 +3,7 @@
 		<view class="community-follow">
 			<view class="my-follow">
 				<view class="my-follow_title">
-					<text>大家都在聊</text>
+					<text>我的关注</text>
 					<text class="more" @click="goMore">更多></text>
 				</view>
 				<scroll-view scroll-x="true" class="follow-box_list">
@@ -19,7 +19,7 @@
 		<u-gap height="10" bg-color="#f4f5f6"></u-gap>
 		
 		<view class="community-info_box">
-			<common-card :isCommunity="true" v-for="item in 4"></common-card>
+			<common-card :isCommunity="true" :newsList="4"></common-card>
 		</view>
 	</view>
 </template>
@@ -46,6 +46,7 @@
 
 <style lang="scss">
 .community-follow{
+	margin-top: 20rpx;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;

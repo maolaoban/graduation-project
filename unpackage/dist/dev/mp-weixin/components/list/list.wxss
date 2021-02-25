@@ -38,4 +38,13 @@
   -webkit-flex-direction: column;
           flex-direction: column;
 }
+.home-swiper .list-scroll .loading {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
 

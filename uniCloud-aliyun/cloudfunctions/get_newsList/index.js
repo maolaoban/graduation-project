@@ -6,22 +6,41 @@ exports.main = async (event, context) => {
 	//接收分类,筛选数据
 	const {
 		page = 1,
-		pageSize = 10
+		pageSize = 10,
+		name
 	} = event;
-
+	let mathcObj = {};
+	if(name !== "推荐"){
+		mathcObj = {
+			classify:name
+		}
+	}
+	let projectObj = {};
+	if(name !== "视频"){
+		projectObj = {
+			title:1,
+			read_count:1,
+			top_cover:1,
+			comment_total:1,
+			tag:1
+		}
+	}else{
+		projectObj = {
+			title:1,
+			author_name:1,
+			view_count:1,
+			top_cover:1,
+			duration:1
+		}
+	}
 	//聚合，更精细化的去处理数据
 	const list = await db.collection('article')
 	.aggregate()
 	.addFields({
 		comment_total:$.size('$comment')
 	})
-	.project({
-		title:1,
-		read_count:1,
-		top_cover:1,
-		comment_total:1,
-		tag:1
-	})
+	.match(mathcObj)
+	.project(projectObj)
 	.skip((page - 1) * pageSize)//跳过多少条
 	.limit(pageSize) //限制条数
 	.end()

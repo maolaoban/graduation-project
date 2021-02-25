@@ -32,4 +32,100 @@
   width: 100%;
   height: 100%;
 }
+.video-container .middle-tab {
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 1px solid #cccccc;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.video-container .middle-tab .tab-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  height: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  color: #bbb;
+  font-size: 32rpx;
+}
+.content .author-info {
+  width: 700rpx;
+  margin: 40rpx 20rpx 10rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 10rpx 20rpx 0px #dcdcdc;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 20rpx;
+}
+.content .author-info .info-left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.content .author-info .info-left .author-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.content .author-info .info-left .author-avatar image {
+  width: 100%;
+  height: 100%;
+}
+.content .author-info .info-left .author-name {
+  margin-left: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.content .author-info .info-left .author-name .name {
+  font-size: 30rpx;
+  color: #01b9fd;
+}
+.content .author-info .info-left .author-name .bio {
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 0.6);
+}
+.content .author-info .author-follow {
+  height: 50rpx;
+  width: 100rpx;
+  border-radius: 10rpx;
+  background-color: #01b9fd;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  color: #fff;
+}
+.content .author-info .followed {
+  background-color: #bbb;
+}
 

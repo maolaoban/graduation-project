@@ -59,25 +59,33 @@
 				<image src="../../static/images/title.png" mode="aspectFit"></image>
 				热门推荐
 			</view>
-			<common-card v-for="item in newsList" :listItem="item" :key="item._id"></common-card>
+			<common-card  :newsList="newsList"></common-card>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
+		props:{
+			newsList:{
+				type:Array,
+				default:()=>{
+					return []
+				}
+			}
+		},
 		data() {
 			return {
 				carouseList:[],
 				color:'$uni-bg-color',
 				isLoading:true,
 				isShow:false,
-				newsList:[]
+				// newsList:[]
 			}
 		},
 		created() {
 			this.getCarousel();
-			this.getNewsList();
+			// this.getNewsList();
 		},
 		methods: {
 			getCarousel(){
@@ -90,13 +98,15 @@
 					this.isLoading = false;
 				})
 			},
-			getNewsList(){
-				this.$api.get_newsList().then(res => {
-					console.log(res);
-					const {data} = res;
-					this.newsList = data;
-				})
-			},
+			// getNewsList(){
+			// 	this.$api.get_newsList({
+			// 		name:"推荐"
+			// 	}).then(res => {
+			// 		console.log(res);
+			// 		const {data} = res;
+			// 		this.newsList = data;
+			// 	})
+			// },
 			goDetail(index){
 				uni.navigateTo({
 					url:'../../news-detail/news-detail'

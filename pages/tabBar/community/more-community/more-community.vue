@@ -2,14 +2,13 @@
 	<view class="community-list">
 		<view class="topic-box" v-for="(item, index) in topicList" :key="item.id">
 			<view class="topic-box_img">
-				<image :src="item.cover" mode="aspectFill"></image>
+				<u-lazy-load :image="item.cover_img" imgMode="aspectFill" height="350rpx"></u-lazy-load>
 				<view class="topic-tag">
-					<image src="../../../../static/images/tag.png" mode="aspectFit"></image>
-					#{{item.name}}#
+					#{{item.tag}}#
 				</view>
 			</view>
 			<view class="top-box_title">
-				{{item.description}}
+				{{item.title}}
 			</view>
 			<view class="top-box_option">
 				<view class="follow-btn" @click="followTopic(index)">
@@ -31,25 +30,16 @@
 	export default {
 		data() {
 			return {
-				topicList:[
-					{
-						id:'1',
-						name:'小白提问',
-						cover:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.sheying520.com%2Fdata%2Fupload%2Fimage%2F201701%2F0187d523991b81311536e17d64ec6a32.jpg&refer=http%3A%2F%2Fwww.sheying520.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614404070&t=dda8815cf7bb641be02004d733d3582a',
-						description:'手机，电脑，DIY,有问题你就提出来',
-						isFollow:true
-					},
-					{
-						id:'2',
-						name:'DIY宝典',
-						cover:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.hqew.com%2FFile%2FImages%2F0-9999%2F0%2FHR%2F2017513163547364152.jpg&refer=http%3A%2F%2Fimg.hqew.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614763701&t=e09db0d9cac537efdb1c66cff1fabb6b',
-						description:'大到整机，小到配件，不能独自偷偷酷炫，速来分享你的装机攻略吧！',
-						isFollow:false
-					}
-				],
+				topicList:[],
 				isFollow:false,
 				topicNum:0
 			};
+		},
+		created() {
+			this.$api.get_communityList().then(res => {
+				const {data} = res;
+				this.topicList = data;
+			})
 		},
 		methods:{
 			followTopic(index){
@@ -76,13 +66,14 @@ page{
 			width: 100%;
 			height: 350rpx;
 			position: relative;
+			overflow: hidden;
 			image{
 				width: 100%;
 				height: 100%;
 			}
 			.topic-tag{
 				height: 50rpx;
-				width: 210rpx;
+				width: 160rpx;
 				border-radius: 0 25rpx 25rpx 0;
 				position: absolute;
 				top:15rpx;

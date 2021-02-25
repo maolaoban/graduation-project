@@ -48,3 +48,10 @@ export const get_classifyContent = (data) => {
 		data
 	})
 }
+// 圈子列表
+export const get_communityList = (data) => {
+	return $http({
+		url:"get_community_list",
+		data
+	})
+}

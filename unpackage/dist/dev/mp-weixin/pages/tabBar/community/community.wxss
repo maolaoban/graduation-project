@@ -25,6 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .community-follow {
+  margin-top: 20rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

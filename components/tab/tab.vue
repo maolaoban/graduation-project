@@ -22,7 +22,7 @@
 		},
 		data() {
 			return {
-				tabList:['关注','推荐','视频','手机','电脑','数码','汽车','智能家居','专题'],
+				tabList:['关注','推荐','视频','手机','电脑','数码','汽车','智能家居','智能穿戴'],
 				activeIndex:1,
 				leftMove:0
 			};
@@ -35,10 +35,10 @@
 					return;
 				}else{
 					if(oldVal < newVal){
-						this.leftMove += (newVal - oldVal) * 30;
+						this.leftMove += (newVal - oldVal) * 35;
 					}
 					if(oldVal > newVal){
-						this.leftMove -= (oldVal - newVal) * 30;
+						this.leftMove -= (oldVal - newVal) * 35;
 					}
 				}
 			}

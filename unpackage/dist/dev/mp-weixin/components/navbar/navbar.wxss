@@ -74,7 +74,7 @@
 }
 .navabr .navbar-fixed .navabr-search_input {
   background-color: #f4f5f6;
-  border-radius: 10rpx;
+  border-radius: 30rpx;
   width: 100%;
   height: 60rpx;
   padding-left: 20rpx;
