@@ -1,0 +1,44 @@
+{
+	"passwordSecret": "maolaoban123",
+	"tokenSecret": "maolaoban123",
+	"tokenExpiresIn": 7200,
+	"tokenExpiresThreshold": 600,
+	"passwordErrorLimit": 3,
+	"bindTokenToDevice": true,
+	"passwordErrorRetryTime": 3600,
+	"autoSetInviteCode": false,
+	"forceInviteCode": false,
+	"app-plus": {
+		"tokenExpiresIn": 2592000,
+		"oauth" : {
+			"weixin" : {
+				"appid" : "weixin appid",
+				"appsecret" : "weixin appsecret"
+			}
+		}
+	},
+	"mp-weixin": {
+		"oauth" : {
+			"weixin" : {
+				"appid" : "wxfc6920c4f8e7f3b7",
+				"appsecret" : "5c915b93d01cc3b8ea799b4244641165"
+			}
+		}
+	},
+	"mp-alipay": {
+		"oauth" : {
+			"alipay" : {
+				"appid" : "alipay appid",
+				"privateKey" : "alipay privateKey"
+			}
+		}
+	},
+	"service": {
+		"sms": {
+			"name": "e-evaluation",
+			"codeExpiresIn": 300,
+			"smsKey": "f472f043e6356fa2b892e35570989906",
+			"smsSecret": "5d6bec638a635a4584b63de8a1bab8f0"
+		}
+	}
+}
