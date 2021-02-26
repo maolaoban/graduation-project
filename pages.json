@@ -86,15 +86,6 @@
             
         }
         ,{
-            "path" : "pages/edit-profile/edit-profile",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
             "path" : "pages/tabBar/community/more-community/more-community",
             "style" :                                                                                    
             {
@@ -213,10 +204,28 @@
             }
             
         }
+        ,{
+            "path" : "pages/login-page/login-page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "登录/注册",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+		,{
+		    "path" : "pages/tabBar/my/children/edit-profile",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "编辑资料",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "大众测评",
+		"navigationBarTitleText": "小毛测评",
 		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor":"#FFFFFF"
 	},

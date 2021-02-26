@@ -267,6 +267,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -317,7 +322,7 @@ var _default =
     },
     editProfile: function editProfile() {
       uni.navigateTo({
-        url: '../../edit-profile/edit-profile' });
+        url: 'children/edit-profile' });
 
     },
     goPersonalCenter: function goPersonalCenter() {
@@ -329,6 +334,31 @@ var _default =
       uni.navigateTo({
         url: 'children/feed-page' });
 
+    },
+    loginHandler: function loginHandler() {
+      uni.navigateTo({
+        url: '../../login-page/login-page' });
+
+    },
+    loginOut: function loginOut() {
+      var uniIdToken = uni.getStorageSync('uni_id_token');
+      console.log(uniIdToken);
+      if (uniIdToken) {
+        this.$api.user_center({
+          action: 'logout',
+          token: uniIdToken }).
+        then(function (res) {var
+          data = res.data;
+          if (data.code === 0) {
+            uni.removeStorageSync('uni_id_token');
+            uni.removeStorageSync('username');
+            console.log("退出登录", data);
+            uni.reLaunch({
+              url: '../index/index' });
+
+          }
+        });
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

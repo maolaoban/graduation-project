@@ -7,7 +7,7 @@
 		</view>
 		<view class="user-info_box" v-if="isShow">
 			<view class="user-avatar">
-				<image :src="userInfo.avatar" mode="aspectFill"></image>
+				<image :src="userInfo.avatar || '../../../static/images/default-avatar.png'"  mode="aspectFill"></image>
 			</view>
 			<view class="use-info_detail">
 				<view class="user-info">
@@ -44,6 +44,11 @@
 				<view class="user-info_bio"></view>
 			</view>
 		</view>
+		
+		<view class="login-box" @click="loginHandler">
+			登录/注册
+		</view>
+		
 		<view class="my-box">
 			<view class="my-box_top">
 				<view class="my-collect">
@@ -106,7 +111,7 @@
 				<text>意见反馈</text>
 			</view>
 		</view>
-		<view class="out-login">
+		<view class="out-login" @click="loginOut">
 			退出登录
 		</view>
 	</view>
@@ -162,7 +167,7 @@
 			},
 			editProfile(){
 				uni.navigateTo({
-					url:'../../edit-profile/edit-profile'
+					url:'children/edit-profile'
 				})
 			},
 			goPersonalCenter(){
@@ -174,6 +179,31 @@
 				uni.navigateTo({
 					url:'children/feed-page'
 				})
+			},
+			loginHandler(){
+				uni.navigateTo({
+					url:'../../login-page/login-page'
+				})
+			},
+			loginOut(){
+				let uniIdToken = uni.getStorageSync('uni_id_token');
+				console.log(uniIdToken);
+				if(uniIdToken){
+					this.$api.user_center({
+						action:'logout',
+						token:uniIdToken
+					}).then(res => {
+						const {data} = res;
+						if(data.code === 0){
+							uni.removeStorageSync('uni_id_token');
+							uni.removeStorageSync('username');
+							console.log("退出登录",data);
+							uni.reLaunch({
+								url:'../index/index'
+							})
+						}
+					})
+				}
 			}
 		}
 	}
@@ -461,5 +491,8 @@ page{
 	align-items: center;
 	justify-content: center;
 	background-color: #fff;
+}
+.login-box{
+	position: absolute;
 }
 </style>

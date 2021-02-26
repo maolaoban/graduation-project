@@ -55,3 +55,10 @@ export const get_communityList = (data) => {
 		data
 	})
 }
+//登录或者注册
+export const user_center = (data) => {
+	return $http({
+		url:'user-center',
+		data
+	})
+}

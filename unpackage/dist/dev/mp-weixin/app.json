@@ -8,7 +8,6 @@
     "pages/search-page/search-page",
     "pages/my-message/my-message",
     "pages/chat-page/chat-page",
-    "pages/edit-profile/edit-profile",
     "pages/tabBar/community/more-community/more-community",
     "pages/signIn-page/signIn-page",
     "pages/rank/rank",
@@ -18,12 +17,14 @@
     "pages/tabBar/my/children/grade-page",
     "pages/tabBar/my/children/feed-page",
     "pages/activities-page/activities-page",
-    "pages/video-play/video-play"
+    "pages/video-play/video-play",
+    "pages/login-page/login-page",
+    "pages/tabBar/my/children/edit-profile"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "大众测评",
+    "navigationBarTitleText": "小毛测评",
     "navigationBarBackgroundColor": "#fff",
     "backgroundColor": "#FFFFFF"
   },

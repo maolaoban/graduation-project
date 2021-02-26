@@ -4,7 +4,7 @@
 			<view class="community-card" v-if="isCommunity">
 				<view class="author-info">
 					<view class="author-avatar">
-						<image src="../../static/images/avatar.jpg" mode="aspectFill"></image>
+						<image src="../../static/images/avatar.jpg" mode="aspectFill" lazy-load="true"></image>
 					</view>
 					<view class="author-info_text">
 						<view class="author-info_name">
@@ -64,7 +64,7 @@
 				</view>
 				<view class="card-right">
 					<view class="card-cover">
-						<image :src="obj.top_cover" mode="aspectFill"></image>
+						<image :src="obj.top_cover" mode="aspectFill" lazy-load="true"></image>
 					</view>
 				</view>
 			</view>
