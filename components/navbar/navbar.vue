@@ -25,9 +25,11 @@
 				@confirm="searchHandler"
 				/>
 			</view>
+			<!-- #ifndef H5 -->
 			<view class="navbar-message" v-if="!isSearch" @click="toMyMessage">
 				<u-icon name="email" color="#7e7e7e" size="40"></u-icon>
 			</view>
+			<!-- #endif -->
 		</view>
 		<!-- 主体占位 -->
 		<view :style="{height: navBarHeight + 'px'}"></view>
@@ -113,7 +115,7 @@
 			.navabr-search{
 				background-color: #f4f5f6;
 				border-radius: 30rpx;
-				width: 90%;
+				width: 100%;
 				height: 60rpx;
 				padding-left: 20rpx;
 				display: flex;

@@ -38,7 +38,7 @@
 				</view>
 			</view>
 			<view class="input-emoji" v-show="isShowEmoji">
-				<swiper :duration="500" class="emoji-swiper" indicator-dots="true">
+				<swiper :duration="1000" class="emoji-swiper" indicator-dots="true">
 					<swiper-item v-for="item in emojiData" class="swiper-item">
 						<!-- <view class="emoji-item" v-for="emoji in item" @click="selectmoji(emoji)">{{emoji}}</view> -->
 						<view class="emoji-item" v-for="emoji in item" @click="selectmoji(emoji)">

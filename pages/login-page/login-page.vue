@@ -10,18 +10,19 @@
 				></input>
 			</view>
 			<view class="input-row" v-if="isPasswordLogin">
-				<input class="m-input" v-model="password" :password="!isShowPassword"
+				<input class="m-input" v-model="password" :password="!isShowPassword[0]"
 					placeholder="请输入密码" placeholder-style="color:#bbb"
 				></input>
-				<u-icon :name="!isShowPassword?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword"></u-icon>
+				<u-icon :name="!isShowPassword[0]?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword(0)"></u-icon>
 			</view>
 			<view class="input-row" v-else>
-				<input class="m-input" type="text" placeholder="请输入验证码" placeholder-style="color:#bbb"></input>
+				<input class="m-input" type="text" v-model="cmsCode" placeholder="请输入验证码" placeholder-style="color:#bbb"></input>
 				<u-line class="u-line" direction="col" length="40rpx" color="#bbb"></u-line>
-				<view class="send-code-btn" @click="sendCode('login')">获取验证码</view>
+				<view class="send-code-btn" @click="sendCode('login')">{{canSend?'获取验证码':sendCodeText+'s后重新发送'}}</view>
 			</view>
 			<view class="btn-row">
-				<button type="primary" class="primary" @tap="bindLogin">登录</button>
+				<button type="primary" class="primary" @tap="loginByCms" v-if="!isPasswordLogin">登录</button>
+				<button type="primary" class="primary" @tap="loginByPwd" v-else>登录</button>
 			</view>
 			<view class="btn-options">
 				<text @click="showRegister">注册</text>
@@ -33,16 +34,16 @@
 				<input type="text"  v-model="regUsername" placeholder="请输入手机号" placeholder-style="color:#bbb"></m-input>
 			</view>
 			<view class="input-row">
-				<input class="m-input" v-model="regPassword" :password="!isShowPassword"
+				<input class="m-input" v-model="regPassword" :password="!isShowPassword[1]"
 					placeholder="请输入密码" placeholder-style="color:#bbb"
 				></input>
-				<u-icon :name="!isShowPassword?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword"></u-icon>
+				<u-icon :name="!isShowPassword[1]?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword(1)"></u-icon>
 			</view>
 			<view class="input-row">
-				<input class="m-input" v-model="confirmPassword" :password="!isShowPassword"
+				<input class="m-input" v-model="confirmPassword" :password="!isShowPassword[2]"
 					placeholder="请再次输入密码" placeholder-style="color:#bbb"
 				></input>
-				<u-icon :name="!isShowPassword?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword"></u-icon>
+				<u-icon :name="!isShowPassword[2]?'eye-off':'eye-fill'" size="40" color="#bbb" @click="showPassword(2)"></u-icon>
 			</view>
 			<view class="input-row">
 				<input class="m-input" type="text" placeholder="请输入验证码" placeholder-style="color:#bbb"></input>
@@ -66,12 +67,15 @@
 			return {
 				isRegister:false,
 				isPasswordLogin:false,
-				isShowPassword:false,
+				isShowPassword:[false,false,false],
 				username:'',
 				password:'',
 				regUsername: '',
 				regPassword: '',
-				confirmPassword: ''
+				confirmPassword: '',
+				cmsCode:'',
+				canSend:true,
+				sendCodeText:60
 			}
 		},
 		methods: {
@@ -81,9 +85,13 @@
 			showPasswordLogin(){
 				this.isPasswordLogin = !this.isPasswordLogin;
 			},
-			showPassword(){
-				this.isShowPassword = !this.isShowPassword;
+			showPassword(i){
+				this.isShowPassword[i] = !this.isShowPassword[i];
+				this.$set(this.isShowPassword,i,this.isShowPassword[i]);
+				// this.$forceUpdate();
+				// this.isShowPassword = !this.isShowPassword;
 			},
+			// 发送验证码
 			sendCode(type){
 				if(!isPhoneNumber(this.username)){
 					uni.showToast({
@@ -91,6 +99,17 @@
 						title: '请输入正确的手机号'
 					});
 					return;
+				}
+				if(this.canSend){
+					this.canSend = false;
+					let timer = setInterval(()=>{
+						this.sendCodeText--;
+						if(this.sendCodeText == 0){
+							this.canSend = true;
+							this.sendCodeText = 60;
+							clearInterval(timer);
+						}
+					},1000)
 				}
 				const data = {
 					tel:this.username,
@@ -100,10 +119,30 @@
 					action:'sendSmsCode',
 					params:data
 				}).then(res => {
-					console.log(res);
+					const {data} = res;
+					if(data.code === 0){
+						uni.showToast({
+							title: '验证码发送成功'
+						});
+					}
 				})
 			},
-			bindLogin(){
+			// 密码登录
+			loginByPwd(){
+				if(!isPhoneNumber(this.username)){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的手机号'
+					});
+					return;
+				}
+				if (this.password.length < 6) {
+					uni.showToast({
+						icon: 'none',
+						title: '密码最短为 6 个字符'
+					});
+					return;
+				}
 				const data = {
 					username: this.username,
 					password: this.password
@@ -116,26 +155,60 @@
 					const {data} = res;
 					if(data.code === 0){
 						uni.showToast({
+							icon:'none',
 							title: '登录成功'
 						});
 						uni.setStorageSync('uni_id_token', data.token)
 						uni.setStorageSync('username', data.username)
 					}else{
 						uni.showToast({
+							icon:'none',
 							title: '登录失败'
 						});
 					}
 				})
 			},
+			// 验证码登录
+			loginByCms(){
+				if(!isPhoneNumber(this.username)){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的手机号'
+					});
+					return;
+				}
+				if(!this.cmsCode){
+					uni.showToast({
+						icon:'none',
+						title: '请填写验证码'
+					});
+					return;
+				}
+				if (!/^\d{6}$/.test(this.cmsCode)) {
+					uni.showToast({
+						icon:'none',
+						title: '验证码错误'
+					});
+					return;
+				}
+				this.$api.user_center({
+					mobile:this.username,
+					code:this.cmsCode
+				}).then(res => {
+					console.log(res);
+				})
+				
+			},
+			// 注册
 			register() {
 				/**
 				 * 客户端对账号信息进行一些必要的校验。
 				 * 实际开发中，根据业务需要进行处理，这里仅做示例。
 				 */
-				if (this.regUsername.length < 3) {
+				if(!isPhoneNumber(this.regUsername)){
 					uni.showToast({
 						icon: 'none',
-						title: '账号最短为 3 个字符'
+						title: '请输入正确的手机号'
 					});
 					return;
 				}
