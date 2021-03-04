@@ -19,6 +19,9 @@ exports.main = async (event, context) => {
 		case 'logout':
 			res = await uniID.logout(event.token)
 			break;
+		case 'checkToken':
+			res = await uniID.checkToken(event.uniIdToken);
+			break;
 		case 'sendSmsCode':
 			// 短信模板id
 			const templateId = '11314';
@@ -39,7 +42,10 @@ exports.main = async (event, context) => {
 					msg: '手机号码填写错误'
 				}
 			}
-			res = await uniID.loginByCms(params)
+			res = await uniID.loginBySms(params)
+			break;
+		case 'verifyCode':
+			res = await uniID.verifyCode(params)
 			break;
 	}
 	//返回数据给客户端

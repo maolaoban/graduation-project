@@ -190,6 +190,7 @@ var _default =
     return {
       tabList: ['关注', '推荐', '视频', '手机', '电脑', '数码', '汽车', '智能家居', '智能穿戴'],
       commonData: {}, //数据集合
+      loadPage: [],
       isShowLoading: false };
 
   },
@@ -215,7 +216,11 @@ var _default =
         console.log("加载", this.tabList[i]);
         this.isShowLoading = true;
       }
+      if (!this.loadPage[i]) {
+        this.loadPage[i] = 1;
+      }
       this.$api.get_newsList({
+        page: this.loadPage[i],
         name: this.tabList[i] }).
       then(function (res) {
         console.log(res);var
@@ -225,6 +230,10 @@ var _default =
         _this.$set(_this.commonData, i, oldList);
         _this.isShowLoading = false;
       });
+    },
+    loadMore: function loadMore() {
+      this.loadPage[this.tabIndex]++;
+      this.getList(this.tabIndex);
     } } };exports.default = _default;
 
 /***/ }),

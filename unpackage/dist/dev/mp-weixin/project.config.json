@@ -11,26 +11,21 @@
   "appid": "touristappid",
   "projectname": "e-evaluation",
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
+    "plugin": {
       "list": []
     },
     "game": {
-      "current": -1,
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "current": 0,
       "list": [
         {
-          "name": "",
-          "path": "",
-          "query": "",
-          "id": 0
+          "name": "pages/tabBar/my/children/edit-profile",
+          "pathName": "pages/tabBar/my/children/edit-profile",
+          "scene": null
         }
       ]
     }

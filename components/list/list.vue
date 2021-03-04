@@ -6,7 +6,7 @@
 			</scroll-view>
 		</swiper-item>
 		<swiper-item class="swiper-item">
-			<scroll-view scroll-y="true" class="list-scroll">
+			<scroll-view scroll-y="true" class="list-scroll" @scrolltolower="loadMore">
 				<recommend :newsList="commonData[1]"></recommend>
 			</scroll-view>
 		</swiper-item>
@@ -16,7 +16,7 @@
 			</scroll-view>
 		</swiper-item>
 		<swiper-item class="swiper-item" v-for="(item,index) in 6" :key="index">
-			<scroll-view scroll-y="true" class="list-scroll">
+			<scroll-view scroll-y="true" class="list-scroll" @scrolltolower="loadMore">
 				<view class="loading">
 					<u-loading mode="circle" size="60" :show="isShowLoading"></u-loading>
 				</view>
@@ -39,6 +39,7 @@
 			return {
 				tabList:['关注','推荐','视频','手机','电脑','数码','汽车','智能家居','智能穿戴'],
 				commonData:{}, //数据集合
+				loadPage:[],
 				isShowLoading:false
 			};
 		},
@@ -64,7 +65,11 @@
 					console.log("加载",this.tabList[i])
 					this.isShowLoading = true;
 				}
+				if(!this.loadPage[i]){
+					this.loadPage[i] = 1;
+				}
 				this.$api.get_newsList({
+					page:this.loadPage[i],
 					name:this.tabList[i]
 				}).then(res => {
 					console.log(res);
@@ -74,6 +79,10 @@
 					this.$set(this.commonData,i,oldList);
 					this.isShowLoading = false;
 				})
+			},
+			loadMore(){
+				this.loadPage[this.tabIndex]++;
+				this.getList(this.tabIndex);
 			}
 		}
 	}
