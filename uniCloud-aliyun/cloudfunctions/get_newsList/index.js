@@ -2,10 +2,11 @@
 //获取数据库的引用
 const db = uniCloud.database()
 const $ = db.command.aggregate
+const dbCmd = db.command
 exports.main = async (event, context) => {
 	//接收分类,筛选数据
 	const {
-		page = 1,
+		page,
 		pageSize = 10,
 		name
 	} = event;
@@ -13,6 +14,10 @@ exports.main = async (event, context) => {
 	if(name !== "推荐"){
 		mathcObj = {
 			classify:name
+		}
+	}else{
+		mathcObj={
+			classify:dbCmd.neq("视频")
 		}
 	}
 	let projectObj = {};

@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uGap: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 235))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 237))
     },
     commonCard: function() {
-      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 242))
+      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 244))
     }
   }
 } catch (e) {

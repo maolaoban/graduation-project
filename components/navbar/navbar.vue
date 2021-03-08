@@ -1,7 +1,7 @@
 <template>
 	<view class="navabr">
 		<!-- 导航栏占位 -->
-		<view :style="{height:statusBarHeight+2+'px',backgroundColor: '#fff'}"></view>
+		<view :style="{height:statusBarHeight+'px',backgroundColor: '#fff'}"></view>
 		<!-- 主体 -->
 		<view class="navbar-fixed"
 			:class="{'navbar-reverse':isReverse && !isSearch}"

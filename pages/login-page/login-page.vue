@@ -1,8 +1,5 @@
 <template>
 	<view class="content">
-		<view class="content-logo">
-			<!-- <image src="../../static/images/gold-coin.png" mode="aspectFill"></image> -->
-		</view>
 		<view class="content-box" v-if="!isRegister">
 			<view class="input-row">
 				<input class="m-input" v-model="username" type="number" placeholder="请输入手机号"
@@ -17,7 +14,7 @@
 			</view>
 			<view class="input-row" v-else>
 				<input class="m-input" type="text" v-model="smsCode" placeholder="请输入验证码" placeholder-style="color:#bbb"></input>
-				<u-line class="u-line" direction="col" length="40rpx" color="#bbb"></u-line>
+				<!-- <u-line class="u-line" direction="col" length="40rpx" color="#bbb"></u-line> -->
 				<view class="send-code-btn" @click="sendCode('login')">{{canSend?'获取验证码':sendCodeText+'s后重新发送'}}</view>
 			</view>
 			<view class="btn-row">
@@ -186,6 +183,10 @@
 						});
 						uni.setStorageSync('uni_id_token', data.token)
 						uni.setStorageSync('username', data.username)
+						uni.setStorageSync('login_type', 'online')
+						uni.reLaunch({
+							url:'../tabBar/index/index'
+						})
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -266,7 +267,8 @@
 
 				const data = {
 					username: this.regUsername,
-					password: this.regPassword
+					password: this.regPassword,
+					role:['common-user']
 				}
 				this.$api.user_center({
 					action: 'register',
@@ -280,6 +282,24 @@
 						});
 						uni.setStorageSync('uni_id_token', data.token)
 						uni.setStorageSync('username', data.username)
+						
+						const userData = {
+							nickName:'',
+							avatar:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202006%2F27%2F20200627081338_hxcdu.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614234294&t=c71ae1d414f571c69cceeec10a1cb96c",
+							bios:'',
+							fans:0,
+							follow:0,
+							publish:0,
+							grade:0
+						}
+						this.$api.user_center({
+							action:'updateUser',
+							params:userData,
+							uniIdToken:uni.getStorageSync('uni_id_token')
+						}).then(res => {
+							console.log(res);
+						})
+						
 					}else{
 						uni.showToast({
 							title: '注册失败'
@@ -293,20 +313,12 @@
 
 <style lang="scss">
 .content{
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	.content-logo{
-		margin-top: 60rpx;
-		width: 250rpx;
-		height: 120rpx;
-		border:1px solid red;
-		image{
-			width: 100%;
-			height: 100%;
-		}
-	}
 	.content-box{
+		margin-top: 200rpx;
 		.input-row{
 			width: 600rpx;
 			height: 100rpx;
@@ -321,9 +333,10 @@
 				flex: 1;
 			}
 			.send-code-btn{
-				margin-left: 10rpx;
+				padding-left: 10rpx;
 				font-size: 32rpx;
 				color: #08AEEA;
+				border-left: 1rpx solid #d4d4d4;
 			}
 		}
 		.btn-row{

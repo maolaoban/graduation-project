@@ -96,10 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 228))
-    },
-    uLine: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-line/u-line */ "uview-ui/components/u-line/u-line").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-line/u-line.vue */ 329))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
     }
   }
 } catch (e) {
@@ -157,9 +154,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
 
 
 
@@ -278,9 +272,6 @@ var _checkout = __webpack_require__(/*! ../../utils/checkout.js */ 198); //
 //
 //
 //
-//
-//
-//
 var _default = { data: function data() {return { isRegister: false, isPasswordLogin: false, isShowPassword: [false, false, false], username: '', password: '', regUsername: '', regPassword: '', confirmPassword: '', smsCode: '', RegSmsCode: '', canSend: true, sendCodeText: 60 };}, methods: { showRegister: function showRegister() {this.isRegister = !this.isRegister;}, showPasswordLogin: function showPasswordLogin() {this.isPasswordLogin = !this.isPasswordLogin;}, showPassword: function showPassword(i) {this.isShowPassword[i] = !this.isShowPassword[i];this.$set(this.isShowPassword, i, this.isShowPassword[i]); // this.$forceUpdate();
       // this.isShowPassword = !this.isShowPassword;
     }, // 发送验证码
@@ -297,7 +288,10 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
         // }).then(res => {
         // 	console.log(res);
         // })
-      }var data = { tel: type === 'login' ? this.username : this.regUsername, type: type };this.$api.user_center({ action: 'sendSmsCode', params: data }).then(function (res) {var data = res.data;if (data.code === 0) {if (_this.canSend) {_this.canSend = false;_this.smsCode = '';var timer = setInterval(function () {_this.sendCodeText--;if (_this.sendCodeText == 0) {
+      }var data = { tel: type === 'login' ? this.username : this.regUsername, type: type };this.$api.user_center({ action: 'sendSmsCode', params: data }).then(function (res) {var data = res.data;if (data.code === 0) {if (_this.canSend) {_this.canSend = false;_this.smsCode = '';
+            var timer = setInterval(function () {
+              _this.sendCodeText--;
+              if (_this.sendCodeText == 0) {
                 _this.canSend = true;
                 _this.sendCodeText = 60;
                 clearInterval(timer);
@@ -344,6 +338,10 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
 
           uni.setStorageSync('uni_id_token', data.token);
           uni.setStorageSync('username', data.username);
+          uni.setStorageSync('login_type', 'online');
+          uni.reLaunch({
+            url: '../tabBar/index/index' });
+
         } else {
           uni.showToast({
             icon: 'none',
@@ -395,11 +393,11 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
 
     },
     // 注册
-    register: function register() {
+    register: function register() {var _this2 = this;
       /**
-                                    * 客户端对账号信息进行一些必要的校验。
-                                    * 实际开发中，根据业务需要进行处理，这里仅做示例。
-                                    */
+                                                       * 客户端对账号信息进行一些必要的校验。
+                                                       * 实际开发中，根据业务需要进行处理，这里仅做示例。
+                                                       */
       if (!(0, _checkout.isPhoneNumber)(this.regUsername)) {
         uni.showToast({
           icon: 'none',
@@ -424,7 +422,8 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
 
       var data = {
         username: this.regUsername,
-        password: this.regPassword };
+        password: this.regPassword,
+        role: ['common-user'] };
 
       this.$api.user_center({
         action: 'register',
@@ -438,6 +437,24 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
 
           uni.setStorageSync('uni_id_token', data.token);
           uni.setStorageSync('username', data.username);
+
+          var userData = {
+            nickName: '',
+            avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202006%2F27%2F20200627081338_hxcdu.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614234294&t=c71ae1d414f571c69cceeec10a1cb96c",
+            bios: '',
+            fans: 0,
+            follow: 0,
+            publish: 0,
+            grade: 0 };
+
+          _this2.$api.user_center({
+            action: 'updateUser',
+            params: userData,
+            uniIdToken: uni.getStorageSync('uni_id_token') }).
+          then(function (res) {
+            console.log(res);
+          });
+
         } else {
           uni.showToast({
             title: '注册失败' });

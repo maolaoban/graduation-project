@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 228))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
     }
   }
 } catch (e) {
@@ -272,26 +272,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       userInfo: {},
-      isShow: false,
-      backImage: '' };
+      isShow: true,
+      backImage: '',
+      isLogin: uni.getStorageSync("login_type"),
+      CreatePermissions: false };
 
   },
   onLoad: function onLoad() {var _this2 = this;
-    this.$api.get_userInfo().then(function (res) {
-      console.log(res);var
-      data = res.data;
-      _this2.userInfo = data;
-      _this2.isShow = true;
-      uni.setStorage({
-        key: 'userInfo',
-        data: JSON.stringify(data) });
+    // this.$api.get_userInfo().then(res => {
+    // 	console.log(res);
+    // 	const {data} = res;
+    // 	this.userInfo = data;
+    // 	this.isShow = true;
+    // 	uni.setStorage({
+    // 		key:'userInfo',
+    // 		data:JSON.stringify(data)
+    // 	})
+    // })
+    if (this.isLogin == 'online') {
+      this.$api.user_center({
+        action: 'getUserInfo' }).
+      then(function (res) {
+        console.log(res);var
+        data = res.data;
+        _this2.userInfo = data.userInfo;
+        _this2.isShow = true;
+      });
+    }
+    this.getPermission();
 
-    });
+
+    // const data1 = {
+    // 	roleID:'CREATOR_VIDEO',
+    // 	roleName:'视频创作者',
+    // 	permission:["PUBLISH_VIDEO","DELTE_COMMENT"]
+    // }
+    // this.$api.user_center({
+    // 	action:'addRole',
+    // 	params:data1
+    // }).then(res => {
+    // 	console.log('添加角色',res);
+    // })
+    // const data2 = {
+    // 	permissionID:'PUBLISH_VIDEO',
+    // 	permissionName:'发表视频',
+    // }
+    // this.$api.user_center({
+    // 	action:'addPermission',
+    // 	params:data2
+    // }).then(res => {
+    // 	console.log('添加权限',res);
+    // })
   },
   methods: {
     changeImg: function changeImg() {
@@ -340,18 +383,73 @@ var _default =
         url: '../../login-page/login-page' });
 
     },
+    goPublish: function goPublish() {
+      uni.navigateTo({
+        url: '../../edit-article/edit-article' });
+
+    },
+    openCreate: function openCreate() {
+      var _this = this;
+      var uniIdToken = uni.getStorageSync('uni_id_token');
+      var roleData = {
+        uniIdToken: uniIdToken,
+        roleList: ["CREATOR_ARTICLE"],
+        reset: true };
+
+      uni.showModal({
+        content: '开通创作者权限，分享你的knowledge...',
+        confirmText: '开通',
+        success: function success(res) {
+          if (res.confirm) {
+            console.log('开通');
+            _this.$api.user_center({
+              action: 'bindRole',
+              params: roleData }).
+            then(function (res) {
+              console.log(res);var
+              data = res.data;
+              if (data.code === 0) {
+                uni.showToast({
+                  icon: 'none',
+                  title: '开通成功' });
+
+                _this.getPermission();
+              }
+            });
+          } else {
+            console.log('取消');
+          }
+        } });
+
+    },
+    getPermission: function getPermission() {var _this3 = this;
+      var uniIdToken = uni.getStorageSync('uni_id_token');
+      this.$api.user_center({
+        action: 'getPermission',
+        uniIdToken: uniIdToken }).
+      then(function (res) {
+        console.log("用户权限", res);var
+        data = res.data;
+        if (data.code === 0) {
+          if (data.permission.indexOf("PUBLISH_ARTICLE") != -1) {
+            _this3.CreatePermissions = true;
+          }
+        }
+      });
+    },
     loginOut: function loginOut() {
       var uniIdToken = uni.getStorageSync('uni_id_token');
       console.log(uniIdToken);
       if (uniIdToken) {
         this.$api.user_center({
           action: 'logout',
-          token: uniIdToken }).
+          uniIdToken: uniIdToken }).
         then(function (res) {var
           data = res.data;
           if (data.code === 0) {
             uni.removeStorageSync('uni_id_token');
             uni.removeStorageSync('username');
+            uni.removeStorageSync("login_type");
             console.log("退出登录", data);
             uni.reLaunch({
               url: '../index/index' });

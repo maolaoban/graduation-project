@@ -96,10 +96,10 @@ var components
 try {
   components = {
     chatMessage: function() {
-      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 280))
+      return __webpack_require__.e(/*! import() | components/chat-message/chat-message */ "components/chat-message/chat-message").then(__webpack_require__.bind(null, /*! @/components/chat-message/chat-message.vue */ 282))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 228))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
     }
   }
 } catch (e) {

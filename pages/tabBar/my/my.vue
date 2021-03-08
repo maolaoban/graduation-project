@@ -2,20 +2,20 @@
 	<view class="my-info">
 		<view class="top-box" @click="changeImg">
 			<view class="top-img">
-				<image :src="backImage || userInfo.backImage" mode="aspectFill"></image>
+				<image :src="backImage || '../../../static/images/cool-background.png'" mode="aspectFill"></image>
 			</view>
 		</view>
 		<view class="user-info_box" v-if="isShow">
 			<view class="user-avatar">
 				<image :src="userInfo.avatar || '../../../static/images/default-avatar.png'"  mode="aspectFill"></image>
 			</view>
-			<view class="use-info_detail">
+			<view class="use-info_detail" v-if="isLogin == 'online'">
 				<view class="user-info">
 					<view class="user-info_name">
 						<view class="user-info-level">
 							LV{{userInfo.grade}}
 						</view>
-						{{userInfo.name}}
+						{{userInfo.nickName}}
 					</view>
 					<view class="user-edit" @click="editProfile">
 						编辑资料
@@ -30,6 +30,9 @@
 					{{userInfo.bios}}
 				</view>
 			</view>
+			<view class="not-login" @click="loginHandler" v-else>
+				点击登录
+			</view>
 		</view>
 		<view class="user-info_loading" v-else>
 			<view class="user-avatar_loading"></view>
@@ -43,10 +46,6 @@
 				<view class="user-info_num"></view>
 				<view class="user-info_bio"></view>
 			</view>
-		</view>
-		
-		<view class="login-box" @click="loginHandler">
-			登录/注册
 		</view>
 		
 		<view class="my-box">
@@ -69,7 +68,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="create-box">
+		<view class="create-box" v-if="CreatePermissions">
 			<view class="create-box_top">
 				<view class="top-left">
 					创作数据
@@ -98,6 +97,14 @@
 			</view>
 		</view>
 		<view class="other-option">
+			<view class="option-list" @click="cropenCreate" v-if="!CreatePermissions">
+				<u-icon name="edit-pen-fill" color="#eff922" size="60"></u-icon>
+				<text>创作者</text>
+			</view>
+			<view class="option-list" @click="goPublish" v-else>
+				<u-icon name="edit-pen-fill" color="#f87975" size="60"></u-icon>
+				<text>发表文章</text>
+			</view>
 			<view class="option-list" @click="goPersonalCenter">
 				<u-icon name="plus-people-fill" color="#2f63b5" size="60"></u-icon>
 				<text>个人中心</text>
@@ -122,21 +129,57 @@
 		data() {
 			return {
 				userInfo:{},
-				isShow:false,
-				backImage:''
+				isShow:true,
+				backImage:'',
+				isLogin:uni.getStorageSync("login_type"),
+				CreatePermissions:false
 			}
 		},
 		onLoad() {
-			this.$api.get_userInfo().then(res => {
-				console.log(res);
-				const {data} = res;
-				this.userInfo = data;
-				this.isShow = true;
-				uni.setStorage({
-					key:'userInfo',
-					data:JSON.stringify(data)
+			// this.$api.get_userInfo().then(res => {
+			// 	console.log(res);
+			// 	const {data} = res;
+			// 	this.userInfo = data;
+			// 	this.isShow = true;
+			// 	uni.setStorage({
+			// 		key:'userInfo',
+			// 		data:JSON.stringify(data)
+			// 	})
+			// })
+			if(this.isLogin == 'online'){
+				this.$api.user_center({
+					action:'getUserInfo'
+				}).then(res => {
+					console.log(res);
+					const {data} = res;
+					this.userInfo = data.userInfo;
+					this.isShow = true;
 				})
-			})
+			}
+			this.getPermission();
+			
+			
+			// const data1 = {
+			// 	roleID:'CREATOR_VIDEO',
+			// 	roleName:'视频创作者',
+			// 	permission:["PUBLISH_VIDEO","DELTE_COMMENT"]
+			// }
+			// this.$api.user_center({
+			// 	action:'addRole',
+			// 	params:data1
+			// }).then(res => {
+			// 	console.log('添加角色',res);
+			// })
+			// const data2 = {
+			// 	permissionID:'PUBLISH_VIDEO',
+			// 	permissionName:'发表视频',
+			// }
+			// this.$api.user_center({
+			// 	action:'addPermission',
+			// 	params:data2
+			// }).then(res => {
+			// 	console.log('添加权限',res);
+			// })
 		},
 		methods: {
 			changeImg(){
@@ -185,18 +228,73 @@
 					url:'../../login-page/login-page'
 				})
 			},
+			goPublish(){
+				uni.navigateTo({
+					url:'../../edit-article/edit-article'
+				})
+			},
+			openCreate(){
+				let _this = this;
+				let uniIdToken = uni.getStorageSync('uni_id_token');
+				let roleData = {
+					uniIdToken:uniIdToken,
+					roleList:["CREATOR_ARTICLE"],
+					reset:true
+				}
+				uni.showModal({
+					content:'开通创作者权限，分享你的knowledge...',
+					confirmText:'开通',
+					success(res) {
+						if(res.confirm){
+							console.log('开通');
+							_this.$api.user_center({
+								action:'bindRole',
+								params:roleData
+							}).then(res => {
+								console.log(res);
+								const {data} = res;
+								if(data.code === 0){
+									uni.showToast({
+										icon:'none',
+										title:'开通成功'
+									})
+									_this.getPermission();
+								}
+							})
+						}else{
+							console.log('取消');
+						}
+					}
+				})
+			},
+			getPermission(){
+				let uniIdToken = uni.getStorageSync('uni_id_token');
+				this.$api.user_center({
+					action:'getPermission',
+					uniIdToken
+				}).then(res => {
+					console.log("用户权限",res);
+					const {data} = res;
+					if(data.code === 0){
+						if(data.permission.indexOf("PUBLISH_ARTICLE") != -1){
+							this.CreatePermissions = true;
+						}
+					}
+				})
+			},
 			loginOut(){
 				let uniIdToken = uni.getStorageSync('uni_id_token');
 				console.log(uniIdToken);
 				if(uniIdToken){
 					this.$api.user_center({
 						action:'logout',
-						token:uniIdToken
+						uniIdToken
 					}).then(res => {
 						const {data} = res;
 						if(data.code === 0){
 							uni.removeStorageSync('uni_id_token');
 							uni.removeStorageSync('username');
+							uni.removeStorageSync("login_type");
 							console.log("退出登录",data);
 							uni.reLaunch({
 								url:'../index/index'
@@ -315,6 +413,10 @@ page{
 			white-space: pre-wrap;
 			color:rgba($color: $uni-text-color, $alpha: 0.6);
 		}
+	}
+	.not-login{
+		margin-left: 20rpx;
+		font-size: 32rpx;
 	}
 }
 .user-info_loading{
@@ -456,7 +558,7 @@ page{
 	}
 }
 .other-option{
-	width: 650rpx;
+	width: 700rpx;
 	height: 180rpx;
 	border-radius: 25rpx;
 	background-color: #fff;
@@ -491,8 +593,5 @@ page{
 	align-items: center;
 	justify-content: center;
 	background-color: #fff;
-}
-.login-box{
-	position: absolute;
 }
 </style>

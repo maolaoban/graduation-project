@@ -8,6 +8,29 @@ exports.main = async (event, context) => {
 	
 	const params = event.params || {};
 	
+	let payload = {}
+	let noCheckAction = [
+		'register', 'loginByWeixin', 'checkToken',
+		'login', 'logout', 'sendSmsCode',
+		'loginBySms', 'inviteLogin', 'loginByUniverify',
+		'loginByApple', 'createCaptcha', 'verifyCaptcha',
+		'refreshCaptcha','addRole','addPermission'
+	]
+	
+	if (noCheckAction.indexOf(event.action) === -1) {
+		if (!event.uniIdToken) {
+			return {
+				code: 403,
+				msg: '缺少token'
+			}
+		}
+		payload = await uniID.checkToken(event.uniIdToken)
+		if (payload.code && payload.code > 0) {
+			return payload
+		}
+		params.uid = payload.uid
+	}
+	
 	let res = {}
 	switch(event.action){
 		case 'login':
@@ -17,7 +40,7 @@ exports.main = async (event, context) => {
 			res = await uniID.register(params)
 			break;
 		case 'logout':
-			res = await uniID.logout(event.token)
+			res = await uniID.logout(event.uniIdToken)
 			break;
 		case 'checkToken':
 			res = await uniID.checkToken(event.uniIdToken);
@@ -46,6 +69,24 @@ exports.main = async (event, context) => {
 			break;
 		case 'verifyCode':
 			res = await uniID.verifyCode(params)
+			break;
+		case 'updateUser':
+			res = await uniID.updateUser(params)
+			break;
+		case 'getUserInfo':
+			res = await uniID.getUserInfo(params)
+			break;
+		case 'addRole':
+			res = await uniID.addRole(params)
+			break;
+		case 'addPermission':
+			res = await uniID.addPermission(params)
+			break;
+		case 'getPermission':
+			res = await uniID.getPermissionByUid(params)
+			break;
+		case 'bindRole':
+			res = await uniID.bindRole(params)
 			break;
 	}
 	//返回数据给客户端

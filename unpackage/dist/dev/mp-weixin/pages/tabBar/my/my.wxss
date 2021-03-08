@@ -166,6 +166,10 @@ page {
   white-space: pre-wrap;
   color: rgba(51, 51, 51, 0.6);
 }
+.user-info_box .not-login {
+  margin-left: 20rpx;
+  font-size: 32rpx;
+}
 .user-info_loading {
   width: 700rpx;
   height: 200rpx;
@@ -356,7 +360,7 @@ page {
   border-right: 2rpx solid #f4f5f6;
 }
 .other-option {
-  width: 650rpx;
+  width: 700rpx;
   height: 180rpx;
   border-radius: 25rpx;
   background-color: #fff;
@@ -412,8 +416,5 @@ page {
   -webkit-justify-content: center;
           justify-content: center;
   background-color: #fff;
-}
-.login-box {
-  position: absolute;
 }
 
