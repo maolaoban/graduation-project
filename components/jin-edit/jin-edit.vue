@@ -146,22 +146,33 @@ export default {
 					})
 					for (let temp of tempFilePaths) {
 						// 图片上传服务器
-						await uni.uploadFile({
-							url: this.uploadFileUrl,
-							filePath: temp,
-							name: this.fileKeyName,
-							header: this.header,
-							success: res => {
-								// 上传完成后处理
-								this.editorCtx.insertImage({
-									src: temp,  // 此处需要将图片地址切换成服务器返回的真实图片地址
-									alt: '图片',
-									success: function(e) {}
-								});
-								uni.hideLoading()
-							},
+						// await uni.uploadFile({
+						// 	url: this.uploadFileUrl,
+						// 	filePath: temp,
+						// 	name: this.fileKeyName,
+						// 	header: this.header,
+						// 	success: res => {
+						// 		// 上传完成后处理
+						// 		this.editorCtx.insertImage({
+						// 			src: temp,  // 此处需要将图片地址切换成服务器返回的真实图片地址
+						// 			alt: '图片',
+						// 			success: function(e) {}
+						// 		});
+						// 		uni.hideLoading()
+						// 	},
 							
+						// });
+						const result = await uniCloud.uploadFile({
+							filePath:temp,
+							cloudPath:'article/image.jpg'
+						})
+						console.log(result.fileID);
+						this.editorCtx.insertImage({
+							src: result.fileID,  // 此处需要将图片地址切换成服务器返回的真实图片地址
+							alt: '图片',
+							success: function(e) {}
 						});
+						uni.hideLoading();
 					}
 				}
 			});
