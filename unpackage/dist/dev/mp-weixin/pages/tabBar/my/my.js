@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 221))
     }
   }
 } catch (e) {
@@ -285,7 +285,7 @@ var _default =
     return {
       userInfo: {},
       isShow: true,
-      backImage: '',
+      backImage: uni.getStorageSync('back-img'),
       isLogin: uni.getStorageSync("login_type"),
       CreatePermissions: false };
 
@@ -350,7 +350,13 @@ var _default =
               sourceType: ['album'], //从相册选择
               success: function success(res) {
                 console.log(res.tempFilePaths[0]);
-                _this.backImage = res.tempFilePaths[0];
+                uni.saveFile({
+                  tempFilePath: res.tempFilePaths[0],
+                  success: function success(res) {
+                    uni.setStorageSync("back-img", res.savedFilePath);
+                    _this.backImage = res.savedFilePath;
+                  } });
+
               },
               fail: function fail() {
                 alert(1);

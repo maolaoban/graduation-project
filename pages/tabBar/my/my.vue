@@ -130,7 +130,7 @@
 			return {
 				userInfo:{},
 				isShow:true,
-				backImage:'',
+				backImage:uni.getStorageSync('back-img'),
 				isLogin:uni.getStorageSync("login_type"),
 				CreatePermissions:false
 			}
@@ -195,7 +195,13 @@
 							    sourceType: ['album'], //从相册选择
 							    success: function (res) {
 							        console.log(res.tempFilePaths[0]);
-									_this.backImage = res.tempFilePaths[0];
+									uni.saveFile({
+									    tempFilePath: res.tempFilePaths[0],
+									    success: function (res) {
+											uni.setStorageSync("back-img",res.savedFilePath);
+									       _this.backImage = res.savedFilePath;
+									    }
+									});
 							    },
 								fail:function(){
 									alert(1)
