@@ -55,6 +55,13 @@ export const get_communityList = (data) => {
 		data
 	})
 }
+// 发布文章
+export const update_article = (data) => {
+	return $http({
+		url:'update-article',
+		data
+	})
+}
 //登录或者注册
 export const user_center = (data) => {
 	return $http({

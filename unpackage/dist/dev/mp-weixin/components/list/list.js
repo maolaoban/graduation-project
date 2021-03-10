@@ -80,16 +80,16 @@ var components
 try {
   components = {
     myInterest: function() {
-      return __webpack_require__.e(/*! import() | components/my-interest/my-interest */ "components/my-interest/my-interest").then(__webpack_require__.bind(null, /*! @/components/my-interest/my-interest.vue */ 338))
+      return __webpack_require__.e(/*! import() | components/my-interest/my-interest */ "components/my-interest/my-interest").then(__webpack_require__.bind(null, /*! @/components/my-interest/my-interest.vue */ 345))
     },
     recommend: function() {
-      return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! @/components/recommend/recommend.vue */ 343))
+      return __webpack_require__.e(/*! import() | components/recommend/recommend */ "components/recommend/recommend").then(__webpack_require__.bind(null, /*! @/components/recommend/recommend.vue */ 350))
     },
     videoPage: function() {
-      return __webpack_require__.e(/*! import() | components/video-page/video-page */ "components/video-page/video-page").then(__webpack_require__.bind(null, /*! @/components/video-page/video-page.vue */ 350))
+      return __webpack_require__.e(/*! import() | components/video-page/video-page */ "components/video-page/video-page").then(__webpack_require__.bind(null, /*! @/components/video-page/video-page.vue */ 357))
     },
     uLoading: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-loading/u-loading */ "uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loading/u-loading.vue */ 357))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-loading/u-loading */ "uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loading/u-loading.vue */ 364))
     },
     commonCard: function() {
       return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 244))

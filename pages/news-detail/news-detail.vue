@@ -6,11 +6,11 @@
 		<view class="author-info" v-if="!loading">
 			<view class="info-left">
 				<view class="author-avatar">
-					<image :src="contentInfo.author_avatar" mode="aspectFill"></image>
+					<image :src="contentInfo.authorInfo.avatar || '../../static/images/default-avatar.png'" mode="aspectFill"></image>
 				</view>
 				<view class="author-name">
-					<text class="name">{{contentInfo.author_name}}</text>
-					<text class="bio">{{contentInfo.author_bio}}</text>
+					<text class="name">{{contentInfo.authorInfo.nickName}}</text>
+					<text class="bio">{{contentInfo.authorInfo.bios}}</text>
 				</view>
 			</view>
 			<view class="author-follow" @click="addFollow" :class="{'followed':isFollow}">
@@ -39,7 +39,7 @@
 			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
 				<text>{{contentInfo.create_time}}</text>
-				<text>{{contentInfo.read_count?'阅读:'+contentInfo.read_count:''}}</text>
+				<text v-text="'阅读：'+contentInfo.read_count"></text>
 			</view>
 			<view class="u-content">
 				<u-parse :html="contentInfo.content" :tag-style="style"></u-parse>

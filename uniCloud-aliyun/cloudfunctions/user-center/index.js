@@ -86,6 +86,16 @@ exports.main = async (event, context) => {
 			res = await uniID.getPermissionByUid(params)
 			break;
 		case 'bindRole':
+			if(params.roleList[0] === 'CREATOR_ARTICLE'){
+				let create = await db.collection('uni-id-users').doc(params.uid).update({
+					creationData:dbCmd.set({
+						read_all:0,
+						comment_all:0,
+						like_all:0,
+						top:'99+'
+					})
+				})
+			}
 			res = await uniID.bindRole(params)
 			break;
 	}

@@ -2,6 +2,8 @@
   "navigationBarTitleText": "编辑文章",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "jin-edit": "/components/jin-edit/jin-edit"
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "jin-edit": "/components/jin-edit/jin-edit",
+    "u-select": "/uview-ui/components/u-select/u-select"
   }
 }

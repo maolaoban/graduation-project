@@ -439,13 +439,14 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
           uni.setStorageSync('username', data.username);
 
           var userData = {
-            nickName: '',
-            avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202006%2F27%2F20200627081338_hxcdu.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614234294&t=c71ae1d414f571c69cceeec10a1cb96c",
+            nickName: '用户' + _this2.regUsername,
+            avatar: '',
             bios: '',
             fans: 0,
             follow: 0,
             publish: 0,
-            grade: 0 };
+            grade: 0,
+            creationData: '' };
 
           _this2.$api.user_center({
             action: 'updateUser',

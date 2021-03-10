@@ -27,7 +27,7 @@
 					<view class="num-text"><text>{{userInfo.fans}}</text>粉丝</view>
 				</view>
 				<view class="user-info_bio">
-					{{userInfo.bios}}
+					{{userInfo.bios || '这个人很懒，什么都没留下...'}}
 				</view>
 			</view>
 			<view class="not-login" @click="loginHandler" v-else>
@@ -79,25 +79,25 @@
 			</view>
 			<view class="create-box_content">
 				<view class="create-count">
-					<text>120W</text>
+					<text>{{userInfo.creationData.read_all}}</text>
 					累计阅读数
 				</view>
 				<view class="create-count">
-					<text>50W</text>
+					<text>{{userInfo.creationData.comment_all}}</text>
 					累计评论数
 				</view>
 				<view class="create-count">
-					<text>100W</text>
+					<text>{{userInfo.creationData.like_all}}</text>
 					累计点赞数
 				</view>
 				<view class="create-count">
-					<text>65</text>
+					<text>{{userInfo.creationData.top}}</text>
 					人气排行
 				</view>
 			</view>
 		</view>
 		<view class="other-option">
-			<view class="option-list" @click="cropenCreate" v-if="!CreatePermissions">
+			<view class="option-list" @click="openCreate" v-if="!CreatePermissions">
 				<u-icon name="edit-pen-fill" color="#eff922" size="60"></u-icon>
 				<text>创作者</text>
 			</view>
@@ -146,16 +146,7 @@
 			// 		data:JSON.stringify(data)
 			// 	})
 			// })
-			if(this.isLogin == 'online'){
-				this.$api.user_center({
-					action:'getUserInfo'
-				}).then(res => {
-					console.log(res);
-					const {data} = res;
-					this.userInfo = data.userInfo;
-					this.isShow = true;
-				})
-			}
+			this.getUserInfo();
 			this.getPermission();
 			
 			
@@ -182,6 +173,18 @@
 			// })
 		},
 		methods: {
+			getUserInfo(){
+				if(this.isLogin == 'online'){
+					this.$api.user_center({
+						action:'getUserInfo'
+					}).then(res => {
+						console.log(res);
+						const {data} = res;
+						this.userInfo = data.userInfo;
+						this.isShow = true;
+					})
+				}
+			},
 			changeImg(){
 				let _this = this;
 				uni.showActionSheet({
@@ -243,7 +246,7 @@
 				let _this = this;
 				let uniIdToken = uni.getStorageSync('uni_id_token');
 				let roleData = {
-					uniIdToken:uniIdToken,
+					uniIdToken,
 					roleList:["CREATOR_ARTICLE"],
 					reset:true
 				}
@@ -265,6 +268,7 @@
 										title:'开通成功'
 									})
 									_this.getPermission();
+									_this.getUserInfo();
 								}
 							})
 						}else{

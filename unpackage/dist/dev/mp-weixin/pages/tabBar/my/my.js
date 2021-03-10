@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 221))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
     }
   }
 } catch (e) {
@@ -290,7 +290,7 @@ var _default =
       CreatePermissions: false };
 
   },
-  onLoad: function onLoad() {var _this2 = this;
+  onLoad: function onLoad() {
     // this.$api.get_userInfo().then(res => {
     // 	console.log(res);
     // 	const {data} = res;
@@ -301,16 +301,7 @@ var _default =
     // 		data:JSON.stringify(data)
     // 	})
     // })
-    if (this.isLogin == 'online') {
-      this.$api.user_center({
-        action: 'getUserInfo' }).
-      then(function (res) {
-        console.log(res);var
-        data = res.data;
-        _this2.userInfo = data.userInfo;
-        _this2.isShow = true;
-      });
-    }
+    this.getUserInfo();
     this.getPermission();
 
 
@@ -337,6 +328,18 @@ var _default =
     // })
   },
   methods: {
+    getUserInfo: function getUserInfo() {var _this2 = this;
+      if (this.isLogin == 'online') {
+        this.$api.user_center({
+          action: 'getUserInfo' }).
+        then(function (res) {
+          console.log(res);var
+          data = res.data;
+          _this2.userInfo = data.userInfo;
+          _this2.isShow = true;
+        });
+      }
+    },
     changeImg: function changeImg() {
       var _this = this;
       uni.showActionSheet({
@@ -420,6 +423,7 @@ var _default =
                   title: '开通成功' });
 
                 _this.getPermission();
+                _this.getUserInfo();
               }
             });
           } else {

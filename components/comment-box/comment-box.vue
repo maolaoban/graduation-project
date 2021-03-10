@@ -3,29 +3,34 @@
 		<view class="comment-title">
 			热门评论
 		</view>
-		<view class="comment-body" v-for="item in comment">
-			<view class="comment-body_top">
-				<view class="comment-body_avatar">
-					<image :src="item.avatar" mode="aspectFit"></image>
-				</view>
-				<view class="comment-body_right">
-					<view class="comment-body_info">
-						<view class="body-info_name">
-							{{item.name}}
+		<view v-if="comment.length > 0">
+			<view class="comment-body" v-for="item in comment">
+				<view class="comment-body_top">
+					<view class="comment-body_avatar">
+						<image :src="item.avatar" mode="aspectFit"></image>
+					</view>
+					<view class="comment-body_right">
+						<view class="comment-body_info">
+							<view class="body-info_name">
+								{{item.name}}
+							</view>
+							<view class="body-info_like">
+								<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="30" :color="!isThumb?'#333':'#01b9fd'"></u-icon>
+								<text>{{item.like_count}}</text>
+							</view>
 						</view>
-						<view class="body-info_like">
-							<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="30" :color="!isThumb?'#333':'#01b9fd'"></u-icon>
-							<text>{{item.like_count}}</text>
+						<view class="comment-body_time">
+							{{item.time}}
 						</view>
 					</view>
-					<view class="comment-body_time">
-						{{item.time}}
-					</view>
+				</view>
+				<view class="comment-body_text">
+					{{item.content}}
 				</view>
 			</view>
-			<view class="comment-body_text">
-				{{item.content}}
-			</view>
+		</view>
+		<view class="no-comment" v-else>
+			当前暂无评论
 		</view>
 	</view>
 </template>
@@ -113,6 +118,15 @@
 			border-radius: 0 20rpx 20rpx 20rpx;
 			padding: 20rpx;
 		}
+	}
+	.no-comment{
+		width: 100%;
+		height: 100rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #999999;
+		font-size: 28rpx;
 	}
 }
 </style>
