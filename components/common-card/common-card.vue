@@ -1,6 +1,6 @@
 <template>
 	<view class="common-card">
-		<template v-for="obj in newsList">
+		<view v-for="(obj,index) in newsList" :key="obj._id">
 			<view class="community-card" v-if="isCommunity">
 				<view class="author-info">
 					<view class="author-avatar">
@@ -11,12 +11,13 @@
 							科技小白
 						</view>
 						<view class="author-info_time">
-							2021-2-22
+							{{obj.create_time | timeFormate}}
 						</view>
 					</view>
 				</view>
 				<view class="card-text">
-					#华为Mate X2#华为折叠屏的专利图，应该就是MateX2了。
+					<text style="color:#01b9fd;">{{obj.topic}}</text>
+					{{obj.content}}
 				</view>
 				<view class="card-cover">
 					<view class="card-cover_item" v-for="item in 2">
@@ -26,11 +27,11 @@
 				<view class="card-bottom">
 					<view class="bottom-count">
 						<u-icon name="thumb-up" color="#333" size="40"></u-icon>
-						<text>10</text>
+						<text>{{obj.like}}</text>
 					</view>
 					<view class="bottom-count">
 						<u-icon name="chat" color="#333" size="40"></u-icon>
-						<text>12</text>
+						<text>{{obj.comment_total}}</text>
 					</view>
 					<view class="bottom-count">
 						<u-icon name="zhuanfa" color="#333" size="40"></u-icon>
@@ -70,11 +71,12 @@
 			</view>
 			<!-- 分割线 -->
 			<u-gap height="10" bg-color="#f4f5f6"></u-gap>
-		</template>
+		</view>
 	</view>
 </template>
 
 <script>
+	import {parseTime} from '../../utils/timeFormat.js'
 	export default {
 		props:{
 			isCommunity:{
@@ -86,6 +88,11 @@
 				default:()=>{
 					return []
 				}
+			}
+		},
+		filters:{
+			timeFormate(date){
+				return parseTime("yyyy-mm-dd hh:ii", new Date(date))
 			}
 		},
 		data() {

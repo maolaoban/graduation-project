@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "black",
   "usingComponents": {
     "u-gap": "/uview-ui/components/u-gap/u-gap",
-    "common-card": "/components/common-card/common-card"
+    "common-card": "/components/common-card/common-card",
+    "u-icon": "/uview-ui/components/u-icon/u-icon"
   }
 }

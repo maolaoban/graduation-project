@@ -19,7 +19,10 @@
 		<u-gap height="10" bg-color="#f4f5f6"></u-gap>
 		
 		<view class="community-info_box">
-			<common-card :isCommunity="true" :newsList="4"></common-card>
+			<common-card :isCommunity="true" :newsList="publishList"></common-card>
+		</view>
+		<view class="publish-btn">
+			<u-icon name="plus" size="40" color="#fff"></u-icon>
 		</view>
 	</view>
 </template>
@@ -28,8 +31,15 @@
 	export default {
 		data() {
 			return {
-				
+				publishList:[]
 			}
+		},
+		onLoad() {
+			this.$api.get_communityPublish().then(res => {
+				console.log(res)
+				const {data} = res;
+				this.publishList = data;
+			})
 		},
 		methods: {
 			goFollowDetail(i){
@@ -126,5 +136,18 @@
 // }
 .community-info_box{
 	width: 100%;
+}
+.publish-btn{
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	background-color: #01b9fd;
+	position: fixed;
+	bottom: 60rpx;
+	right: 40rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow:0px 8rpx 20rpx 0px #CCCCCC;
 }
 </style>

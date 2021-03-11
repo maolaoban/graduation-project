@@ -92,7 +92,7 @@ try {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-loading/u-loading */ "uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loading/u-loading.vue */ 365))
     },
     commonCard: function() {
-      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
+      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
     }
   }
 } catch (e) {
@@ -178,6 +178,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   props: {
@@ -191,8 +196,10 @@ var _default =
       tabList: ['关注', '推荐', '视频', '手机', '电脑', '数码', '汽车', '智能家居', '智能穿戴'],
       commonData: {}, //数据集合
       loadPage: [],
-      isShowLoading: false };
-
+      isShowLoading: false,
+      isRefresh: false, // 是否正在刷新
+      isTrigger: false //是否触发刷新
+    };
   },
   watch: {
     tabIndex: function tabIndex(newVal) {
@@ -203,7 +210,8 @@ var _default =
     this.getList(1);
   },
   methods: {
-    change: function change(event) {var
+    change: function change(event) {
+      console.log('切页');var
       current = event.detail.current;
       this.$emit('changePage', current);
       // 防止重复加载
@@ -230,6 +238,29 @@ var _default =
         _this.$set(_this.commonData, i, oldList);
         _this.isShowLoading = false;
       });
+    },
+    refresh: function refresh(i) {var _this2 = this;
+      if (this.isRefresh) {return;}
+      this.isTrigger = true;
+      this.isRefresh = true;
+      console.log('刷新', this.tabList[i], i);
+      this.$api.get_newsList({
+        page: 1,
+        name: this.tabList[i] }).
+      then(function (res) {
+        console.log(res);var
+        data = res.data;
+        _this2.commonData[i] = [];
+        var oldList = _this2.commonData[i];
+        oldList.push.apply(oldList, _toConsumableArray(data));
+        _this2.$set(_this2.commonData, i, oldList);
+        _this2.isTrigger = false;
+        _this2.isRefresh = false;
+      });
+    },
+    refreshStop: function refreshStop() {
+      this.isTrigger = false;
+      this.isRefresh = false;
     },
     loadMore: function loadMore() {
       this.loadPage[this.tabIndex]++;

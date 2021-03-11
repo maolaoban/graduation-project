@@ -69,6 +69,13 @@ export const update_comment = (data) => {
 		data
 	})
 }
+// 获取圈子动态
+export const get_communityPublish = (data) => {
+	return $http({
+		url:'get_community_publish',
+		data
+	})
+}
 //登录或者注册
 export const user_center = (data) => {
 	return $http({

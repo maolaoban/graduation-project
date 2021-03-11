@@ -47,9 +47,17 @@
 					<text>今日热点</text>
 				</view>
 				<view class="toutiao-body">
-					<view class="body-line" v-for="item in 3">
+					<view class="body-line">
 						<view class="body-icon"></view>
-						<text>[爆料]iPhone 13 LTPO OLED屏幕，三星独供</text>
+						<text>ROG游戏手机5正式发布</text>
+					</view>
+					<view class="body-line">
+						<view class="body-icon"></view>
+						<text>小米10s发布3299起</text>
+					</view>
+					<view class="body-line">
+						<view class="body-icon"></view>
+						<text>iPhone 13 LTPO OLED屏幕，三星独供</text>
 					</view>
 				</view>
 			</view>
@@ -98,15 +106,6 @@
 					this.isLoading = false;
 				})
 			},
-			// getNewsList(){
-			// 	this.$api.get_newsList({
-			// 		name:"推荐"
-			// 	}).then(res => {
-			// 		console.log(res);
-			// 		const {data} = res;
-			// 		this.newsList = data;
-			// 	})
-			// },
 			goDetail(index){
 				uni.navigateTo({
 					url:'../../news-detail/news-detail'

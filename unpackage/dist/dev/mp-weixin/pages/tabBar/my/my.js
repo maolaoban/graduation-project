@@ -291,6 +291,13 @@ var _default =
 
   },
   onLoad: function onLoad() {
+
+    if (this.isLogin != 'online') {
+      uni.navigateTo({
+        url: '../../login-page/login-page' });
+
+      return;
+    }
     this.getUserInfo();
     // this.getPermission();
 
@@ -330,6 +337,21 @@ var _default =
           if (data.role.indexOf('CREATOR_ARTICLE') != -1) {
             _this2.CreatePermissions = true;
           }
+          uni.setStorageSync('user-info', data);
+        }).catch(function (err) {
+          console.log(err.message);
+          uni.removeStorageSync('uni_id_token');
+          uni.removeStorageSync('username');
+          uni.removeStorageSync("login_type");
+          uni.showToast({
+            icon: 'none',
+            title: '登录过期，请重新登录',
+            success: function success() {
+              uni.reLaunch({
+                url: '../../login-page/login-page' });
+
+            } });
+
         });
       }
     },
@@ -366,7 +388,7 @@ var _default =
 
     },
     editProfile: function editProfile() {
-      uni.navigateTo({
+      uni.redirectTo({
         url: 'children/edit-profile' });
 
     },

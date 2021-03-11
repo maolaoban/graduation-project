@@ -89,7 +89,7 @@ try {
       return __webpack_require__.e(/*! import() | components/popup-box/popup-box */ "components/popup-box/popup-box").then(__webpack_require__.bind(null, /*! @/components/popup-box/popup-box.vue */ 423))
     },
     commonCard: function() {
-      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
+      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
     }
   }
 } catch (e) {
@@ -212,6 +212,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default2 =
 {
   props: {
@@ -246,15 +254,6 @@ var _default2 =
         _this.isLoading = false;
       });
     },
-    // getNewsList(){
-    // 	this.$api.get_newsList({
-    // 		name:"推荐"
-    // 	}).then(res => {
-    // 		console.log(res);
-    // 		const {data} = res;
-    // 		this.newsList = data;
-    // 	})
-    // },
     goDetail: function goDetail(index) {
       uni.navigateTo({
         url: '../../news-detail/news-detail' });

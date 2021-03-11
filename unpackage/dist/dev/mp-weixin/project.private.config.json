@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/edit-article/edit-article",
-          "pathName": "pages/edit-article/edit-article",
+          "name": "pages/tabBar/community/community",
+          "pathName": "pages/tabBar/community/community",
           "query": "",
           "scene": null
         }

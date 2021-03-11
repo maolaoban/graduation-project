@@ -16,7 +16,12 @@
 			</scroll-view>
 		</swiper-item>
 		<swiper-item class="swiper-item" v-for="(item,index) in 6" :key="index">
-			<scroll-view scroll-y="true" class="list-scroll" @scrolltolower="loadMore">
+			<scroll-view scroll-y="true" class="list-scroll" @scrolltolower="loadMore" :refresher-enabled="true" 
+				:refresher-triggered="isTrigger"
+				 @refresherrefresh="refresh(index+3)"
+				 @refresherrestore="refreshStop"
+				 @refresherabort="refreshStop"
+				>
 				<view class="loading">
 					<u-loading mode="circle" size="60" :show="isShowLoading"></u-loading>
 				</view>
@@ -40,7 +45,9 @@
 				tabList:['关注','推荐','视频','手机','电脑','数码','汽车','智能家居','智能穿戴'],
 				commonData:{}, //数据集合
 				loadPage:[],
-				isShowLoading:false
+				isShowLoading:false,
+				isRefresh:false, // 是否正在刷新
+				isTrigger:false //是否触发刷新
 			};
 		},
 		watch:{
@@ -53,6 +60,7 @@
 		},
 		methods:{
 			change(event){
+				console.log('切页')
 				const {current} = event.detail;
 				this.$emit('changePage',current);
 				// 防止重复加载
@@ -79,6 +87,29 @@
 					this.$set(this.commonData,i,oldList);
 					this.isShowLoading = false;
 				})
+			},
+			refresh(i){
+				if(this.isRefresh){return}
+				this.isTrigger = true;
+				this.isRefresh = true;
+				console.log('刷新',this.tabList[i],i)
+				this.$api.get_newsList({
+					page:1,
+					name:this.tabList[i]
+				}).then(res => {
+					console.log(res);
+					const {data} = res;
+					this.commonData[i] = [];
+					let oldList = this.commonData[i];
+					oldList.push(...data);
+					this.$set(this.commonData,i,oldList);
+					this.isTrigger = false;
+					this.isRefresh= false;
+				})
+			},
+			refreshStop(){
+				this.isTrigger = false;
+				this.isRefresh= false;
 			},
 			loadMore(){
 				this.loadPage[this.tabIndex]++;

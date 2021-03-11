@@ -99,7 +99,10 @@ try {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 238))
     },
     commonCard: function() {
-      return __webpack_require__.e(/*! import() | components/common-card/common-card */ "components/common-card/common-card").then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
+      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
+    },
+    uIcon: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
     }
   }
 } catch (e) {
@@ -182,12 +185,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
-    return {};
+    return {
+      publishList: [] };
 
-
+  },
+  onLoad: function onLoad() {var _this = this;
+    this.$api.get_communityPublish().then(function (res) {
+      console.log(res);var
+      data = res.data;
+      _this.publishList = data;
+    });
   },
   methods: {
     goFollowDetail: function goFollowDetail(i) {

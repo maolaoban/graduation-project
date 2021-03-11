@@ -153,7 +153,23 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -184,22 +200,23 @@ var _default =
 {
   data: function data() {
     return {
-      avatarSrc: '',
-      itemList: [
-      {
-        title: '昵称',
-        value: '我不该在勇者大陆冒险' },
+      avatarSrc: '../../../../static/images/default-avatar.png',
+      userInfo: '',
+      nickName: '',
+      bios: '',
+      avatar: '',
+      isChange: false };
 
-      {
-        title: '签名',
-        value: '这个人很懒，什么都没留下...' },
+  },
+  watch: {
+    avatarSrc: function avatarSrc() {
+      this.isChange = true;
+    } },
 
-      {
-        title: '修改密码',
-        value: '' }] };
-
-
-
+  onLoad: function onLoad() {
+    this.userInfo = uni.getStorageSync('user-info');
+    this.nickName = this.userInfo.nickName;
+    this.bios = this.userInfo.bios;
   },
   methods: {
     changeAvatar: function changeAvatar() {
@@ -213,11 +230,41 @@ var _default =
           _this.avatarSrc = res.tempFilePaths[0];
         },
         fail: function fail() {
-          alert(1);
+          console.log('选择头像失败');
         } });
 
+    },
+    saveInfo: function saveInfo() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, uniIdToken, changeInfo;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                uni.showLoading({
+                  title: '保存中' });if (!
+
+                _this2.isChange) {_context.next = 6;break;}_context.next = 4;return (
+                  uniCloud.uploadFile({
+                    filePath: _this2.avatarSrc,
+                    cloudPath: 'user/avatar.jpg' }));case 4:result = _context.sent;
+
+                _this2.avatar = result.fileID;case 6:
+
+                uniIdToken = uni.getStorageSync('uni_id_token');
+                changeInfo = {
+                  avatar: _this2.avatar,
+                  nickName: _this2.nickName,
+                  bios: _this2.bios };
+
+
+                _this2.$api.user_center({
+                  action: 'updateUser',
+                  uniIdToken: uniIdToken,
+                  params: changeInfo }).
+                then(function (res) {
+                  uni.hideLoading();
+                  console.log(res);
+                  uni.switchTab({
+                    url: '../my' });
+
+                });case 9:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 15)["default"]))
 
 /***/ }),
 

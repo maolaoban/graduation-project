@@ -129,7 +129,7 @@
 			.navabr-search_input{
 				background-color: #f4f5f6;
 				border-radius: 30rpx;
-				width: 100%;
+				width: 90%;
 				height: 60rpx;
 				padding-left: 20rpx;
 				display: flex;
