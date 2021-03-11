@@ -74,7 +74,22 @@ exports.main = async (event, context) => {
 			res = await uniID.updateUser(params)
 			break;
 		case 'getUserInfo':
-			res = await uniID.getUserInfo(params)
+			let userInfo = await db.collection('uni-id-users').aggregate()
+			.match({
+				_id:params.uid
+			})
+			.project({
+				nickName:1,
+				avatar:1,
+				bios:1,
+				creationData:1,
+				fans:1,
+				follow:1,
+				grade:1,
+				publish:1,
+				role:1
+			}).end()
+			res = userInfo.data[0]
 			break;
 		case 'addRole':
 			res = await uniID.addRole(params)

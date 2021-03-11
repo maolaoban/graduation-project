@@ -38,12 +38,12 @@
 			<view class="setting-layer" v-if="showSettingLayer">
 				<view class="single" @click="release(true)">
 					<jinIcon class="icon" type="&#xe639;" ></jinIcon>
-					<view>公开发布</view>
+					<view>发布</view>
 				</view>
-				<view class="single" @click="release(false)">
+				<!-- <view class="single" @click="release(false)">
 					<jinIcon class="icon" type="&#xe655;" ></jinIcon>
 					<view>私密保存</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -145,23 +145,6 @@ export default {
 						title: '正在上传中...'
 					})
 					for (let temp of tempFilePaths) {
-						// 图片上传服务器
-						// await uni.uploadFile({
-						// 	url: this.uploadFileUrl,
-						// 	filePath: temp,
-						// 	name: this.fileKeyName,
-						// 	header: this.header,
-						// 	success: res => {
-						// 		// 上传完成后处理
-						// 		this.editorCtx.insertImage({
-						// 			src: temp,  // 此处需要将图片地址切换成服务器返回的真实图片地址
-						// 			alt: '图片',
-						// 			success: function(e) {}
-						// 		});
-						// 		uni.hideLoading()
-						// 	},
-							
-						// });
 						const result = await uniCloud.uploadFile({
 							filePath:temp,
 							cloudPath:'article/image.jpg'

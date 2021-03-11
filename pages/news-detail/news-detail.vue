@@ -38,7 +38,7 @@
 		<view class="detail-content">
 			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
-				<text>{{contentInfo.create_time}}</text>
+				<text>{{contentInfo.create_time | timeFormate}}</text>
 				<text v-text="'阅读：'+contentInfo.read_count"></text>
 			</view>
 			<view class="u-content">
@@ -50,11 +50,12 @@
 		<!-- 返回顶部按钮 -->
 		<u-back-top :scroll-top="scrollTop"></u-back-top>
 		<!-- 评论框 -->
-		<comment-input></comment-input>
+		<comment-input :articleId="articleId" @sendCommentOk="getArticleInfo"></comment-input>
 	</view>
 </template>
 
 <script>
+	import {parseTime} from '../../utils/timeFormat.js'
 	export default {
 		data() {
 			return {
@@ -66,23 +67,31 @@
 					p: 'font-size:32rpx;line-height:50rpx',
 					img:'margin:10px 0'
 				},
-				loading:true
+				loading:true,
+				articleId:''
+			}
+		},
+		filters:{
+			timeFormate(date){
+				return parseTime("yyyy-mm-dd hh:ii", new Date(date))
 			}
 		},
 		onLoad(option) {
-			this.$api.get_content({
-				article_id:option.article_id
-			}).then(res => {
-				const {data} = res;
-				console.log(data);
-				this.contentInfo = data;
-				this.commentList = data.comment;
-				this.loading = false;
-				//设置导航栏文字
-				uni.setNavigationBarTitle({
-				    title: data.title
-				});
-			});
+			this.articleId = option.article_id;
+			this.getArticleInfo()
+			// this.$api.get_content({
+			// 	article_id:option.article_id
+			// }).then(res => {
+			// 	const {data} = res;
+			// 	console.log(data);
+			// 	this.contentInfo = data;
+			// 	this.commentList = data.comment;
+			// 	this.loading = false;
+			// 	//设置导航栏文字
+			// 	uni.setNavigationBarTitle({
+			// 	    title: data.title
+			// 	});
+			// });
 		},
 		onPageScroll(e){
 			this.scrollTop = e.scrollTop;
@@ -95,6 +104,22 @@
 			},
 			addFollow(){
 				this.isFollow = !this.isFollow;
+			},
+			getArticleInfo(){
+				this.$api.get_content({
+					article_id:this.articleId
+				}).then(res => {
+					const {data} = res;
+					console.log(data);
+					this.contentInfo = data;
+					this.commentList = data.comment;
+					this.loading = false;
+					//设置导航栏文字
+					uni.setNavigationBarTitle({
+					    title: data.title
+					});
+					uni.hideLoading()
+				});
 			}
 		}
 	}

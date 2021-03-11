@@ -20,7 +20,7 @@
 							</view>
 						</view>
 						<view class="comment-body_time">
-							{{item.time}}
+							{{item.time | timeFormate}}
 						</view>
 					</view>
 				</view>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+	import {parseTime} from '../../utils/timeFormat.js'
 	export default {
 		props:{
 			comment:{
@@ -49,7 +50,12 @@
 			return {
 				isThumb:false
 			};
-		}
+		},
+		filters:{
+			timeFormate(date){
+				return parseTime("yyyy-mm-dd hh:ii", new Date(date))
+			}
+		},
 	}
 </script>
 

@@ -117,8 +117,9 @@
 					})
 					return;
 				}
-				let timeNow = new Date();
-				let createTime = timeNow.toLocaleDateString() +' ' + timeNow.toLocaleTimeString().substring(2);
+				uni.showLoading({
+					title:'发布中'
+				})
 				// 封面图上传云存储
 				const result = await uniCloud.uploadFile({
 					filePath:this.imgCover,
@@ -132,7 +133,7 @@
 					const {data} = res;
 					const articleInfo = {
 						title:this.articleTitle,
-						create_time:createTime,
+						create_time:new Date().getTime(),
 						top_cover:result.fileID,
 						tag:this.keyWords,
 						classify:this.classify,
@@ -145,6 +146,10 @@
 						params:articleInfo
 					}).then(res => {
 						console.log(res);
+						uni.hideLoading();
+						uni.navigateBack({
+							delta:1
+						})
 					})
 				})
 				

@@ -28,7 +28,7 @@
 		</view>
 		<view class="content-box" v-else>
 			<view class="input-row">
-				<input type="text"  v-model="regUsername" placeholder="请输入手机号" placeholder-style="color:#bbb"></m-input>
+				<input type="number"  v-model="regUsername" placeholder="请输入手机号" placeholder-style="color:#bbb"></input>
 			</view>
 			<view class="input-row">
 				<input class="m-input" v-model="regPassword" :password="!isShowPassword[1]"
@@ -170,6 +170,9 @@
 					username: this.username,
 					password: this.password
 				}
+				uni.showLoading({
+					title:'加载中'
+				})
 				this.$api.user_center({
 					action: 'login',
 					params: data
@@ -187,6 +190,7 @@
 						uni.reLaunch({
 							url:'../tabBar/index/index'
 						})
+						uni.hideLoading()
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -270,6 +274,9 @@
 					password: this.regPassword,
 					role:['common-user']
 				}
+				uni.showLoading({
+					title:'注册中'
+				})
 				this.$api.user_center({
 					action: 'register',
 					params: data
@@ -277,9 +284,6 @@
 					console.log("注册", res);
 					const {data} = res;
 					if(data.code === 0){
-						uni.showToast({
-							title: '注册成功'
-						});
 						uni.setStorageSync('uni_id_token', data.token)
 						uni.setStorageSync('username', data.username)
 						
@@ -290,7 +294,7 @@
 							fans:0,
 							follow:0,
 							publish:0,
-							grade:0,
+							grade:1,
 							creationData:''
 						}
 						this.$api.user_center({
@@ -299,6 +303,10 @@
 							uniIdToken:uni.getStorageSync('uni_id_token')
 						}).then(res => {
 							console.log(res);
+							uni.hideLoading()
+							uni.showToast({
+								title: '注册成功'
+							});
 						})
 						
 					}else{

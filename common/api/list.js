@@ -62,6 +62,13 @@ export const update_article = (data) => {
 		data
 	})
 }
+// 评论
+export const update_comment = (data) => {
+	return $http({
+		url:'update_comment',
+		data
+	})
+}
 //登录或者注册
 export const user_center = (data) => {
 	return $http({

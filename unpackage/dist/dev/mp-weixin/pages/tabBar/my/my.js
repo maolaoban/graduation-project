@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 230))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
     }
   }
 } catch (e) {
@@ -291,18 +291,8 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    // this.$api.get_userInfo().then(res => {
-    // 	console.log(res);
-    // 	const {data} = res;
-    // 	this.userInfo = data;
-    // 	this.isShow = true;
-    // 	uni.setStorage({
-    // 		key:'userInfo',
-    // 		data:JSON.stringify(data)
-    // 	})
-    // })
     this.getUserInfo();
-    this.getPermission();
+    // this.getPermission();
 
 
     // const data1 = {
@@ -335,8 +325,11 @@ var _default =
         then(function (res) {
           console.log(res);var
           data = res.data;
-          _this2.userInfo = data.userInfo;
+          _this2.userInfo = data;
           _this2.isShow = true;
+          if (data.role.indexOf('CREATOR_ARTICLE') != -1) {
+            _this2.CreatePermissions = true;
+          }
         });
       }
     },
@@ -432,21 +425,21 @@ var _default =
         } });
 
     },
-    getPermission: function getPermission() {var _this3 = this;
-      var uniIdToken = uni.getStorageSync('uni_id_token');
-      this.$api.user_center({
-        action: 'getPermission',
-        uniIdToken: uniIdToken }).
-      then(function (res) {
-        console.log("用户权限", res);var
-        data = res.data;
-        if (data.code === 0) {
-          if (data.permission.indexOf("PUBLISH_ARTICLE") != -1) {
-            _this3.CreatePermissions = true;
-          }
-        }
-      });
-    },
+    // getPermission(){
+    // 	let uniIdToken = uni.getStorageSync('uni_id_token');
+    // 	this.$api.user_center({
+    // 		action:'getPermission',
+    // 		uniIdToken
+    // 	}).then(res => {
+    // 		console.log("用户权限",res);
+    // 		const {data} = res;
+    // 		if(data.code === 0){
+    // 			if(data.permission.indexOf("PUBLISH_ARTICLE") != -1){
+    // 				this.CreatePermissions = true;
+    // 			}
+    // 		}
+    // 	})
+    // },
     loginOut: function loginOut() {
       var uniIdToken = uni.getStorageSync('uni_id_token');
       console.log(uniIdToken);
@@ -456,15 +449,13 @@ var _default =
           uniIdToken: uniIdToken }).
         then(function (res) {var
           data = res.data;
-          if (data.code === 0) {
-            uni.removeStorageSync('uni_id_token');
-            uni.removeStorageSync('username');
-            uni.removeStorageSync("login_type");
-            console.log("退出登录", data);
-            uni.reLaunch({
-              url: '../index/index' });
+          uni.removeStorageSync('uni_id_token');
+          uni.removeStorageSync('username');
+          uni.removeStorageSync("login_type");
+          console.log("退出登录", data);
+          uni.reLaunch({
+            url: '../index/index' });
 
-          }
         });
       }
     } } };exports.default = _default;

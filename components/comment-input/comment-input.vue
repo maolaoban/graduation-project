@@ -25,7 +25,7 @@
 				<view class="text-num">
 					{{inputValue.length}}/120
 				</view>
-				<view class="send-btn">
+				<view class="send-btn" @click="sendComment">
 					发送
 				</view>
 			</view>
@@ -36,6 +36,12 @@
 
 <script>
 	export default {
+		props:{
+			articleId:{
+				type:String,
+				default:''
+			}
+		},
 		data() {
 			return {
 				isThumb:false,
@@ -55,6 +61,20 @@
 			},
 			addCollect(){
 				this.isCollect = !this.isCollect;
+			},
+			sendComment(){
+				uni.showLoading({
+					title:'评论中'
+				})
+				this.$api.update_comment({
+					articleId:this.articleId,
+					content:this.inputValue,
+					time:new Date().getTime()
+				}).then(res => {
+					console.log(res);
+					this.show = !this.show;
+					this.$emit("sendCommentOk")
+				})
 			}
 		}
 	}

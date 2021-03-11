@@ -13,9 +13,9 @@
 				<view class="user-info">
 					<view class="user-info_name">
 						<view class="user-info-level">
-							LV{{userInfo.grade}}
+							LV{{userInfo.grade || ''}}
 						</view>
-						{{userInfo.nickName}}
+						{{userInfo.nickName || ''}}
 					</view>
 					<view class="user-edit" @click="editProfile">
 						编辑资料
@@ -136,18 +136,8 @@
 			}
 		},
 		onLoad() {
-			// this.$api.get_userInfo().then(res => {
-			// 	console.log(res);
-			// 	const {data} = res;
-			// 	this.userInfo = data;
-			// 	this.isShow = true;
-			// 	uni.setStorage({
-			// 		key:'userInfo',
-			// 		data:JSON.stringify(data)
-			// 	})
-			// })
 			this.getUserInfo();
-			this.getPermission();
+			// this.getPermission();
 			
 			
 			// const data1 = {
@@ -180,8 +170,11 @@
 					}).then(res => {
 						console.log(res);
 						const {data} = res;
-						this.userInfo = data.userInfo;
+						this.userInfo = data;
 						this.isShow = true;
+						if(data.role.indexOf('CREATOR_ARTICLE') != -1){
+							this.CreatePermissions = true;
+						}
 					})
 				}
 			},
@@ -277,21 +270,21 @@
 					}
 				})
 			},
-			getPermission(){
-				let uniIdToken = uni.getStorageSync('uni_id_token');
-				this.$api.user_center({
-					action:'getPermission',
-					uniIdToken
-				}).then(res => {
-					console.log("用户权限",res);
-					const {data} = res;
-					if(data.code === 0){
-						if(data.permission.indexOf("PUBLISH_ARTICLE") != -1){
-							this.CreatePermissions = true;
-						}
-					}
-				})
-			},
+			// getPermission(){
+			// 	let uniIdToken = uni.getStorageSync('uni_id_token');
+			// 	this.$api.user_center({
+			// 		action:'getPermission',
+			// 		uniIdToken
+			// 	}).then(res => {
+			// 		console.log("用户权限",res);
+			// 		const {data} = res;
+			// 		if(data.code === 0){
+			// 			if(data.permission.indexOf("PUBLISH_ARTICLE") != -1){
+			// 				this.CreatePermissions = true;
+			// 			}
+			// 		}
+			// 	})
+			// },
 			loginOut(){
 				let uniIdToken = uni.getStorageSync('uni_id_token');
 				console.log(uniIdToken);
@@ -301,15 +294,13 @@
 						uniIdToken
 					}).then(res => {
 						const {data} = res;
-						if(data.code === 0){
-							uni.removeStorageSync('uni_id_token');
-							uni.removeStorageSync('username');
-							uni.removeStorageSync("login_type");
-							console.log("退出登录",data);
-							uni.reLaunch({
-								url:'../index/index'
-							})
-						}
+						uni.removeStorageSync('uni_id_token');
+						uni.removeStorageSync('username');
+						uni.removeStorageSync("login_type");
+						console.log("退出登录",data);
+						uni.reLaunch({
+							url:'../index/index'
+						})
 					})
 				}
 			}

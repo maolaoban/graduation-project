@@ -194,6 +194,11 @@
 			.card-title{
 				font-size: 32rpx;
 				color: #333;
+				display: -webkit-box; 
+				-webkit-box-orient: vertical; 
+				-webkit-line-clamp: 2; 
+				overflow: hidden;
+				text-overflow:ellipsis;
 			}
 			.card-left_body{
 				width: 100%;
