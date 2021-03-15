@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<navbar :isSearch="true"></navbar>
-		<view class="search-history" v-show="searchHistory.length>0">
+		<view class="search-history" v-show="isShowHistory">
 			<view class="history-top">
 				<text class="history-title">搜索历史</text>
 				<u-icon name="trash" color="#7e7e7e" size="30" @click="clearHistory"></u-icon>
@@ -38,7 +38,8 @@
 		data() {
 			return {
 				hotList:[],
-				isLoading:true
+				isLoading:true,
+				isShowHistory:false
 			}
 		},
 		computed:{
@@ -51,12 +52,20 @@
 				this.isLoading = false;
 			})
 		},
+		updated() {
+			if(this.searchHistory.length>0){
+				this.isShowHistory = true;
+			}else{
+				this.isShowHistory = false;
+			}
+		},
 		methods: {
 			delHistory(i){
 				this.$store.dispatch("del_history",i);
 			},
 			clearHistory(){
 				this.$store.dispatch("clear_history");
+				this.isShowHistory = false;
 			}
 		}
 	}

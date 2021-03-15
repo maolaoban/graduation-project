@@ -37,6 +37,24 @@
   -webkit-align-items: center;
           align-items: center;
 }
+.content .weixLogin {
+  width: 100%;
+  margin-top: 50%;
+}
+.content .weixLogin .weixLoginBox {
+  width: 300px;
+  margin: 40px auto 0;
+}
+.content .weixLogin .getCaptcha {
+  background-color: #19be6b;
+  color: #fff;
+  border: none;
+  font-size: 30rpx;
+  padding: 12rpx 0;
+}
+.content .weixLogin .getCaptcha::after {
+  border: none;
+}
 .content .content-box {
   margin-top: 200rpx;
 }

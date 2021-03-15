@@ -196,7 +196,8 @@ var _vuex = __webpack_require__(/*! vuex */ 21);function ownKeys(object, enumera
   data: function data() {
     return {
       hotList: [],
-      isLoading: true };
+      isLoading: true,
+      isShowHistory: false };
 
   },
   computed: _objectSpread({},
@@ -209,12 +210,20 @@ var _vuex = __webpack_require__(/*! vuex */ 21);function ownKeys(object, enumera
       _this.isLoading = false;
     });
   },
+  updated: function updated() {
+    if (this.searchHistory.length > 0) {
+      this.isShowHistory = true;
+    } else {
+      this.isShowHistory = false;
+    }
+  },
   methods: {
     delHistory: function delHistory(i) {
       this.$store.dispatch("del_history", i);
     },
     clearHistory: function clearHistory() {
       this.$store.dispatch("clear_history");
+      this.isShowHistory = false;
     } } };exports.default = _default;
 
 /***/ }),

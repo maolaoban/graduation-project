@@ -1,5 +1,10 @@
 <template>
 	<view class="content">
+		<!-- <view class="weixLogin">
+			<view class="weixLoginBox">
+				<button @click="WXlogin" class="getCaptcha" open-type="getUserInfo" >授权登录</button>
+			</view>
+		</view> -->
 		<view class="content-box" v-if="!isRegister">
 			<view class="input-row">
 				<input class="m-input" v-model="username" type="number" placeholder="请输入手机号"
@@ -241,6 +246,70 @@
 				})
 				
 			},
+			// 微信登录
+			WXlogin() {
+				var that = this
+				uni.showLoading({
+					title: '登录中...',
+					mask: true
+				})
+				new Promise((resolve, reject) => {
+					uni.getProvider({
+						service: 'oauth',
+						success(res) {
+							resolve(res.provider)
+						},
+						fail(err) {
+							reject(new Error(err.errMsg))
+						}
+					})
+				}).then((provider) => {
+					return new Promise((resolve, reject) => {
+						uni.login({
+							provider,
+							success: (res) => {
+								console.log('登录',res);
+								resolve({
+									code: res.code,
+									provider
+								})
+							},
+							fail: (err) => {
+								reject(new Error(err.errMsg))
+							}
+						})
+					})
+				}).then(({
+					code,
+					provider
+				}) => {
+					return this.$api.user_center({
+						action: "loginByWeixin",
+						params: {
+							code
+						}
+					})
+				}).then((res) => {
+					console.log(res);
+					if (res.data.code === 0) {
+						uni.hideLoading()
+						// 如果使用2.7.15及以上版本建议存为uni_id_token
+						uni.setStorageSync('uni_id_token', res.data.token)
+						uni.setStorageSync('uni_id_token_expired', res.data.tokenExpired)
+						uni.setStorageSync('uid', res.data.uid)
+						uni.setStorageSync('openid', res.data.openid)
+						uni.setStorageSync('login_type', 'online')
+					} else {
+						throw new Error(res.data.msg)
+					}
+				}).catch((err) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: err.message || '登录失败',
+						showCancel: false
+					})
+				})
+			},
 			// 注册
 			register() {
 				/**
@@ -326,6 +395,27 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	.weixLogin {
+		width: 100%;
+		margin-top: 50%;
+	
+		.weixLoginBox {
+			width: 300px;
+			margin: 40px auto 0;
+		}
+	
+		.getCaptcha {
+			background-color: #19be6b;
+			color: $uni-text-color-inverse;
+			border: none;
+			font-size: 30rpx;
+			padding: 12rpx 0;
+	
+			&::after {
+				border: none;
+			}
+		}
+	}
 	.content-box{
 		margin-top: 200rpx;
 		.input-row{

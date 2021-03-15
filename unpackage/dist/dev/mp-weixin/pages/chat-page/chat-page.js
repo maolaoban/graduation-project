@@ -257,7 +257,7 @@ var recorderManager = uni.getRecorderManager();var _default =
       scrollHeight: '100vh',
       inputBottom: '0px',
       emotionsList: [],
-      userInfo: JSON.parse(uni.getStorageSync('userInfo')),
+      userInfo: uni.getStorageSync('userInfo'),
       sendEmojiList: [] };
 
   },

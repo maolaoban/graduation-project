@@ -156,6 +156,13 @@ var _default =
 
 
   },
+  onLoad: function onLoad() {
+    if (!uni.getStorageSync('uni_id_token') && !uni.getStorageSync('login_type')) {
+      uni.reLaunch({
+        url: '../login-page/login-page' });
+
+    }
+  },
   methods: {
     goChat: function goChat() {
       uni.navigateTo({

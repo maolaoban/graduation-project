@@ -182,7 +182,7 @@
 						if(data.role.indexOf('CREATOR_ARTICLE') != -1){
 							this.CreatePermissions = true;
 						}
-						uni.setStorageSync('user-info',data);
+						uni.setStorageSync("userInfo",data)
 					}).catch(err => {
 						console.log(err.message);
 						uni.removeStorageSync('uni_id_token');
@@ -198,6 +198,49 @@
 							}
 						})
 					})
+					// // #ifdef MP-WEIXIN
+					// let openid;
+					// try {
+					// 	const openidV = uni.getStorageSync('openid');
+					// 	if (openidV) {
+					// 		console.log(openidV)
+					// 		openid = openidV
+								
+					// 	} else {
+					// 		//alert(1123)
+								
+					// 	}
+					// } catch (e) {
+					// 	// error
+					// }
+					// uni.showLoading({
+					// 		title: '处理中...'
+					// 	}),
+					// 	console.log(1);
+					// 	// 获取微信用户信息
+					// 	uni.getUserInfo({
+					// 		success: (userRes) => {
+					// 			if (openid) {
+					// 				console.log("getUserInfo接口返回：", userRes.userInfo)
+					// 				this.userInfo = userRes.userInfo
+					// 				uni.setStorageSync('userInfo', this.userInfo)
+					// 				this.userInfo.score = 0 // 初始化自定义的用户信息
+					// 				uni.hideLoading()
+									
+					// 			}
+					// 			console.log(2);
+					// 		},
+					// 		fail: () => {
+					// 			uni.hideLoading()
+					// 			uni.showToast({
+					// 				title: "为了更好的功能体验，请先登录授权！",
+					// 				icon: "none"
+					// 			})
+					// 			console.log("请点击授权进行登录！")
+					// 			console.log(3);
+					// 		}
+					// 	})
+					// 	// #endif
 				}
 			},
 			changeImg(){
@@ -258,6 +301,12 @@
 				})
 			},
 			openCreate(){
+				if(!uni.getStorageSync('login-type')&&!uni.getStorageSync('uni_id_token')){
+					uni.reLaunch({
+						url:'../../login-page/login-page'
+					})
+					return;
+				}
 				let _this = this;
 				let uniIdToken = uni.getStorageSync('uni_id_token');
 				let roleData = {

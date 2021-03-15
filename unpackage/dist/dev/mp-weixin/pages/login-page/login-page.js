@@ -213,7 +213,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var _checkout = __webpack_require__(/*! ../../utils/checkout.js */ 199); //
+//
+//
+//
+//
+//
 //
 //
 //
@@ -288,12 +298,7 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
         // }).then(res => {
         // 	console.log(res);
         // })
-      }var data = { tel: type === 'login' ? this.username : this.regUsername, type: type };this.$api.user_center({ action: 'sendSmsCode', params: data }).then(function (res) {var data = res.data;if (data.code === 0) {if (_this.canSend) {_this.canSend = false;_this.smsCode = '';
-            var timer = setInterval(function () {
-              _this.sendCodeText--;
-              if (_this.sendCodeText == 0) {
-                _this.canSend = true;
-                _this.sendCodeText = 60;
+      }var data = { tel: type === 'login' ? this.username : this.regUsername, type: type };this.$api.user_center({ action: 'sendSmsCode', params: data }).then(function (res) {var data = res.data;if (data.code === 0) {if (_this.canSend) {_this.canSend = false;_this.smsCode = '';var timer = setInterval(function () {_this.sendCodeText--;if (_this.sendCodeText == 0) {_this.canSend = true;_this.sendCodeText = 60;
                 clearInterval(timer);
               }
             }, 1000);
@@ -396,8 +401,72 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
       });
 
     },
+    // 微信登录
+    WXlogin: function WXlogin() {var _this2 = this;
+      var that = this;
+      uni.showLoading({
+        title: '登录中...',
+        mask: true });
+
+      new Promise(function (resolve, reject) {
+        uni.getProvider({
+          service: 'oauth',
+          success: function success(res) {
+            resolve(res.provider);
+          },
+          fail: function fail(err) {
+            reject(new Error(err.errMsg));
+          } });
+
+      }).then(function (provider) {
+        return new Promise(function (resolve, reject) {
+          uni.login({
+            provider: provider,
+            success: function success(res) {
+              console.log('登录', res);
+              resolve({
+                code: res.code,
+                provider: provider });
+
+            },
+            fail: function fail(err) {
+              reject(new Error(err.errMsg));
+            } });
+
+        });
+      }).then(function (_ref)
+
+
+      {var code = _ref.code,provider = _ref.provider;
+        return _this2.$api.user_center({
+          action: "loginByWeixin",
+          params: {
+            code: code } });
+
+
+      }).then(function (res) {
+        console.log(res);
+        if (res.data.code === 0) {
+          uni.hideLoading();
+          // 如果使用2.7.15及以上版本建议存为uni_id_token
+          uni.setStorageSync('uni_id_token', res.data.token);
+          uni.setStorageSync('uni_id_token_expired', res.data.tokenExpired);
+          uni.setStorageSync('uid', res.data.uid);
+          uni.setStorageSync('openid', res.data.openid);
+          uni.setStorageSync('login_type', 'online');
+        } else {
+          throw new Error(res.data.msg);
+        }
+      }).catch(function (err) {
+        uni.hideLoading();
+        uni.showModal({
+          content: err.message || '登录失败',
+          showCancel: false });
+
+      });
+    },
     // 注册
-    register: function register() {var _this2 = this;
+    register: function register() {var _this3 = this;
       /**
                                                        * 客户端对账号信息进行一些必要的校验。
                                                        * 实际开发中，根据业务需要进行处理，这里仅做示例。
@@ -443,7 +512,7 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
           uni.setStorageSync('username', data.username);
 
           var userData = {
-            nickName: '用户' + _this2.regUsername,
+            nickName: '用户' + _this3.regUsername,
             avatar: '',
             bios: '',
             fans: 0,
@@ -452,7 +521,7 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
             grade: 1,
             creationData: '' };
 
-          _this2.$api.user_center({
+          _this3.$api.user_center({
             action: 'updateUser',
             params: userData,
             uniIdToken: uni.getStorageSync('uni_id_token') }).

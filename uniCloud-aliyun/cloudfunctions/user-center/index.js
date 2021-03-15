@@ -36,6 +36,9 @@ exports.main = async (event, context) => {
 		case 'login':
 			res = await uniID.login(params)
 			break;
+		case 'loginByWeixin':
+			res = await uniID.loginByWeixin(params)
+			break;
 		case 'register':
 			res = await uniID.register(params)
 			break;
