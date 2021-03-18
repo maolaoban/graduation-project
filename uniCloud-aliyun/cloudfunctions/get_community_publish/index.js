@@ -26,12 +26,12 @@ exports.main = async (event, context) => {
 	.skip((page - 1) * pageSize)//跳过多少条
 	.limit(pageSize) //限制条数
 	.end()
-	list.data.forEach(async (item) => {
+	list.data.forEach(async (item,index) => {
 		let user = await db.collection('uni-id-users').doc(item.author_id).field({
 			'nickName':true,
 			'avatar':true
 		}).get()
-		item.userInfo = user;
+		list[index].userInfo = user;
 	})
 	
 	//返回数据给客户端

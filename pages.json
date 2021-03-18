@@ -224,6 +224,15 @@
 		    }
 		    
 		}
+        ,{
+            "path" : "pages/tabBar/community/community-detail/community-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
