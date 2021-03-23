@@ -83,6 +83,8 @@
   height: 230rpx;
   margin-top: 10rpx;
   margin-right: 10rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
 }
 .common-card .community-card .card-cover .card-cover_item image {
   width: 100%;

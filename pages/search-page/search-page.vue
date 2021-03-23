@@ -1,33 +1,38 @@
 <template>
 	<view>
-		<navbar :isSearch="true"></navbar>
-		<view class="search-history" v-show="isShowHistory">
-			<view class="history-top">
-				<text class="history-title">搜索历史</text>
-				<u-icon name="trash" color="#7e7e7e" size="30" @click="clearHistory"></u-icon>
+		<navbar :isSearch="true" @getSearch="getSearch" ref="search"></navbar>
+		<view class="noSearch-content" v-if="searchResult.length == 0">
+			<view class="search-history" v-show="isShowHistory">
+				<view class="history-top">
+					<text class="history-title">搜索历史</text>
+					<u-icon name="trash" color="#7e7e7e" size="30" @click="clearHistory"></u-icon>
+				</view>
+				<view class="history-list">
+					<view class="history-item" v-for="(item,index) in searchHistory" @click.stop="searchText(item)">
+						<text>{{item}}</text>
+						<u-icon name="close" color="#7e7e7e" size="20" @click.self="delHistory(index)"></u-icon>
+					</view>
+				</view>
 			</view>
-			<view class="history-list">
-				<view class="history-item" v-for="(item,index) in searchHistory">
-					<text>{{item}}</text>
-					<u-icon name="close" color="#7e7e7e" size="20" @click="delHistory(index)"></u-icon>
+			<view class="hot-box">
+				<text class="hot-title">热门</text>
+				<view class="hot-content" v-if="!isLoading">
+					<view class="hot-content_info" v-for="(item,index) in hotList">
+						<text :style="{color:index<3 ? '#e74c3c':'#151515'}">{{index+1+'. '}}</text>
+						{{item.title}}
+					</view>
+				</view>
+				<view class="hot-loading" v-else>
+					<view class="hot-loading_1"></view>
+					<view class="hot-loading_2"></view>
+					<view class="hot-loading_3"></view>
+					<view class="hot-loading_4"></view>
+					<view class="hot-loading_5"></view>
 				</view>
 			</view>
 		</view>
-		<view class="hot-box">
-			<text class="hot-title">热门</text>
-			<view class="hot-content" v-if="!isLoading">
-				<view class="hot-content_info" v-for="(item,index) in hotList">
-					<text :style="{color:index<3 ? '#e74c3c':'#151515'}">{{index+1+'. '}}</text>
-					{{item.title}}
-				</view>
-			</view>
-			<view class="hot-loading" v-else>
-				<view class="hot-loading_1"></view>
-				<view class="hot-loading_2"></view>
-				<view class="hot-loading_3"></view>
-				<view class="hot-loading_4"></view>
-				<view class="hot-loading_5"></view>
-			</view>
+		<view class="search-content" v-else>
+			<common-card :newsList="searchResult"></common-card>
 		</view>
 	</view>
 </template>
@@ -39,7 +44,8 @@
 			return {
 				hotList:[],
 				isLoading:true,
-				isShowHistory:false
+				isShowHistory:false,
+				searchResult:[]
 			}
 		},
 		computed:{
@@ -66,6 +72,28 @@
 			clearHistory(){
 				this.$store.dispatch("clear_history");
 				this.isShowHistory = false;
+			},
+			getSearch(value){
+				console.log('搜索内容',value);
+				if(!value){
+					this.searchResult = [];
+					return;
+				}
+				this.$api.get_search({
+					value
+				}).then(res => {
+					const {data} = res;
+					this.searchResult = data;
+					if(data.length == 0){
+						uni.showToast({
+							icon:'none',
+							title:'暂无相关内容'
+						})
+					}
+				})
+			},
+			searchText(val){
+				this.$refs.search.searchHandler(val);
 			}
 		}
 	}
@@ -90,6 +118,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		.history-item{
+			max-width: 300rpx;
+			overflow: hidden;
 			flex-shrink: 0;
 			padding: 4px 10rpx;
 			border-radius: 20rpx;
@@ -100,6 +130,9 @@
 			align-items: center;
 			text{
 				margin-right: 10rpx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 		}
 	}

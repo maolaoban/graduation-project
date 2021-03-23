@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uParse: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 252))
+      return Promise.all(/*! import() | uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-parse/u-parse.vue */ 258))
     },
     commentBox: function() {
-      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 262))
+      return __webpack_require__.e(/*! import() | components/comment-box/comment-box */ "components/comment-box/comment-box").then(__webpack_require__.bind(null, /*! @/components/comment-box/comment-box.vue */ 268))
     },
     uBackTop: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 269))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-back-top/u-back-top */ "uview-ui/components/u-back-top/u-back-top").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-back-top/u-back-top.vue */ 275))
     },
     commentInput: function() {
-      return __webpack_require__.e(/*! import() | components/comment-input/comment-input */ "components/comment-input/comment-input").then(__webpack_require__.bind(null, /*! @/components/comment-input/comment-input.vue */ 276))
+      return __webpack_require__.e(/*! import() | components/comment-input/comment-input */ "components/comment-input/comment-input").then(__webpack_require__.bind(null, /*! @/components/comment-input/comment-input.vue */ 282))
     }
   }
 } catch (e) {
@@ -285,20 +285,7 @@ var _timeFormat = __webpack_require__(/*! ../../utils/timeFormat.js */ 87); //
 //
 //
 //
-var _default = { data: function data() {return { isFollow: false, contentInfo: {}, commentList: [], scrollTop: 0, style: { p: 'font-size:32rpx;line-height:50rpx', img: 'margin:10px 0' }, loading: true, articleId: '' };}, filters: { timeFormate: function timeFormate(date) {return (0, _timeFormat.parseTime)("yyyy-mm-dd hh:ii", new Date(date));} }, onLoad: function onLoad(option) {this.articleId = option.article_id;this.getArticleInfo(); // this.$api.get_content({
-    // 	article_id:option.article_id
-    // }).then(res => {
-    // 	const {data} = res;
-    // 	console.log(data);
-    // 	this.contentInfo = data;
-    // 	this.commentList = data.comment;
-    // 	this.loading = false;
-    // 	//设置导航栏文字
-    // 	uni.setNavigationBarTitle({
-    // 	    title: data.title
-    // 	});
-    // });
-  }, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { goBack: function goBack() {uni.navigateBack({ delta: 1 });}, addFollow: function addFollow() {this.isFollow = !this.isFollow;}, getArticleInfo: function getArticleInfo() {var _this = this;this.$api.get_content({ article_id: this.articleId }).then(function (res) {var data = res.data;console.log(data);_this.contentInfo = data;_this.commentList = data.comment;_this.loading = false; //设置导航栏文字
+var _default = { data: function data() {return { isFollow: false, contentInfo: {}, commentList: [], scrollTop: 0, style: { p: 'font-size:32rpx;line-height:50rpx', img: 'margin:10px 0' }, loading: true, articleId: '', isLike: false, isCollect: false };}, filters: { timeFormate: function timeFormate(date) {return (0, _timeFormat.parseTime)("yyyy-mm-dd hh:ii", new Date(date));} }, onLoad: function onLoad(option) {this.articleId = option.article_id;this.getArticleInfo();}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { goBack: function goBack() {uni.navigateBack({ delta: 1 });}, addFollow: function addFollow() {this.isFollow = !this.isFollow;}, getArticleInfo: function getArticleInfo() {var _this = this;this.$api.get_content({ user_id: uni.getStorageSync('userId') || null, article_id: this.articleId }).then(function (res) {var data = res.data;console.log(data);_this.contentInfo = data;_this.commentList = data.comment;_this.isLike = data.is_like;_this.isCollect = data.is_collect;_this.loading = false; //设置导航栏文字
         uni.setNavigationBarTitle({ title: data.title });uni.hideLoading();});} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

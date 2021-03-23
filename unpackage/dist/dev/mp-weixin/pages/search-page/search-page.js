@@ -96,10 +96,13 @@ var components
 try {
   components = {
     navbar: function() {
-      return __webpack_require__.e(/*! import() | components/navbar/navbar */ "components/navbar/navbar").then(__webpack_require__.bind(null, /*! @/components/navbar/navbar.vue */ 210))
+      return __webpack_require__.e(/*! import() | components/navbar/navbar */ "components/navbar/navbar").then(__webpack_require__.bind(null, /*! @/components/navbar/navbar.vue */ 216))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
+    },
+    commonCard: function() {
+      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 251))
     }
   }
 } catch (e) {
@@ -156,7 +159,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
 
 
 
@@ -197,7 +205,8 @@ var _vuex = __webpack_require__(/*! vuex */ 21);function ownKeys(object, enumera
     return {
       hotList: [],
       isLoading: true,
-      isShowHistory: false };
+      isShowHistory: false,
+      searchResult: [] };
 
   },
   computed: _objectSpread({},
@@ -224,7 +233,30 @@ var _vuex = __webpack_require__(/*! vuex */ 21);function ownKeys(object, enumera
     clearHistory: function clearHistory() {
       this.$store.dispatch("clear_history");
       this.isShowHistory = false;
+    },
+    getSearch: function getSearch(value) {var _this2 = this;
+      console.log('搜索内容', value);
+      if (!value) {
+        this.searchResult = [];
+        return;
+      }
+      this.$api.get_search({
+        value: value }).
+      then(function (res) {var
+        data = res.data;
+        _this2.searchResult = data;
+        if (data.length == 0) {
+          uni.showToast({
+            icon: 'none',
+            title: '暂无相关内容' });
+
+        }
+      });
+    },
+    searchText: function searchText(val) {
+      this.$refs.search.searchHandler(val);
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

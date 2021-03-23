@@ -83,3 +83,17 @@ export const user_center = (data) => {
 		data
 	})
 }
+// 点赞
+export const update_like = (data) => {
+	return $http({
+		url:'update_like',
+		data
+	})
+}
+// 搜索
+export const get_search = (data) => {
+	return $http({
+		url:'get_search',
+		data
+	})
+}

@@ -21,7 +21,7 @@
 		<view class="community-info_box">
 			<common-card :isCommunity="true" :newsList="publishList"></common-card>
 		</view>
-		<view class="publish-btn">
+		<view class="publish-btn" @click="goPublish">
 			<u-icon name="plus" size="40" color="#fff"></u-icon>
 		</view>
 	</view>
@@ -48,6 +48,11 @@
 			goMore(){
 				uni.navigateTo({
 					url:'./more-community/more-community'
+				})
+			},
+			goPublish(){
+				uni.navigateTo({
+					url:'publish-community/publish-community'
 				})
 			}
 		}

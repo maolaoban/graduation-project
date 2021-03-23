@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "navbar": "/components/navbar/navbar",
-    "u-icon": "/uview-ui/components/u-icon/u-icon"
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "common-card": "/components/common-card/common-card"
   }
 }

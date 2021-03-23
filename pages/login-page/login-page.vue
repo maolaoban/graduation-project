@@ -176,7 +176,7 @@
 					password: this.password
 				}
 				uni.showLoading({
-					title:'加载中'
+					title:'登录中'
 				})
 				this.$api.user_center({
 					action: 'login',
@@ -191,6 +191,7 @@
 						});
 						uni.setStorageSync('uni_id_token', data.token)
 						uni.setStorageSync('username', data.username)
+						uni.setStorageSync('userId', data.uid)
 						uni.setStorageSync('login_type', 'online')
 						uni.reLaunch({
 							url:'../tabBar/index/index'
@@ -364,7 +365,10 @@
 							follow:0,
 							publish:0,
 							grade:1,
-							creationData:''
+							creationData:'',
+							like_list:[],
+							follow_list:[],
+							collect_list:[]
 						}
 						this.$api.user_center({
 							action:'updateUser',

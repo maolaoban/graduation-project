@@ -53,6 +53,8 @@
           flex-wrap: wrap;
 }
 .search-history .history-list .history-item {
+  max-width: 300rpx;
+  overflow: hidden;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
   padding: 4px 10rpx;
@@ -69,6 +71,9 @@
 }
 .search-history .history-list .history-item text {
   margin-right: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .hot-box {
   width: 100%;

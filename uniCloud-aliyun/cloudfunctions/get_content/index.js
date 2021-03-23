@@ -3,22 +3,36 @@ const db = uniCloud.database();
 const $ = db.command.aggregate
 exports.main = async (event, context) => {
 	const {
+		user_id,
 		article_id
 	} = event;
 	let res = {}
-	// let content = await db.collection('article')
-	// .aggregate()
-	// .match({
-	// 	_id:article_id
-	// })
-	// .lookup({
-	// 	from:'uni-id-users',
-	// 	localField:'author_id',
-	// 	foreignField:'_id',
-	// 	as:'authorInfo'
-	// })
-	// .end()
-	let content = await db.collection('article').doc(article_id).get()
+	let content = {}
+	
+	if(user_id){
+		let userInfo = await db.collection('uni-id-users').doc(user_id).get()
+		userInfo = userInfo.data[0]
+		
+		content = await db.collection('article')
+		.aggregate()
+		.addFields({
+			//是否关注作者
+			is_follow: $.in(['$author_id',userInfo.follow_list]),
+			//是否收藏文章
+			is_collect: $.in(['$_id',userInfo.collect_list]),
+			//是否点赞
+			is_like: $.in(['$_id',userInfo.like_list])
+		})
+		.match({
+			_id:article_id
+		})
+		.end();
+	}else{
+		content = await db.collection('article').doc(article_id).get()
+	}
+	
+	
+	
 	let authorInfo = await db.collection('uni-id-users').aggregate()
 	.match({
 		_id:content.data[0].author_id

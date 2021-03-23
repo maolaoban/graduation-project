@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
     }
   }
 } catch (e) {
@@ -523,6 +523,7 @@ var _default =
           uni.removeStorageSync('uni_id_token');
           uni.removeStorageSync('username');
           uni.removeStorageSync("login_type");
+          uni.removeStorageSync("userId");
           console.log("退出登录", data);
           uni.reLaunch({
             url: '../index/index' });

@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
     }
   }
 } catch (e) {
@@ -331,7 +331,7 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
         password: this.password };
 
       uni.showLoading({
-        title: '加载中' });
+        title: '登录中' });
 
       this.$api.user_center({
         action: 'login',
@@ -346,6 +346,7 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
 
           uni.setStorageSync('uni_id_token', data.token);
           uni.setStorageSync('username', data.username);
+          uni.setStorageSync('userId', data.uid);
           uni.setStorageSync('login_type', 'online');
           uni.reLaunch({
             url: '../tabBar/index/index' });
@@ -519,7 +520,10 @@ var _default = { data: function data() {return { isRegister: false, isPasswordLo
             follow: 0,
             publish: 0,
             grade: 1,
-            creationData: '' };
+            creationData: '',
+            like_list: [],
+            follow_list: [],
+            collect_list: [] };
 
           _this3.$api.user_center({
             action: 'updateUser',

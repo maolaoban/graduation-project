@@ -20,7 +20,9 @@
     "pages/video-play/video-play",
     "pages/login-page/login-page",
     "pages/tabBar/my/children/edit-profile",
-    "pages/tabBar/community/community-detail/community-detail"
+    "pages/tabBar/community/community-detail/community-detail",
+    "pages/hot-page/hot-page",
+    "pages/tabBar/community/publish-community/publish-community"
   ],
   "subPackages": [],
   "window": {

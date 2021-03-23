@@ -3,10 +3,10 @@
 		<view class="comment-input">
 			<view class="input-box" @click="showInput">谈谈你的看法...</view>
 			<view class="add-right" @click="addThumb">
-				<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="50" :color="!isThumb?'#bbb':'#01b9fd'"></u-icon>
+				<u-icon :name="!is_thumb?'thumb-up':'thumb-up-fill'" size="50" :color="!is_thumb?'#bbb':'#01b9fd'"></u-icon>
 			</view>
 			<view class="add-right" @click="addCollect">
-				<u-icon :name="!isCollect?'star':'star-fill'" size="50" :color="!isCollect?'#bbb':'#01b9fd'"></u-icon>
+				<u-icon :name="!is_collect?'star':'star-fill'" size="50" :color="!is_collect?'#bbb':'#01b9fd'"></u-icon>
 			</view>
 			<view class="add-right">
 				<u-icon name="zhuanfa" size="50" color="#bbb"></u-icon>
@@ -39,40 +39,75 @@
 		props:{
 			articleId:{
 				type:String,
-				default:''
+				default:'',
+			},
+			isLike:{
+				type:Boolean,
+				default:false
+			},
+			isCollect:{
+				type:Boolean,
+				default:false
 			}
 		},
 		data() {
 			return {
-				isThumb:false,
-				isCollect:false,
+				is_thumb:false,
+				is_collect:false,
 				show:false,
 				isFocus:false,
 				inputValue:''
 			};
 		},
+		watch:{
+			isLike(newVal){
+				this.is_thumb = newVal;
+			},
+			isCollect(newVal){
+				this.is_collect = newVal;
+			}
+		},
 		methods:{
 			showInput(){
+				if(uni.getStorageSync('login_type') !== 'online'){
+					uni.navigateTo({
+						url:'/pages/login-page/login-page'
+					})
+					return
+				}
 				this.show = !this.show;
 				this.isFocus = true;
 			},
 			addThumb(){
-				this.isThumb = !this.isThumb;
+				if(uni.getStorageSync('login_type') !== 'online'){
+					uni.navigateTo({
+						url:'/pages/login-page/login-page'
+					})
+					return
+				}
+				this.$api.update_like({
+					user_id:uni.getStorageSync('userId'),
+					article_id:this.articleId
+				}).then(res => {
+					this.is_thumb = !this.is_thumb;
+				})
 			},
 			addCollect(){
-				this.isCollect = !this.isCollect;
+				// this.isCollect = !this.isCollect;
 			},
 			sendComment(){
 				uni.showLoading({
 					title:'评论中'
 				})
 				this.$api.update_comment({
+					user_id:uni.getStorageSync('userId'),
 					articleId:this.articleId,
 					content:this.inputValue,
 					time:new Date().getTime()
 				}).then(res => {
 					console.log(res);
 					this.show = !this.show;
+					this.inputValue = '';
 					this.$emit("sendCommentOk")
 				})
 			}

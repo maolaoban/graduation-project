@@ -1,7 +1,7 @@
 <template>
 	<view class="common-card">
 		<view v-for="(obj,index) in newsList" :key="obj._id">
-			<view class="community-card" v-if="isCommunity">
+			<view class="community-card" v-if="isCommunity" @click="goCommunityDetail">
 				<view class="author-info">
 					<view class="author-avatar">
 						<image src="../../static/images/avatar.jpg" mode="aspectFill" lazy-load="true"></image>
@@ -108,7 +108,12 @@
 		methods:{
 			goDetail(id){
 				uni.navigateTo({
-					url:'../../news-detail/news-detail?article_id='+id
+					url:"/pages/news-detail/news-detail?article_id"+id
+				})
+			},
+			goCommunityDetail(){
+				uni.navigateTo({
+					url:'/pages/tabBar/community/community-detail/community-detail'
 				})
 			}
 		}
@@ -165,6 +170,8 @@
 				height: 230rpx;
 				margin-top: 10rpx;
 				margin-right: 10rpx;
+				border-radius: 10rpx;
+				overflow: hidden;
 				image{
 					width: 100%;
 					height: 100%;

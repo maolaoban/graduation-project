@@ -233,6 +233,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/hot-page/hot-page",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "今日热点",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/tabBar/community/publish-community/publish-community",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发布动态",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

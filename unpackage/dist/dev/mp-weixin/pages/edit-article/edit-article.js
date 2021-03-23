@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
     },
     jinEdit: function() {
-      return __webpack_require__.e(/*! import() | components/jin-edit/jin-edit */ "components/jin-edit/jin-edit").then(__webpack_require__.bind(null, /*! @/components/jin-edit/jin-edit.vue */ 304))
+      return __webpack_require__.e(/*! import() | components/jin-edit/jin-edit */ "components/jin-edit/jin-edit").then(__webpack_require__.bind(null, /*! @/components/jin-edit/jin-edit.vue */ 310))
     },
     uSelect: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 311))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-select/u-select */ "uview-ui/components/u-select/u-select").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-select/u-select.vue */ 317))
     }
   }
 } catch (e) {

@@ -59,7 +59,7 @@
 			}
 		},
 		onLoad() {
-			this.userInfo = uni.getStorageSync('user-info');
+			this.userInfo = uni.getStorageSync('userInfo');
 			this.nickName = this.userInfo.nickName;
 			this.bios = this.userInfo.bios;
 		},
@@ -88,6 +88,7 @@
 						filePath:this.avatarSrc,
 						cloudPath:'user/avatar.jpg'
 					})
+					console.log('上传结果',result);
 					this.avatar = result.fileID;
 				}
 				let uniIdToken = uni.getStorageSync('uni_id_token');

@@ -7,7 +7,7 @@
 				:interval="3000"
 				:border-radius="20"
 				:bg-color="color"
-				@click="goDetail"
+				@click="goDetail(carouseList._id)"
 			>
 			</u-swiper>
 		</view>
@@ -39,7 +39,7 @@
 		<!-- <fab></fab> -->
 		
 		<view class="toutiao">
-			<view class="toutiao-container">
+			<view class="toutiao-container" @click="goHotList">
 				<view class="toutiao-header">
 					<!-- <view class="toutiao-icon">
 						<image src="../../static/images/hot-news.png" mode="aspectFill"></image>
@@ -106,9 +106,9 @@
 					this.isLoading = false;
 				})
 			},
-			goDetail(index){
+			goDetail(id){
 				uni.navigateTo({
-					url:'../../news-detail/news-detail'
+					url:'../../news-detail/news-detail?article_id=' + id
 				})
 			},
 			goProduct(){
@@ -132,6 +132,11 @@
 			goStore(){
 				uni.navigateTo({
 					url:'/pages/store-page/store-page'
+				})
+			},
+			goHotList(){
+				uni.navigateTo({
+					url:'/pages/hot-page/hot-page'
 				})
 			}
 		}

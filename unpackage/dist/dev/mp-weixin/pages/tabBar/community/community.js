@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uGap: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 238))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 244))
     },
     commonCard: function() {
-      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 245))
+      return Promise.all(/*! import() | components/common-card/common-card */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common-card/common-card")]).then(__webpack_require__.bind(null, /*! @/components/common-card/common-card.vue */ 251))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
     }
   }
 } catch (e) {
@@ -209,6 +209,11 @@ var _default =
     goMore: function goMore() {
       uni.navigateTo({
         url: './more-community/more-community' });
+
+    },
+    goPublish: function goPublish() {
+      uni.navigateTo({
+        url: 'publish-community/publish-community' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

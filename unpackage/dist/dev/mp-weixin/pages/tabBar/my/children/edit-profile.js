@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 237))
     }
   }
 } catch (e) {
@@ -214,7 +214,7 @@ var _default =
     } },
 
   onLoad: function onLoad() {
-    this.userInfo = uni.getStorageSync('user-info');
+    this.userInfo = uni.getStorageSync('userInfo');
     this.nickName = this.userInfo.nickName;
     this.bios = this.userInfo.bios;
   },
@@ -238,12 +238,13 @@ var _default =
                 uni.showLoading({
                   title: '保存中' });if (!
 
-                _this2.isChange) {_context.next = 6;break;}_context.next = 4;return (
+                _this2.isChange) {_context.next = 7;break;}_context.next = 4;return (
                   uniCloud.uploadFile({
                     filePath: _this2.avatarSrc,
                     cloudPath: 'user/avatar.jpg' }));case 4:result = _context.sent;
 
-                _this2.avatar = result.fileID;case 6:
+                console.log('上传结果', result);
+                _this2.avatar = result.fileID;case 7:
 
                 uniIdToken = uni.getStorageSync('uni_id_token');
                 changeInfo = {
@@ -262,7 +263,7 @@ var _default =
                   uni.switchTab({
                     url: '../my' });
 
-                });case 9:case "end":return _context.stop();}}}, _callee);}))();
+                });case 10:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 15)["default"]))
 

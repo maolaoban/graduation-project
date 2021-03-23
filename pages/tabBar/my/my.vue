@@ -368,6 +368,7 @@
 						uni.removeStorageSync('uni_id_token');
 						uni.removeStorageSync('username');
 						uni.removeStorageSync("login_type");
+						uni.removeStorageSync("userId");
 						console.log("退出登录",data);
 						uni.reLaunch({
 							url:'../index/index'

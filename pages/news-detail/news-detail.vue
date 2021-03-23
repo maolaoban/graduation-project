@@ -9,12 +9,12 @@
 					<image :src="contentInfo.authorInfo.avatar || '../../static/images/default-avatar.png'" mode="aspectFill"></image>
 				</view>
 				<view class="author-name">
-					<text class="name">{{contentInfo.authorInfo.nickName}}</text>
-					<text class="bio">{{contentInfo.authorInfo.bios}}</text>
+					<text class="name" v-text="contentInfo.authorInfo.nickName"></text>
+					<text class="bio" v-text="contentInfo.authorInfo.bios"></text>
 				</view>
 			</view>
 			<view class="author-follow" @click="addFollow" :class="{'followed':isFollow}">
-				{{isFollow?'已关注':'关注'}}
+				{{contentInfo.is_follow?'已关注':'关注'}}
 			</view>
 		</view>
 		<!-- 模拟骨架屏 -->
@@ -39,7 +39,7 @@
 			<view class="content-title" v-text="contentInfo.title"></view>
 			<view class="content-time">
 				<text>{{contentInfo.create_time | timeFormate}}</text>
-				<text v-text="'阅读：'+contentInfo.read_count"></text>
+				<text v-text="'阅读：'+contentInfo.read_count || ''"></text>
 			</view>
 			<view class="u-content">
 				<u-parse :html="contentInfo.content" :tag-style="style"></u-parse>
@@ -50,7 +50,7 @@
 		<!-- 返回顶部按钮 -->
 		<u-back-top :scroll-top="scrollTop"></u-back-top>
 		<!-- 评论框 -->
-		<comment-input :articleId="articleId" @sendCommentOk="getArticleInfo"></comment-input>
+		<comment-input :articleId="articleId"  :isLike="isLike" :isCollect="isCollect" @sendCommentOk="getArticleInfo"></comment-input>
 	</view>
 </template>
 
@@ -68,7 +68,9 @@
 					img:'margin:10px 0'
 				},
 				loading:true,
-				articleId:''
+				articleId:'',
+				isLike:false,
+				isCollect:false
 			}
 		},
 		filters:{
@@ -79,19 +81,6 @@
 		onLoad(option) {
 			this.articleId = option.article_id;
 			this.getArticleInfo()
-			// this.$api.get_content({
-			// 	article_id:option.article_id
-			// }).then(res => {
-			// 	const {data} = res;
-			// 	console.log(data);
-			// 	this.contentInfo = data;
-			// 	this.commentList = data.comment;
-			// 	this.loading = false;
-			// 	//设置导航栏文字
-			// 	uni.setNavigationBarTitle({
-			// 	    title: data.title
-			// 	});
-			// });
 		},
 		onPageScroll(e){
 			this.scrollTop = e.scrollTop;
@@ -107,12 +96,15 @@
 			},
 			getArticleInfo(){
 				this.$api.get_content({
+					user_id:uni.getStorageSync('userId') || null,
 					article_id:this.articleId
 				}).then(res => {
 					const {data} = res;
 					console.log(data);
 					this.contentInfo = data;
 					this.commentList = data.comment;
+					this.isLike = data.is_like;
+					this.isCollect = data.is_collect;
 					this.loading = false;
 					//设置导航栏文字
 					uni.setNavigationBarTitle({

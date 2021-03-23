@@ -14,10 +14,10 @@
 							<view class="body-info_name">
 								{{item.name}}
 							</view>
-							<view class="body-info_like">
+							<!-- <view class="body-info_like">
 								<u-icon :name="!isThumb?'thumb-up':'thumb-up-fill'" size="30" :color="!isThumb?'#333':'#01b9fd'"></u-icon>
 								<text>{{item.like_count}}</text>
-							</view>
+							</view> -->
 						</view>
 						<view class="comment-body_time">
 							{{item.time | timeFormate}}

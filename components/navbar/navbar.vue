@@ -18,7 +18,7 @@
 			</view>
 			<view class="navabr-search_input" v-else>
 				<u-icon name="search" color="#969696" size="30"></u-icon>
-				<input class="search-input" type="text" value="" 
+				<input class="search-input" type="text" v-model="inputText"
 				placeholder="新版iPad Pro曝光..." 
 				placeholder-class="input-placeholder"
 				confirm-type="search"
@@ -43,13 +43,21 @@
 				statusBarHeight: 20,
 				navBarHeight: 50,
 				windowWidth:0,
-				isReverse:false
+				isReverse:false,
+				inputText:''
 			};
 		},
 		props:{
 			isSearch:{
 				type:Boolean,
 				default:false
+			}
+		},
+		watch:{
+			inputText(newVal){
+				if(!newVal){
+					this.$emit("getSearch",newVal);
+				}
 			}
 		},
 		created() {
@@ -86,8 +94,17 @@
 				})
 			},
 			searchHandler(e){
-				const {value} = e.detail;
-				this.$store.dispatch('add_history',value);
+				let value = '';
+				if(typeof e === 'string'){
+					value = e;
+					this.inputText = e;
+				}else{
+					value = e.detail.value;
+				}
+				if(!!value){
+					this.$store.dispatch('add_history',value);
+					this.$emit('getSearch',value);
+				}
 			}
 		}
 	}

@@ -3,17 +3,24 @@ const db = uniCloud.database()
 const dbCmd = db.command
 exports.main = async (event, context) => {
 	const {
+		user_id,
 		articleId,
 		content,
 		time
 	} = event;
+	let userInfo = await db.collection('uni-id-users').doc(user_id).field({
+		'nickName':true,
+		'avatar':true
+	}).get()
+	userInfo = userInfo.data[0];
 	const commentObj = {
 		comment_id:genID(5),
 		content:content,
 		like_count:0,
 		time:time,
-		name:'maolaoban',
-		avatar:'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1735133713,3822132866&fm=11&gp=0.jpg'
+		user_id:user_id,
+		name:userInfo.nickName,
+		avatar:userInfo.avatar
 	}
 	const article = await db.collection('article').doc(articleId).update({
 		comment:dbCmd.push(commentObj)
